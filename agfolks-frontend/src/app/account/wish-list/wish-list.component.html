@@ -1,0 +1,87 @@
+<div class="auth--body auth--body-md My--Profile">
+    <div class="auth--body__inner auth--body__inner-md">
+        <div class="container">
+            <div class="row">
+                <aside class="col-12 col-lg-3 col-xl-3">
+                    <div class="row u-mb--30 u-mb--30-sm">
+                        <div class="col-12 col-lg-12 col-xl-12">
+                            <h3 class="section--title section--title-sm">{{'MY_ACCOUNT' | translate}}</h3>
+                        </div>
+                    </div>
+                    
+                    <!--Add side bar-->
+                    <app-side-bar></app-side-bar>
+                </aside>
+                <div class="col-12 col-lg-9 col-xl-9 has--leftsidebar has--leftsidebar-md">
+                    <div class="c-breadcrumb">
+                        <nav class="missio-breadcrumb">
+                            <a class="breadcrumb-link" href="/">Home</a> <a class="breadcrumb-link " href="javascript:void(0);" (click)="changeRouter('account')">My Account</a> <span class="breadcrumb-last">{{'WISH_LIST' | translate}}</span>
+                        </nav>
+                    </div>
+                    
+                    <div class="page-head page-head-sm">
+                        <h3 class="u-heading--small u-heading--small-sm">{{'WISH_LIST' | translate}}</h3>
+                    </div>
+                    
+                    <div class="table-responsive">
+                                    
+                        <div class="cart-table-section cart-table-section-xs">
+                            <table class="shop_table shop_table_responsive cart u-mb--0" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th class="product-thumbnail" colspan="3">Product Name</th>
+                                        <th class="product-price">Price</th>
+                                        <th class="product-quantity">Stock Status</th>
+                                        <th class="product-subtotal">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="cart_item" *ngFor="let Wishlist of Wishlists" >
+                                        <td class="product-remove">
+                                            <div class="wrap-remove-button">
+                                                <a href="javascript:;" (click)="RemoveFromWishlist(Wishlist.ID)" class="remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove">×</a>
+                                            </div>
+                                        </td>
+                                        <td class="th--prdt" colspan="2">
+                                            <div class="u-flexed u-align-center">
+                                                <div class="prdt--image">
+                                                    <a href="javascript:;" (click)="changeRouter('product/'+Wishlist.Product_Slug);" class="product-image-link">
+                                                        <img src="{{Wishlist.imageUrl}}" alt="{{Wishlist.Product_Name}}" height="491">
+                                                    </a>
+                                                </div>
+                                                <div class="prdt--name">
+                                                    <a class="text-black" href="javascript:void(0)" (click)="changeRouter('product/'+Wishlist.Product_Slug);" [innerHtml]="((Wishlist && Wishlist.Product_Name)? Wishlist.Product_Name : '') | safeHtml"></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="wishlist-product-price">${{Wishlist.Product_Price}}</td>
+                                        <td class="product-stock-status">
+                                            <span class="wishlist-in-stock">{{(Wishlist.Product_Stock > 0)?'In Stock':'Out of Stock'}}</span>
+                                        </td>
+                                        <td class="product-subtotal">
+                                            <a *ngIf="(Wishlist.Product_Stock > 0)" href="javascript:;" (click)="productAddToCart(Wishlist,1)" class="button button--green button-sm button-inline button--cart">{{'ADD_TO_CART' | translate}}</a>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="cart_item" *ngIf="(Wishlists.length == 0)" >
+                                        <td class="product-remove" colspan="6">
+                                            <div class="wishlist--cart">
+                                                <p class="wishlist--cart--empty wishlist--cart--empty-sm">{{'NO_PRODUCTS_IN_WISHLIST' | translate}}</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Newsletter component here -->
+<app-newsletter></app-newsletter>

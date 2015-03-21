@@ -1,0 +1,213 @@
+ /* Detail Page
+------------------------------------*/
+
+.nav {
+    &.nav-tabs {
+        border:0px none;
+        @include margin-bottom(30);
+        border-bottom:2px solid rgba($black,0.2);
+
+        li {
+            border:0px none;
+            @include margin(0);
+
+            > a {
+                border:0px none;
+                color:$black_sh1;
+                text-align:center;
+                position:relative;
+                @include padding(20);
+                @include font-size(16);
+                text-transform:uppercase;
+                font-weight:$weightRegular;
+                @include transition(all .2s ease);
+                
+                @media (max-width: 767px) {
+                    white-space: nowrap;
+                    text-overflow: inherit;
+                    @include font-size(14);
+                    @include padding(15 10);
+                }
+
+                &:after {
+                    left:0;
+                    width:0;
+                    height:4px;
+                    content:'';
+                    bottom:0px;
+                    position:absolute;
+                    margin-bottom:-3px;
+                    background-color:$green;
+                    @include transition(width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15));
+                }
+
+                &.active {
+                    color:$green;
+
+                    &:after {
+                        width:100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.tab-content {
+    @include margin-bottom(30);
+    @include responsive(xs) {
+        @include margin-bottom(50);
+    }
+
+    &--inner {
+        .text-link {
+            color: $green;
+            border-bottom: 1px solid $green;
+            @include animation(all .5s ease-in);
+
+            &:hover {
+                color: $blue_sh1;
+                border-bottom: 0px none;
+            }
+        }
+        p, li {
+            color:$black_sh1;
+            @include font-size(16);
+            line-height:1.65;
+            font-weight:$weightRegular;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color:$black_sh1;
+            margin-bottom: 15px;
+        }
+
+        h1, h2, h3 {
+            font-weight: $weightUltabold;
+        }
+
+        h4, h5, h6 {
+            font-weight: $weightBold;
+        }
+
+        h1 {
+            @include font-size(24);
+            line-height: 1.35;
+        }
+
+        h2 {
+            @include font-size(22);
+            line-height: 1.35;
+        }
+
+        h3 {
+            @include font-size(20);
+            line-height: 1.35;
+        }
+
+        h4 {
+            @include font-size(18);
+            line-height: 1.35;
+        }
+
+        h5 {
+            @include font-size(16);
+            line-height: 1.35;
+        }
+
+        ul.styled-lists {
+            list-style: none;
+
+            li {
+                list-style:none;
+                padding-left:25px;
+                position:relative;
+                margin-bottom:10px;
+
+                &:before {
+                    top:2px;
+                    left:0px;
+                    color:$green;
+                    content:'\f109';
+                    position:absolute;
+                    margin-right:12px;
+                    font-family:$woodmart;
+                }
+            }
+        }
+
+        figure {
+            width:auto;
+            display:table;
+            margin:0px auto;
+            position:relative;
+            @include padding(9);
+            background-color:#eff1f3;
+            border:1px solid $border;
+            @include margin-bottom(20);
+
+            img {
+                width:100%;
+                display:block;
+                max-width:100%;
+                margin:0px auto;
+                text-align:center;
+                border:1px solid $border;
+                @include margin-bottom(0);
+            }
+        }
+
+        .custom-table {
+            width:100%;
+            display:block;
+            @include padding(9);
+            background-color:#eff1f3;
+            border:1px solid $border;
+            -webkit-overflow-scrolling:touch;
+
+            .table-responsive {
+                width:100%;
+                display:block;
+                overflow-x:auto;
+                background-color:$white;
+                border:1px solid $border;
+                -webkit-overflow-scrolling:touch;
+
+                .table {
+                    @include margin-bottom(0);
+
+                    thead th {
+                        vertical-align: middle;
+                        border-bottom: 2px solid $border;
+                    }
+
+                    .btn-cart {
+                        color: $green;
+                        border:0px none;
+                        min-width:inherit;
+                        @include padding(0);
+                        @include border-radius(4px);
+                    }
+
+                    th:last-child {
+                        text-align: center;
+                    }
+
+                    td:last-child {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.tab-pane {
+    &.active {
+        @include animation(fadeIn .5s ease-in);
+    }
+}
+
+@keyframes fadeIn{from{@include opacity(0)}to{@include opacity(1)}}@-webkit-keyframes fadeIn{from{@include opacity(0)}to{@include opacity(1)}}
+
+

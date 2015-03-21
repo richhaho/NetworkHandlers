@@ -1,0 +1,69 @@
+/* CSS Document */
+
+.AG--Thankyou {
+    color: $white;
+    min-height: 400px;
+    position: relative;
+    @include padding(100 0);
+    background-color: $green_sh1;
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    @include padding-bottom(150);
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include align-items(center);
+    @include align-content(center);
+    @include justify-content(center);
+    @include margin-bottom(50);
+    
+    @include responsive(xs) {
+        min-height: 500px;
+        @include padding(150 0);
+        @include padding-bottom(300);
+    }
+    
+    .section-separator {
+        z-index: 1;
+        width: 100%;
+        bottom: 0px;
+        overflow: hidden;
+        position: absolute;
+        
+        svg {
+            display: block;
+        }
+        
+        &.wave-1 > .ss-content svg {
+            width: 100%;
+            @include margin-bottom(-1);
+        }
+    }
+    
+    .Thankyou--heading {
+        color: $white;
+        @include font-size(36);
+        line-height: 1.2;
+        @include margin-bottom(20);
+        font-family: $tertiaryFont;
+        font-weight: $weightUltabold;
+        text-shadow: 0px 2px 0px rgba($black,0.25);
+        
+        @include responsive(xs) {
+            @include font-size(60);
+            text-shadow: 0px 3px 0px rgba($black,0.25);
+        }
+    }
+    .Thankyou--description {
+        color: $white;
+        @include font-size(20);
+        line-height: 1.5;
+        @include margin-bottom(0);
+        font-family: $tertiaryFont;
+        font-weight: $weightSemibold;
+        
+        @include responsive(xs) {
+            @include font-size(25);
+        }
+    }
+}

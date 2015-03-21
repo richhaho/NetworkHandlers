@@ -1,0 +1,19 @@
+<div class="featured-categories featured-categories-xs" *ngIf="categoryList && categoryList.length">
+  <div class="container" >
+    <ul class="featured-categories--lists featured-categories--lists-xs">
+      <li class="featured-categories--lists__items" *ngFor="let category of categoryList | slice:0:5; let i = index">
+        <div class="cat-design-default single">
+          <div class="wrapp-category">
+            <div class="category-image-wrapp"><a href="javascript:;" (click)="changeRouter('store/'+category.Category_Slug);"  class="category-image">
+              <img *ngIf="category &&category.Category_Image" src="{{PORTAL_URL}}files/store/categories/{{CID}}/{{category.Category_Image}}" alt="{{category.Category_Name}}">
+             <img *ngIf='!category.Category_Image' src="./assets/images/no-image.png" alt="{{category.Category_Name}}">
+            </a></div>
+          </div>
+          <div class="category--name category--name-xs" [innerHTML]="category.Category_Name | safeHtml"></div>
+          <a href="javascript:;" (click)="changeRouter('store/'+category.Category_Slug);" class="category-link"></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="clearfix"></div>

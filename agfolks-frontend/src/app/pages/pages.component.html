@@ -1,0 +1,7 @@
+<!-- Include home cms page content here -->
+<div class="content__wrap content__wrap-sm">
+    <!-- Include slider component here -->
+    <app-slider *ngIf="sliderData && sliderData.length" [sliderData]="sliderData"></app-slider>
+    
+    <app-homecms *ngIf="cmsPageData && cmsPageData.ID" [cmsPageData]="cmsPageData"></app-homecms>
+</div>

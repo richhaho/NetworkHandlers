@@ -1,0 +1,462 @@
+<div class="auth--body auth--body-md My--Profile Order--History">
+  <div class="auth--body__inner auth--body__inner-md">
+    <div class="container">
+      <div class="row">
+          
+          <aside class="col-12 col-lg-3 col-md-3 col-sm-12">
+                <div class="row u-mb--30 u-mb--30-sm">
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <h3 class="section--title section--title-sm">{{'MY_ACCOUNT' | translate}}</h3>
+                    </div>
+                </div>
+
+                <!--Add side bar-->
+                <app-side-bar></app-side-bar>
+            </aside>
+          
+        <div class="col-12 col-lg-9 col-xl-9 has--leftsidebar has--leftsidebar-md form-vertical form-vertical-sm">
+            <div class="c-breadcrumb">
+                <nav class="missio-breadcrumb">
+                    <a class="breadcrumb-link" href="/">Home</a> <a class="breadcrumb-link " href="javascript:void(0);" (click)="changeRouter('account')">My Account</a> <span class="breadcrumb-last">{{'MY_ORDER' | translate}}</span>
+                </nav>
+            </div>
+            
+          <div class="u-flexed u-align-center u-mb--20">
+            <h2 class="no-margin">My Orders</h2>
+            <div class="ml-auto">
+              <div class="input-group">
+                <span class="search"></span>
+                <input type="text" class="form-control" placeholder="Search all orders">
+                <div class="input-group-append"><button class="btn input-btn" type="button">Search Orders</button></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 poduct-tabs-inner">
+              <div class="product--specifications">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link" [ngClass]="{'active': setTab=='All_Orders'}" data-toggle="tab"
+                      href="#All_Orders" role="tab" href="javascript:;" (click)="setTab='All_Orders';  getUserOrders('all');">All Orders</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" [ngClass]="{'active': setTab=='OpenOrders'}" data-toggle="tab"
+                      href="#OpenOrders" role="tab" href="javascript:;" (click)="setTab='OpenOrders'; getUserOrders('1');">Open Orders</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" [ngClass]="{'active': setTab=='CancelledOrders'}" data-toggle="tab" href="#CancelledOrders" role="tab" href="javascript:;" 
+                    (click)="setTab='CancelledOrders';  getUserOrders('4');">Cancelled Orders</a>
+                  </li>
+                </ul>
+
+                <div class="tab-content tab-content-xs no-padding no-margin" id="myTabContent">
+
+                  <div *ngIf="setTab=='All_Orders'; then All_Orders"></div>
+                  <div *ngIf="setTab=='OpenOrders'; then OpenOrders;"></div>
+                  <div *ngIf="setTab=='CancelledOrders'; then CancelledOrders;"></div>
+
+                  <ng-template #All_Orders>
+                    <div class="tab-pane fade show active" id="All_Orders">
+                      <div class="tab-content no-margin" *ngIf="OrdersData && OrdersData.length">
+                        <div style="display: none;" class="Order--History--Filter u-flexed u-align-center u-mb--25">
+                          <label for="orderFilter" class="form-label"><span class="order--count">8 orders</span> placed
+                            in</label>
+                          <div class="dropdown order-panel">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                              <span id="order_concept">past 6 months</span>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                              <li><a href="#">last 30 days</a></li>
+                              <li><a href="#">past 6 months</a></li>
+                              <li><a href="#">2019</a></li>
+                              <li><a href="#">2018</a></li>
+                              <li><a href="#">2017</a></li>
+                              <li><a href="#">2016</a></li>
+                              <li><a href="#">2015</a></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                        <div class="Order--History--Cards">
+
+                          <!-- First Panel -->
+                          <div class="Order--History--Cards__Items" *ngFor="let Order of OrdersData; let i = index">
+                            <div class="Order--History--Cards__Head">
+                              <div class="Order--History--Cards__Head--GridLeft">
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <div class="blocks">
+                                      <span class="label">Order placed</span>
+                                      <span class="value">{{Order.Order_Date}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="blocks">
+                                      <span class="label">Total</span>
+                                      <span class="value">$ {{Order.Payment_Grandtotal}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-6">
+                                    <div class="blocks">
+                                      <span class="label">Ship to</span>
+                                      <span class="value">
+                                        <ng-template #popTemplate>
+                                          <ul>
+                                            <li>{{Order.Shipping_First_Name}} {{Order.Shipping_Last_Name}}</li>
+                                            <li>{{Order.Shipping_Address}} {{Order.Shipping_Address2}}</li>
+                                            <li>{{Order.Shipping_State}} {{Order.Shipping_Zip}},
+                                              {{Order.Shipping_Country}}</li>
+                                            <li>Phone: {{Order.Shipping_Phone}}</li>
+                                          </ul>
+                                        </ng-template>
+                                        <a href="javascript:;" [popover]="popTemplate">{{Order.Shipping_First_Name}}
+                                          {{Order.Shipping_Last_Name}} <i class="far fa-angle-down"></i></a>
+                                      </span>
+                                    </div> 
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="Order--History--Cards__Head--GridRight">
+                                <div class="blocks">
+                                  <span class="label">Order # {{Order.OrderID}}</span>
+                                  <span class="value">
+                                    <ul class="inline-nav">
+                                      <li><a href="javascript:;" (click)="changeRouter('account/order-detail/'+Order.OrderID);">Order Details</a></li>
+                                        <li><a href="">Invoice </a></li>
+                                    </ul>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="Order--History--Cards__Body" *ngFor="let product of Order.products; let ii = iindex">
+                              <div class="Order--History--Cards__Body--GridLeft Order--History--Cards__Body--GridLeft-xs">
+                                <div class="Details__Top">
+                                    <h3 [ngSwitch]="product.Shipping_Status">
+                                      <p *ngSwitchCase="1">
+                                        Order Status : New Order
+                                      </p>
+                                      <p *ngSwitchCase="2">
+                                        Order Status : In Processing
+                                      </p>
+                                      <p *ngSwitchCase="3">
+                                        Order Status : Order Shipped
+                                      </p>
+                                      <p *ngSwitchCase="4">
+                                        Order Status : Order Canceled
+                                      </p>
+                                      <p *ngSwitchCase="5">
+                                        Order Status : Delivered
+                                      </p>
+                                    </h3>
+                                    <p>Signed by: {{Order.Shipping_First_Name}} {{Order.Shipping_Last_Name}}</p>
+                                </div>
+
+                                <div class="Order__Prdt__Excerpt">
+                                  <div class="Order__Prdt__Thumbnail">
+                                      <a class="" href="javascript:;" (click)="changeRouter('product/'+product.Product_Slug);">
+                                      <img alt=""
+                                        src="{{PORTAL_URL}}files/store/products/{{CID}}/{{product.Product_ID}}/{{product.Image}}" alt="{{product.Product_Name}}"
+                                        class="img-fluid"></a>
+                                    </div>
+
+                                  <div class="Order__Prdt__Details">
+                                    <div class="prdt__name prdt__name-xs"><a href="javascript:;" (click)="changeRouter('product/'+product.Product_Slug);">{{product.Product_Name}}</a></div>
+                                    <p class="prdt__text">Sold by: <strong>{{(product.Added_By != null)? product.Added_By : 'Agfolks'}}</strong></p>
+                                    <p class="prdt__text price">$ {{product.TotalAmount}}</p>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="Order--History--Cards__Body--GridRight">
+                                <div class="Order__Buttons__Group">
+                                  <a href="track-package.html"
+                                    class="button button-radius button-sm button--green u-mb--15" role="button">Track
+                                    package</a>
+                                  <a href="#" *ngIf="product.Shipping_Status == '1' || product.Shipping_Status == '2'" class="button button-radius button-sm button--black u-mb--15"
+                                    role="button">Return or replace item</a>
+                                  
+                                  <a href="#" class="button button-radius button-sm button--black u-mb--10"
+                                    role="button">Write a product review</a>
+                                </div>
+                              </div>
+                            </div>
+
+                            
+                          </div>
+
+
+                        </div>
+
+                      </div>
+
+                      <div class="tab-content no-margin" *ngIf="OrdersData && OrdersData.length == 0">
+                        <div class="text-center">
+                          <p>You havn't posted any order yet.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                  <ng-template #OpenOrders>
+                    <div class="tab-pane fade show active" id="OpenOrders">
+                      <div class="tab-content no-margin" *ngIf="OrdersData && OrdersData.length">
+                        
+
+                        <div class="Order--History--Cards">
+                          <ng-container *ngFor="let Order of OrdersData; let i = index">
+                            <div class="Order--History--Cards__Items">
+                              <div  class="Order--History--Cards__Head">
+                                <div class="Order--History--Cards__Head--GridLeft">
+                                  <div class="row">
+                                    <div class="col-sm-3">
+                                      <div class="blocks">
+                                        <span class="label">Order placed</span>
+                                        <span class="value">{{Order.Order_Date}}</span>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                      <div class="blocks">
+                                        <span class="label">Total</span>
+                                        <span class="value">$ {{Order.Payment_Grandtotal}}</span>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="blocks">
+                                        <span class="label">Ship to</span>
+                                        <span class="value">
+                                          <ng-template #popTemplate>
+                                            <ul>
+                                              <li>{{Order.Shipping_First_Name}} {{Order.Shipping_Last_Name}}</li>
+                                              <li>{{Order.Shipping_Address}} {{Order.Shipping_Address2}}</li>
+                                              <li>{{Order.Shipping_State}} {{Order.Shipping_Zip}},
+                                                {{Order.Shipping_Country}}</li>
+                                              <li>Phone: {{Order.Shipping_Phone}}</li>
+                                            </ul>
+                                          </ng-template>
+                                          <a href="javascript:;" [popover]="popTemplate">{{Order.Shipping_First_Name}}
+                                            {{Order.Shipping_Last_Name}} <i class="far fa-angle-down"></i></a>
+                                        </span>
+                                      </div> 
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="Order--History--Cards__Head--GridRight">
+                                  <div class="blocks">
+                                    <span class="label">Order # {{Order.OrderID}}</span>
+                                    <span class="value">
+                                      <ul class="inline-nav">
+                                        <li><a href="javascript:;" (click)="changeRouter('account/order-detail/'+Order.OrderID);">Order Details</a></li>
+                                          <li><a href="">Invoice </a></li>
+                                      </ul>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="Order--History--Cards__Body" *ngFor="let product of Order.products; let ii = iindex">
+                                <div
+                                  class="Order--History--Cards__Body--GridLeft Order--History--Cards__Body--GridLeft-xs">
+                                  <div class="Details__Top">
+                                      <h3 [ngSwitch]="product.Shipping_Status">
+                                          <p *ngSwitchCase="1">
+                                            Order Status : New Order
+                                          </p>
+                                          <p *ngSwitchCase="2">
+                                            Order Status : In Processing
+                                          </p>
+                                          <p *ngSwitchCase="3">
+                                            Order Status : Order Shipped
+                                          </p>
+                                          <p *ngSwitchCase="4">
+                                            Order Status : Order Canceled
+                                          </p>
+                                          <p *ngSwitchCase="5">
+                                            Order Status : Delivered
+                                          </p>
+                                        </h3>
+
+                                      <p>Signed by: {{Order.Shipping_First_Name}} {{Order.Shipping_Last_Name}}</p>
+                                  </div>
+
+                                  <div class="Order__Prdt__Excerpt">
+                                    <div class="Order__Prdt__Thumbnail">
+                                        <a class="" href="javascript:;" (click)="changeRouter('product/'+product.Product_Slug);">
+                                        <img alt=""
+                                          src="{{PORTAL_URL}}files/store/products/{{CID}}/{{product.Product_ID}}/{{product.Image}}" alt="{{product.Product_Name}}"
+                                          class="img-fluid"></a>
+                                      </div>
+
+                                    <div class="Order__Prdt__Details">
+                                      <div class="prdt__name prdt__name-xs"><a href="javascript:;" (click)="changeRouter('product/'+product.Product_Slug);">{{product.Product_Name}}</a></div>
+                                      <p class="prdt__text">Sold by: <strong>{{(product.Added_By != null)? product.Added_By : 'Agfolks'}}</strong></p>
+                                      <p class="prdt__text price">$ {{product.TotalAmount}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="Order--History--Cards__Body--GridRight">
+                                  <div class="Order__Buttons__Group">
+                                    <!--<a href="track-package.html"
+                                      class="button button-radius button-sm button--green u-mb--15" role="button">Track
+                                      package</a>-->
+                                    <a href="#" *ngIf="product.Shipping_Status == '1' || product.Shipping_Status == '2'" class="button button-radius button-sm button--green u-mb--15"
+                                      role="button">Return or replace item</a>
+                                    <a href="#"  class="button button-radius button-sm button--black u-mb--10"
+                                      role="button">Leave seller feedback</a>
+                                    <a href="#" class="button button-radius button-sm button--black u-mb--10"
+                                      role="button">Write a product review</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </ng-container>
+                        </div>
+
+                      </div>
+                      <div class="tab-content no-margin" *ngIf="OrdersData && OrdersData.length == 0">
+                        <div class="text-center">
+                          <p>We aren't finding any open orders.
+                            <a href="javascript:;" (click)="setTab='All_Orders'" class="text-link text-green">View all
+                              orders</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                  <ng-template #CancelledOrders>
+                    <div class="tab-pane fade show active" id="CancelledOrders">
+                      <div class="tab-content no-margin" *ngIf="OrdersData && OrdersData.length">
+                        <div class="Order--History--Cards">
+                          <ng-container *ngFor="let Order of OrdersData; let i = index">
+                            
+                              <div class="Order--History--Cards__Items" >
+                                
+                                  <div  class="Order--History--Cards__Head">
+                                    <div class="Order--History--Cards__Head--GridLeft">
+                                      <div class="row">
+                                        <div class="col-sm-3">
+                                          <div class="blocks">
+                                            <span class="label">Order placed</span>
+                                            <span class="value">{{Order.Order_Date}}</span>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                          <div class="blocks">
+                                            <span class="label">Total</span>
+                                            <span class="value">$ {{Order.Payment_Grandtotal}}</span>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                          <div class="blocks">
+                                            <span class="label">Ship to</span>
+                                            <span class="value">
+                                              <ng-template #popTemplate>
+                                                <ul>
+                                                  <li>{{Order.Shipping_First_Name}} {{Order.Shipping_Last_Name}}</li>
+                                                  <li>{{Order.Shipping_Address}} {{Order.Shipping_Address2}}</li>
+                                                  <li>{{Order.Shipping_State}} {{Order.Shipping_Zip}},
+                                                    {{Order.Shipping_Country}}</li>
+                                                  <li>Phone: {{Order.Shipping_Phone}}</li>
+                                                </ul>
+                                              </ng-template>
+                                              <a href="javascript:;" [popover]="popTemplate">{{Order.Shipping_First_Name}}
+                                                {{Order.Shipping_Last_Name}} <i class="far fa-angle-down"></i></a>
+                                            </span>
+                                          </div> 
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="Order--History--Cards__Head--GridRight">
+                                      <div class="blocks">
+                                        <span class="label">Order # {{Order.OrderID}}</span>
+                                        <span class="value">
+                                          <ul class="inline-nav">
+                                            <li><a href="javascript:;" (click)="changeRouter('account/order-detail/'+Order.OrderID);">Order Details</a></li>
+                                              <li><a href="">Invoice </a></li>
+                                          </ul>
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="Order--History--Cards__Body" *ngFor="let product of Order.products; let ii = iindex">
+                                    <div
+                                      class="Order--History--Cards__Body--GridLeft Order--History--Cards__Body--GridLeft-xs">
+                                      <div class="Details__Top">
+                                          <h3 [ngSwitch]="product.Shipping_Status">
+                                              <p *ngSwitchCase="1">
+                                                Order Status : New Order
+                                              </p>
+                                              <p *ngSwitchCase="2">
+                                                Order Status : In Processing
+                                              </p>
+                                              <p *ngSwitchCase="3">
+                                                Order Status : Order Shipped
+                                              </p>
+                                              <p *ngSwitchCase="4">
+                                                Order Status : Order Canceled
+                                              </p>
+                                              <p *ngSwitchCase="5">
+                                                Order Status : Delivered
+                                              </p>
+                                            </h3>
+
+                                          <p>Signed by: {{Order.Shipping_First_Name}} {{Order.Shipping_Last_Name}}</p>
+                                      </div>
+
+                                      <div class="Order__Prdt__Excerpt">
+                                        <div class="Order__Prdt__Thumbnail">
+                                            <a class="" href="javascript:;" (click)="changeRouter('product/'+product.Product_Slug);">
+                                            <img alt=""
+                                              src="{{PORTAL_URL}}files/store/products/{{CID}}/{{product.Product_ID}}/{{product.Image}}" alt="{{product.Product_Name}}"
+                                              class="img-fluid"></a>
+                                          </div>
+
+                                        <div class="Order__Prdt__Details">
+                                          <div class="prdt__name prdt__name-xs"><a href="javascript:;" (click)="changeRouter('product/'+product.Product_Slug);">{{product.Product_Name}}</a></div>
+                                          <p class="prdt__text">Sold by: <strong>{{(product.Added_By != null)? product.Added_By : 'Agfolks'}}</strong></p>
+                                          <p class="prdt__text price">$ {{product.TotalAmount}}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="Order--History--Cards__Body--GridRight">
+                                      <div class="Order__Buttons__Group">
+                                        <!--<a href="track-package.html"
+                                          class="button button-radius button-sm button--green u-mb--15" role="button">Track
+                                          package</a>-->
+                                        <a href="#" *ngIf="product.Shipping_Status == '1' || product.Shipping_Status == '2'" class="button button-radius button-sm button--green u-mb--15"
+                                          role="button">Return or replace item</a>
+                                        <a href="#"  class="button button-radius button-sm button--black u-mb--10"
+                                          role="button">Leave seller feedback</a>
+                                        <a href="#" class="button button-radius button-sm button--black u-mb--10"
+                                          role="button">Write a product review</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                          </ng-container>
+                        </div>
+                      </div>
+                      <div class="tab-content no-margin" *ngIf="OrdersData && OrdersData.length == 0">
+                        <div class="text-center">
+                          <p>We aren't finding any Cancelled orders.
+                            <a href="javascript:;" (click)="setTab='All_Orders'; getUserOrders('all');" class="text-link text-green">View all
+                              orders</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

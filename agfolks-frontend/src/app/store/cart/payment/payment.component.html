@@ -1,0 +1,274 @@
+<app-payment-banner></app-payment-banner>
+
+<div class="auth--body auth--body-md Order--History checkout--Page checkout--Page-sm">
+    <div class="auth--body__inner auth--body__inner-md">
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-12 col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-sm-12">
+                            <h2 class="subTitle subTitle-sm with--border">{{'ORDER_ITEMS' | translate}}</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-sm-12">
+                            <div class="form-vertical form-vertical-sm">
+                                <div class="cart-table-section cart-table-section-xs" *ngIf="cartProductList &&  cartProductList.length">
+                                    <table class="shop_table shop_table_responsive cart u-mb--0" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-thumbnail" colspan="2">{{'PRODUCT' | translate}}</th>
+                                                <th class="product-price">{{'PRICE' | translate}}</th>
+                                                <th class="product-quantity">{{'QTY' | translate}}</th>
+                                                <th class="product-discount">{{'DISCOUNT' | translate}}</th>
+                                                <th class="product-subtotal">{{'TOTAL' | translate}}</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr class="cart_item" *ngFor="let cartItem of cartProductList; let i=index ">
+                                                <td colspan="2" class="th--prdt">
+                                                    <div class="u-flexed u-align-center">
+                                                        <div class="prdt--image">
+                                                            <a href="javascript:void(0)" (click)="changeRouter('product/'+cartItem.Product_Slug);">
+                                                            <img *ngIf="cartItem && cartItem.Image" src="{{PORTAL_URL}}files/store/products/{{cartItem.CID}}/{{cartItem.Product_ID}}/{{cartItem.Image}}" alt="" width="130" height="491">
+                                                            <img *ngIf='!cartItem.Image' src="./assets/images/no-image.png" alt="" width="130" height="491"></a>
+                                                        </div>
+                                                        <div class="prdt--name"><a href="javascript:void(0)"  (click)="changeRouter('product/'+cartItem.Product_Slug);"  class="text-black" [innerHtml]="((cartItem && cartItem.Product_Name)? cartItem.Product_Name : '') | safeHtml"></a></div>
+                                                    </div>
+                                                </td>
+
+                                                <td class="product-price">
+                                                    <span class="amount">${{(cartItem && cartItem.Product_Price )? cartItem.Product_Price :''}}</span>
+                                                </td>
+
+                                                <td class="product-quantity">
+                                                    <span class="amount">x {{cartItem.Product_Count}}</span>
+                                                </td>
+
+                                                <td class="product-discount">
+                                                    <span class="amount" *ngIf="cartItem && (cartItem.DiscountType=='amount' || cartItem.DiscountType=='percent')">${{(cartItem && cartItem.Discount_Price )? ((cartItem.Product_Price * cartItem.Product_Count)-(cartItem.Discount_Price * cartItem.Product_Count)).toFixed(2) : ''}}</span>
+                                                    <span class="amount" *ngIf="!(cartItem && (cartItem.DiscountType=='amount' || cartItem.DiscountType=='percent'))">$ 0.00</span> 
+                                                </td>
+
+                                                <td class="product-subtotal">
+                                                    <span class="amount" *ngIf="cartItem && (cartItem.DiscountType=='amount' || cartItem.DiscountType=='percent')">${{(cartItem && cartItem.Discount_Price )? (cartItem.Discount_Price * cartItem.Product_Count) : ''}}</span>
+                                                    <span class="amount" *ngIf="!(cartItem && (cartItem.DiscountType=='amount' || cartItem.DiscountType=='percent'))">${{(cartItem && cartItem.Product_Price )?(cartItem.Product_Price * cartItem.Product_Count):''}}</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                    
+                                <div class="row u-mb--40">
+                                    <div class="col-12 col-lg-12 col-sm-12">
+                                        <h2 class="subTitle subTitle-sm with--border with--border--full">{{'BILLING_SHIPPING_DETAILS' | translate}}</h2>
+
+                                        <div class="row">
+                                            <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="ship--details ship--details-sm">
+                                                    <p class="text">BILL TO:</p>
+                                                    <p class="text">{{(this.checkout_data) ? this.checkout_data.billing_first_name+' '+this.checkout_data.billing_last_name : ''}}<br>
+                                                    
+                                                    {{(this.checkout_data) ? this.checkout_data.billing_address1+' '+this.checkout_data.billing_address2+', '+this.checkout_data.billing_city+', '+this.checkout_data.billing_state+' '+this.checkout_data.billing_zip+', '+this.checkout_data.billing_country : ''}}<br>
+                                                        
+                                                    {{(this.checkout_data) ? this.checkout_data.billing_email : ''}}<br>
+                                                        
+                                                    {{(this.checkout_data) ? this.checkout_data.billing_phone : ''}}</p>
+                                                    <p class="text"><a href="javascript:;" (click)="changeRouter('checkout')" class="link-green">Edit</a></p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="ship--details ship--details-sm">
+                                                    <p class="text">SHIP TO:</p>
+                                                    <p class="text">{{(this.checkout_data) ? this.checkout_data.shipping_first_name+' '+this.checkout_data.shipping_last_name : ''}}<br>
+                                                    
+                                                    {{(this.checkout_data) ? this.checkout_data.shipping_address1+' '+this.checkout_data.shipping_address2+', '+this.checkout_data.shipping_city+', '+this.checkout_data.shipping_state+' '+this.checkout_data.shipping_zip+', '+this.checkout_data.shipping_country : ''}}<br>
+                                                        
+                                                    {{(this.checkout_data) ? this.checkout_data.shipping_email : ''}}<br>
+                                                        
+                                                    {{(this.checkout_data) ? this.checkout_data.shipping_phone : ''}}</p>
+                                                    <p class="text"><a href="javascript:;" (click)="changeRouter('checkout')" class="link-green">Edit</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="row u-mb--40">
+                                    <div class="col-12 col-lg-12 col-sm-12">
+                                        <h2 class="subTitle subTitle-sm with--border with--border--full">{{'SHIPPING_CHECK_LIST' | translate}}</h2>
+                                        <div class="row">
+                                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                                <div class="checklists--details checklists--details-sm">
+                                                    <p *ngIf="checkout_data.checkout_data">{{(this.checkout_data.type) ? this.checkout_data.type : ''}}</p>
+                                                    <p *ngIf="this.checkout_data.Pickup">{{(this.checkout_data.Pickup) ? 'Local Pickup' : ''}}</p>
+                                                    <p *ngIf="this.checkout_data.LoadingDock">{{(this.checkout_data.LoadingDock) ? 'Loading Dock' : ''}}</p>
+                                                    <p *ngIf="this.checkout_data.EqpUpload">{{(this.checkout_data.EqpUpload) ? 'Have Equipment to Unload' : ''}}</p>
+                                                    <p *ngIf="this.checkout_data.LiftGate">{{(this.checkout_data.LiftGate) ? 'Need Lift Gate' : ''}}</p>
+                                                    <p *ngIf="this.checkout_data.CallShipping_SemiTrucksAhead">{{(this.checkout_data.Shipping_SemiTrucks) ? 'Limited Access for Semi-Trucks' : ''}}</p>
+                                                    <p *ngIf="this.checkout_data.CallAhead">{{(this.checkout_data.CallAhead) ? 'Call Ahead (417) 777-6666' : ''}}</p>
+                                                    
+                                                    <div class="additional--notes">
+                                                        Additional Notes: <textarea class="form-control" placeholder="Please Enter Additional Notes here" (input)="additionalNotes($event.target.value);"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!-- Sidebar -->
+                <div class="col-12 col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                    <div class="checkout--order__review checkout--order__review-sm">
+                        <h3 class="subTitle subTitle-sm">{{'PLACE_ORDER' | translate}}</h3>
+
+                        <div class="checkout--order__review--inner u-mb--15">
+                            <div class="cart__totals">
+                                <div class="cart__totals--inner">
+                                    <form  id="login-form" (ngSubmit)="paymentForm.form.valid && getToken()" #paymentForm="ngForm" role="form" novalidate style="display: block;">
+                                        
+                                        <table class="shop_table shop_table_responsive checkout--order__review--table u-mb--5" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th class="product-name">{{'YOUR_QTY' | translate}}</th>
+                                                    <th class="product-total">{{'TOTAL' | translate}}</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr class="cart_item" *ngFor="let cartItem of cartProductList; let i=index ">
+                                                    <td class="product-name">
+                                                        <span [innerHtml]="((cartItem && cartItem.Product_Name)? cartItem.Product_Name : '') | safeHtml"> </span>
+                                                        <strong class="product-quantity"> x{{cartItem.Product_Count}}</strong>
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <span class="amount" *ngIf="cartItem && (cartItem.DiscountType=='amount' || cartItem.DiscountType=='percent')">${{(cartItem && cartItem.Discount_Price )? (cartItem.Discount_Price * cartItem.Product_Count) : ''}}</span>
+                                                        <span class="amount" *ngIf="!(cartItem && (cartItem.DiscountType=='amount' || cartItem.DiscountType=='percent'))">${{(cartItem && cartItem.Product_Price )? (cartItem.Product_Price * cartItem.Product_Count) :''}}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr *ngIf="CouponCodeApplied && (CouponDiscount > 0)" style="border: 0px none;">
+                                                    <td colspan="2" style="padding-top:11px;padding-bottom:0px;border: 0px none;">
+                                                        <div class="discounted--shipping u-upper">
+                                                            {{'COUPON_DISCOUNT' | translate}} - <span class="text-green">${{(CouponCodeApplied && CouponDiscount)? CouponDiscount : '0.00'}}</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                
+                                                <tr class="cart_item">
+                                                    <td class="product-name u-upper">
+                                                        <strong>{{'SUBTOTAL' | translate}}</strong>
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <strong>${{(subTotal && subTotal>0)? subTotal : '0.00'}}</strong>
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="cart_item" style="border: 0px none;">
+                                                    <td class="product-name u-upper" style="border: 0px none;">
+                                                        <strong>Shipping</strong>
+                                                    </td>
+                                                    <td class="product-total" style="border: 0px none;">
+                                                        <strong>${{(shippingData && shippingData.total)? shippingData.total : '0.00'}}</strong>
+                                                    </td>
+                                                </tr>
+
+                                                <tr *ngIf="shippingData && (shippingData.discount > 0)" style="border: 0px none;">
+                                                    <td colspan="2" style="padding-top:0px;padding-bottom:0px;border: 0px none;">
+                                                        <div class="discounted--shipping u-upper">
+                                                            {{'DISCOUNTED_SHIPPING' | translate}} - <span class="text-green">${{(shippingData && shippingData.discount)? shippingData.discount : '0.00'}}</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr *ngIf="shippingData && (shippingData.discount > 0)" style="border: 0px none;" class="cart_item">
+                                                    <td colspan="2">$ {{(shippingData && shippingData.subAmount)? shippingData.subAmount : '0.00'}}</td>
+                                                </tr>
+
+                                                <tr class="cart_item">
+                                                    <td class="product-name u-upper">
+                                                        <strong>Tax</strong>
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <strong>${{(salesTax && salesTax.totalTax && salesTax.totalTax>0)? salesTax?.totalTax : '0.00'}}</strong>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td colspan="2" style="border: 0px none;">
+                                                        <div class="text-left">
+                                                            <h4 class="fs20 u-upper">{{'HAVE_A_COUPON' | translate}}</h4>
+                                                            <p class="text-grey">{{'HAVE_A_COUPON_DESC' | translate}}</p>
+                                                            <div class="coupon">
+                                                                <div class="input-group">
+                                                                    <span class="tags"></span>
+                                                                    <input (keyup)="getCouponValue($event.target.value)" type="text" class="form-control" placeholder="{{'APPLY_COUPON_PLACEHOLDER' | translate}}" value="{{CouponCode}}">
+                                                                    <div *ngIf="!CouponCodeApplied" class="input-group-append">
+                                                                        <button (click)="ApplyCoupon();" [disabled]="!HaveCouponCode"  class="btn input-btn" type="button" id="updateCart">{{'APPLY_COUPON' | translate}}</button>
+                                                                    </div>
+                                                                    <div *ngIf="CouponCodeApplied" class="input-group-append">
+                                                                        <button (click)="RemoveCoupon();" [disabled]="!HaveCouponCode"  class="btn input-btn" type="button" id="updateCart">{{'REMOVE_COUPON' | translate}}</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="order-total">
+                                                    <th><span class="u-upper">{{'TOTAL' | translate}}</span></th>
+                                                    <td><span class="text-green">${{(totalOrderAmount && totalOrderAmount>0)? totalOrderAmount.toFixed(2) : '0.00'}}</span></td>
+                                                </tr>
+                                                <tr><td colspan="2" style="padding:0;"></td></tr>
+
+                                                <tr class="order-total">
+                                                    <th colspan="2" class="padd-10 padd-top--15" style="text-align: left;">CREDIT / DEBIT CARD</th>
+                                                </tr>
+                                                <tr class="order-total">
+                                                    <th colspan="2" class="padd-10">
+                                                        <div id="card-info" #cardInfo></div>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="cart__totals--proceed-to-checkout no-btp">
+                                            <div class="privacy-policy-text">
+                                                <div class="checkbox checkbox-primary u-mb--15 u-mt--15">
+                                                    <input id="checkbox0" name="notifyme" type="checkbox" value="" (click)="getNotifymeValue($event)">
+                                                    <label for="checkbox0" style="display: inline-block;"> I have read and agree to the website <strong><a href="#" class="link-green">Terms &amp; Conditions</a></strong>.*</label>
+                                                </div>
+                                                <div *ngIf="statusNotifyValue" class="form-group form-group--has-error">
+                                                    <div class="help-block form-group form-group--has-error" style="display: block">
+                                                        {{'PLEASE_CHECKED_THIS_FIELD' | translate}}</div>
+                                                </div>
+                                                <p>{{'CART_MESSAGE' | translate}} <a href="#" class="privacy-policy-link" target="_blank">privacy policy</a>.</p>
+                                            </div>
+                                            <button type="submit" class="button button--green button-md button-block button--makepay">Place Order</button>
+                                        </div>
+                                        
+                                    </form>
+                                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

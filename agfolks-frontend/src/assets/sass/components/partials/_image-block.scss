@@ -1,0 +1,264 @@
+/* Image Block with Extrem Left-Right */
+
+.gradient-green {
+    @include linear-gradient(to right, $green, $green_sh2);
+}
+
+.text-primary {
+    @extend .u-upper;
+    @include font-size(18);
+    line-height: 1.25;
+    font-family: $primaryFont;
+    font-weight: $weightBold;
+    @include margin-bottom(15);
+    color: $black_sh1!important;
+    
+    @include responsive(sm) {
+        @include font-size(20);
+    }
+}
+
+.list {
+    width: 100%;
+    list-style: none;
+    
+    &--icons {
+        list-style: none;
+        @include flexbox;
+        @include margin(0 -10);
+        width: calc(100% + 20px);
+        @include flex-wrap(wrap);
+        
+        li {
+            max-width: 50%;
+            @include flex(0 0 50%);
+            @include flexbox;
+            @include padding(0 10);
+            @include margin-bottom(8);
+            @include align-items(flex-start);
+            @include justify-content(flex-start);
+            @include font-size(16);
+            line-height: 1.45;
+            font-family: $primaryFont;
+            font-weight: $weightRegular;
+            
+            .ag--icon {
+                color: $green;
+                position: relative;
+                display: inline-block;
+                vertical-align: middle;
+                @include margin-top(5);
+                @include margin-right(8);
+            }
+            
+            @media all and (max-width: 767px) {
+                @include font-size(15);
+                line-height: 1.45;
+            }
+        }
+    }
+}
+
+.c-imageblock {
+    position: relative;
+    @include padding(0);
+    @include padding-top(125);
+    
+    &__content {
+        top: 0;
+        z-index: 2;
+        padding: 0;
+        height: 100%;
+        position: absolute;
+        
+        &--body {
+            @include padding(0 15 75 50);
+        }
+    }
+    
+    > .container,
+    > div[class*='col-']:not(.c-imageblock__content) {
+        z-index: 2;
+        float: none;
+        overflow: hidden;
+        @include padding-top(0);
+        @include padding-bottom(50);
+    }
+    &--lg > .container,
+    &--lg > div[class*='col-']:not(.c-imageblock__content) {
+        z-index: 2;
+        float: none;
+        overflow: hidden;
+        @include padding-top(0);
+        @include padding-bottom(100);
+    }
+}
+[data-overlay] {
+    position: relative;
+}
+[data-overlay] {
+    &:before {
+        top: 0;
+        left: 0;
+        z-index: 1;
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+}
+[data-overlay="0"] {
+    &:before {
+        @include linear-gradient(117deg, rgba($black_sh1,0), rgba($black_sh1, 0));
+    }
+}
+[data-overlay="1"] {
+    &:before {
+        @include linear-gradient(117deg, rgba($black_sh1,0.1), rgba($black_sh1, 0.1));
+    }
+}
+[data-overlay="2"] {
+    &:before {
+        @include linear-gradient(117deg, rgba($black_sh1,0.2), rgba($black_sh1, 0.15));
+    }
+}
+[data-overlay="3"] {
+    &:before {
+        @include linear-gradient(117deg, rgba($black_sh1,0.3), rgba($black_sh1, 0.2));
+    }
+}
+[data-overlay="4"] {
+    &:before {
+        @include linear-gradient(117deg, rgba($black_sh1,0.4), rgba($black_sh1, 0.25));
+    }
+}
+[data-overlay="5"] {
+    &:before {
+        @include linear-gradient(117deg, rgba($black_sh1,0.5), rgba($black_sh1, 0.3));
+    }
+}
+
+[data-overlay] *:not(.container):not(.background-image-holder) {
+    z-index: 2;
+    position: relative;
+}
+
+.background-image-holder {
+    top: 0;
+    left: 0;
+    z-index: 2;
+    height: 100%;
+    position: absolute;
+    @include opacity(1);
+    background: $black_sh1;
+    @include padding-top(40);
+    will-change: transform, top;
+    background-size: cover!important;
+    background-position: 50% 50% !important;
+    @include transition(0.3s linear);
+    
+    img {
+        display: none;
+    }
+    
+    &:not([class*="col-"]) {
+        width: 100%;
+    }
+    &.background--bottom {
+        background-position: 50% 100% !important;
+    }
+    &.background--top {
+        background-position: 50% 0% !important;
+    }
+    img {
+        display: none;
+    }
+    
+    &--header {
+        max-width: 275px;
+        @extend .gradient-green;
+        @include padding(15 30 15 25);
+        @include border-radius(0 150px 150px 0);
+        
+        @include responsive(sm) {
+            max-width: 425px;
+            @include padding(15 30);
+        }
+        
+        .title {
+            color: $white;
+            @include font-size(20);
+            line-height: 1.15;
+            font-family: $banneFont;
+            font-weight: $weightBold;
+            @include margin-bottom(5);
+            
+            @include responsive(sm) {
+                @include font-size(24);
+            }
+        }
+        
+        .sub-title {
+            color: $white;
+            @include font-size(15);
+            line-height: 1.35;
+            @include margin-bottom(0);
+            font-family: $primaryFont;
+            font-weight: $weightRegular;
+            
+            @include responsive(sm) {
+                @include font-size(16);
+                line-height: 1.35;
+            }
+        }
+    }
+}
+
+.image--light {
+    .background-image-holder {
+        background: none !important;
+    }
+}
+
+@media all and (max-width: 767px) {
+    .c-imageblock {
+        @include padding-top(0);
+        
+        &__content {
+            width: 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+            min-height: 20em;
+            position: relative;
+            
+            &--body {
+                @include padding(60 15 0);
+            }
+        }
+        
+        > .container,
+        > div[class*='col-']:not(.c-imageblock__content) {
+            z-index: 2;
+            float: none;
+            overflow: hidden;
+            @include padding-top(0);
+            @include padding-bottom(50);
+        }
+        &--lg > .container,
+        &--lg > div[class*='col-']:not(.c-imageblock__content) {
+            z-index: 2;
+            float: none;
+            overflow: hidden;
+            @include padding-top(0);
+            @include padding-bottom(100);
+        }
+    }
+}
+
+
+.u-pos-right {
+    right: 0;
+}
+.u-pos-left {
+    left: 0;
+}

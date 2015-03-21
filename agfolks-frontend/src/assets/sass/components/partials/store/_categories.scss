@@ -1,0 +1,304 @@
+ /* My Account Page
+------------------------------------*/
+
+.input-group {
+    position: relative;
+
+    .tags {
+        top: 50%;
+        left: 10px;
+        z-index: 4;
+        display: block;
+        position: absolute;
+        @include size(20px);
+        @include transform(translateY(-50%));
+
+        &:before {
+            color: $border;
+            content:'\f103';
+            text-align: center;
+            font-family: $woodmart;
+            @include font-size(16);
+            line-height: 20px;
+        }
+    }
+}
+   
+.cart-table-section {
+        
+    @include responsive(xs) {
+        @include padding-right(20);
+    }
+}
+
+.shop_table {
+    width: 100%;
+    border-spacing: 0;
+    @include margin-bottom(30);
+    border-collapse: collapse;
+    @include font-size(15);
+    line-height: 1.4;
+
+    thead {
+
+        th {
+            color: $black_sh1;
+            @include padding(15 10);
+            vertical-align: middle;
+            text-align: left;
+            text-transform: uppercase;
+            font-weight: 600;
+            @include font-size(16);
+            line-height: 1.2;
+            border-bottom: 2px solid $border;
+        }
+    }
+
+    tbody {
+
+        td {
+            color: $black_sh1;
+            @include padding(15 10);
+            vertical-align: middle;
+            text-align: left;
+            font-weight: 600;
+            @include font-size(15);
+            line-height: 1.2;
+            border-bottom: 1px solid $border;
+
+            .wrap-wishlist-button {
+                a {
+                    display: block;
+                    color: $black_sh1;
+                    text-align: center;
+                    @include size(30px);
+                    @include font-size(0);
+
+                    &:before {
+                        content:"\f108";
+                        font-family:$woodmart;
+                        @include font-size(18);
+                    }
+                    &:hover {
+                        color: $success;
+                    }
+                }
+            }
+
+            &.product-remove {
+                .remove {
+                    position: relative;
+                    font-size: 0;
+                    display: inline-block;
+                    height: 30px;
+                    width: 30px;
+                    line-height: 30px;
+                    vertical-align: middle;
+                    cursor: pointer;
+                    padding-right: 19px;
+                    padding-right: 0;
+
+                    &:after,
+                    &:before {
+                        top: 50%;
+                        right: 8px;
+                        width: 15px;
+                        height: 2px;
+                        content: " ";
+                        margin-top: -1px;
+                        position: absolute;
+                        display: inline-block;
+                        background-color: $black_sh1;
+                        -webkit-transition: background-color .2s ease-in-out, transform .2s ease-in-out, width .2s ease-in-out;
+                        -webkit-transition: background-color .2s ease-in-out, width .2s ease-in-out, -webkit-transform .2s ease-in-out;
+                        transition: background-color .2s ease-in-out, width .2s ease-in-out, -webkit-transform .2s ease-in-out;
+                        transition: background-color .2s ease-in-out, transform .2s ease-in-out, width .2s ease-in-out;
+                        transition: background-color .2s ease-in-out, transform .2s ease-in-out, width .2s ease-in-out, -webkit-transform .2s ease-in-out
+                    }
+
+                    &:after {
+                        transform: rotate(-44deg);
+                        -webkit-transform: rotate(-44deg);
+                    }
+
+                    &:before {
+                        transform: rotate(44deg);
+                        -webkit-transform: rotate(44deg);
+                    }
+
+                    &:hover {
+                        &:after,
+                        &:before {
+                            background-color: $success;
+                        }
+                        &:after {
+                            transform: rotate(0);
+                            -webkit-transform: rotate(0);
+                        }
+                        &:before {
+                            transform: rotate(0);
+                            -webkit-transform: rotate(0);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    th.product-remove {
+        width: 40px;
+    }
+    th.product-thumbnail, td.product-thumbnail {
+        width: 100px;
+    }
+
+    th.product-name, td.product-name {
+        max-width: 150px;
+        text-align: left;
+        
+        a {
+            &:hover, &:focus, &:active {
+                color: $success;
+            }
+        }
+    }
+
+    td.product-subtotal {
+        color: $green;
+        text-align: right;
+        font-weight: $weightBold;
+        @include font-size(18);
+    }
+
+    tr {
+        th {
+            &:last-child {
+                text-align: right;
+            }
+        }
+        td {
+            &:last-child {
+                text-align: right;
+            }
+        }
+    }
+}
+
+/* Card Buttons */
+.cart-actions {
+    @include flexbox;
+    @include align-items(center);
+    @include flex-direction(column, vertical);
+    
+    @include responsive(sm) {
+        @include flex-direction(row, horizontal);
+    }
+}
+
+.cart__totals {
+    height: 100%;
+    @include padding(25);
+    border: 3px solid $border;
+    
+    &--inner {
+        h2 {
+            color: $black_sh1;
+            @include font-size(22);
+            font-weight: $weightBold;
+            text-transform: uppercase;
+            @include margin-bottom(10);
+        }
+    }
+    
+    .cart-subtotal {
+        border-bottom: 1px solid $border;
+        
+        th, td {
+            @include font-size(16);
+            @include padding(15 10);
+        }
+        th {
+            color: $black_sh1;
+            font-weight: $weightBold;
+            text-transform: uppercase;
+        }
+        td {
+            color: $black_sh2;
+            font-weight: $weightRegular;
+        }
+    }
+    
+    .shipping-totals, .order-total, .order-subtotal {
+        border-bottom: 1px solid $border;
+        
+        &.no-border {
+            border: 0px none;
+        }
+        
+        th {
+            color: $black_sh1;
+            vertical-align: top;
+            text-transform: uppercase;
+        }
+        th, td {
+            @include font-size(16);
+            @include padding(10 10);
+        }
+    }
+    
+    .shipping-methods {
+        width: 100%;
+        list-style: none;
+        @include flexbox;
+        @include align-items(flex-end);
+        @include flex-direction(column, vertical);
+        
+        li {
+            max-width: 100%;
+            @include flexbox;
+            @include flex(0 0 100%);
+            @include align-items(center);
+            @include margin-bottom(10);
+            
+            label {
+                @include order(1);
+            }
+            
+            input[type="radio"] {
+                @include order(2);
+                @include margin-left(10);
+            }
+        }
+    }
+    
+    .order-total {
+        border-bottom: 0px none;
+        
+        th {
+            color: $black_sh1;
+            @include font-size(18);
+            text-transform: uppercase;
+        }
+        td {
+            color: $green;
+            @include font-size(22);
+            font-weight: $weightBold;
+            border-bottom: 0px none;
+        }
+    }
+    
+    .order-subtotal {
+        th {
+            color: $black_sh1;
+            @include font-size(15);
+            text-transform: uppercase;
+        }
+        td {
+            color: $green;
+            @include font-size(15);
+            font-weight: $weightBold;
+            border-bottom: 0px none;
+        }
+    }
+}
+

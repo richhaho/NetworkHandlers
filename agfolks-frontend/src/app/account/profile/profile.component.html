@@ -1,0 +1,105 @@
+<div class="auth--body auth--body-md My--Profile">
+    <div class="auth--body__inner auth--body__inner-md">
+        <div class="container">
+            <div class="row">
+                <aside class="col-12 col-lg-3 col-xl-3">
+                    <div class="row u-mb--30 u-mb--30-sm">
+                        <div class="col-12 col-lg-12 col-xl-12">
+                            <h3 class="section--title section--title-sm">{{'MY_ACCOUNT' | translate}}</h3>
+                        </div>
+                    </div>
+                    
+                    <!--Add side bar-->
+                    <app-side-bar></app-side-bar>
+                </aside>
+                <div class="col-12 col-lg-9 col-xl-9 has--leftsidebar has--leftsidebar-md">
+                    <div class="c-breadcrumb">
+                        <nav class="missio-breadcrumb">
+                            <a class="breadcrumb-link" href="/">Home</a> <a class="breadcrumb-link " href="javascript:void(0);" (click)="changeRouter('account')">My Account</a> <span class="breadcrumb-last">{{'MY_PROFILE' | translate}}</span>
+                        </nav>
+                    </div>
+                    
+                    <div class="page-head page-head-sm">
+                        <h3 class="u-heading--small u-heading--small-sm">{{'MY_PROFILE' | translate}}</h3>
+                    </div>
+                    
+                    <div class="profile--box">
+                        <div class="portlet light">
+                            <div class="portlet--body">
+                                <div class="portlet--body--inner portlet--body--inner-sm">
+                                    <div class="row">
+                                        <label class="control-label col-md-3"> {{'NAME' | translate}}:</label>
+                                        <div class="control-details col-md-8">
+                                            <p class="form-control-static" *ngIf="currentUser">
+                                                {{(currentUser && currentUser[0] && currentUser[0].first_name)? currentUser[0]?.first_name : ''}}
+                                                {{(currentUser && currentUser[0] && currentUser[0].last_name)? currentUser[0]?.last_name : ''}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row u-mb--10">
+                                        <label class="control-label col-md-3">{{'EMAIL' | translate}}: </label>
+                                        <div class="control-details col-md-8">
+                                            <p class="form-control-static" *ngIf="currentUser">{{(currentUser && currentUser[0] && currentUser[0].email)? currentUser[0]?.email : ''}} 
+                                                <button class="btn--edit" (click)="changeRouter('account/edit-profile')"></button></p>
+                                            <a class="link-green" href="javascript:void(0);" (click)="changeRouter('account/change-password')">{{'CHANGE_PASSWORD' | translate }}</a>
+                                        </div>
+                                    </div>
+                                    <div class="row u-mb--10">
+                                        <label class="control-label col-md-3">{{'PHONE' | translate}}:</label>
+                                        <div class="control-details col-md-8">
+                                            <p class="form-control-static" *ngIf="currentUser">
+                                                {{(currentUser && currentUser[0] && currentUser[0].phone)? currentUser[0]?.phone : ''}}
+                                                 <button class="btn--edit" (click)="changeRouter('account/edit-profile')"> </button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row u-mb--10">
+                                        <label class="control-label col-md-3">{{'ADDRESS' | translate}}:</label>
+                                        <div class="control-details col-md-8">
+                                            <p class="form-control-static" *ngIf="currentUser">
+                                            {{currentUser[0]?.address+','}} {{currentUser[0]?.address2+','}} {{currentUser[0]?.city+','}} {{currentUser[0]?.state+','}} {{currentUser[0]?.country+','}} {{currentUser[0]?.zip}}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                    <!--<div class="row u-mb--20">
+                                        <label class="control-label col-md-3">Your Credit &amp; Debit Cards:<br class="clearfix"> <a href="#" class="link-green">Add Card</a></label>
+                                        <div class="control-details col-md-8">
+                                            <div class="address">
+                                                <p class="form-control-static">Card: Visa ending in <strong>6135</strong></p>
+                                                
+                                                <div class="bill--info">
+                                                    <p class="form-control-static"><strong>Billing Information:</strong><br>
+                                                    Mark Joseph<br>
+                                                    15th ST, Suite 2400,<br>
+                                                    Birmingham, AL 35203-3289</p>
+                                                    
+                                                    <div class="">
+                                                        <a href="#" class="link-green">Edit</a> <a href="#" class="link-red">Remove</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <label class="control-label col-md-3">Tax Exempt:</label>
+                                        <div class="control-details col-md-8">
+                                            <p class="form-control-static">Petridge Farm Association <button class="btn--edit"></button></p>
+                                            <p class="form-control-static">255456765 ID</p>
+                                        </div>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Newsletter component here -->
+<app-newsletter></app-newsletter>

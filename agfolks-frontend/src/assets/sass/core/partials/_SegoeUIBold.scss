@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'SegoeUIBold';
+    src: url('#{$custom-font-path}/SegoeUIBold/SegoeUIBold.eot');
+    src: url('#{$custom-font-path}/SegoeUIBold/SegoeUIBold.eot') format('embedded-opentype'),
+         url('#{$custom-font-path}/SegoeUIBold/SegoeUIBold.woff2') format('woff2'),
+         url('#{$custom-font-path}/SegoeUIBold/SegoeUIBold.woff') format('woff'),
+         url('#{$custom-font-path}/SegoeUIBold/SegoeUIBold.ttf') format('truetype'),
+         url('#{$custom-font-path}/SegoeUIBold/SegoeUIBold.svg#SegoeUIBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: auto;
+}

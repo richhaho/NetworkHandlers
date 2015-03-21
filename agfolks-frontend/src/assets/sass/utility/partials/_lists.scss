@@ -1,0 +1,101 @@
+/* Layout --> Lists
+----------------------------- */
+.list-unstyled {
+	padding-left:15px;
+	
+	li {
+		position:relative;
+		margin-bottom:10px;
+		
+		&:last-child {
+			margin-bottom:15px;
+		}
+	}
+}
+
+ul.list-unstyled li {
+	list-style:disc;
+}
+ol.list-unstyled li {
+	list-style:circle;
+}
+
+
+.styled-check, .styled-circle, .styled-disc, .styled-bullet {
+	padding-left:0px;
+		li {
+			list-style:none;
+			position:relative;
+			@include padding-left(25);
+			@include margin-bottom(10);
+            @include font-size(18);
+            
+			&:before {
+				color:$blue;
+				@include margin-right(13);
+				font-family:$iconfont;
+                @include font-size(15);
+			}
+		
+		&:last-child {
+			margin-bottom:15px;
+		}
+	}
+	
+	&.text-red {
+		li {
+				
+			&:before {
+				color:$red;
+			}
+		}
+	}
+}
+
+.styled-check li:before {
+	top:6px;
+	left:0px;
+	content:'\f00c';
+	position:absolute;
+}
+.styled-circle {
+    li {
+        @include padding-left(0);
+        &:before {
+            color: $success;
+            content:'\f058';
+            padding-left:3px;
+            font-family:$iconfont;
+            @include font-size(18);
+        }
+    }
+    &.blue {
+        li {
+            color: #446e98;
+        }
+    }
+}
+.styled-disc li:before {
+	top:3px;
+	left:0px;
+	content:'\f111';
+	position:absolute;
+    @include font-size(12);
+}
+
+
+.styled-bullet {
+    @include margin-bottom(20);
+    
+    li {
+        padding-left:45px;
+        &:before {
+            top:6px;
+            left:30px;
+            color:$warning;
+            content:'\f111';
+            position:absolute;
+            @include font-size(8);
+        }
+    }
+}

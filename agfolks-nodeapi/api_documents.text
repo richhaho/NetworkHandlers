@@ -1,0 +1,4 @@
+apikey:key(set in headers)
+API URL
+GET Menu -> http://localhost:4010/api/get_menu?cid=276
+GET Category -> http://localhost:4010/api/get_categories?cid=276

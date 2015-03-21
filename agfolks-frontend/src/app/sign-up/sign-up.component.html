@@ -1,0 +1,187 @@
+<!-- Include Breadcrumbs component here -->
+<app-bread-crumbs></app-bread-crumbs>
+<div class="auth--body auth--body-md">
+    <div class="auth--body__inner auth--body__inner-md customer--signup">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-11 col-md-11 col-sm-11 col-xs-12 col-centered">
+                    <div class="page-head page-head-xs u-justify-btw">
+                        <div class="u-heading--medium u-heading--medium-xs u-pr--6 u-bg-white"><span style="color:#323232;">{{'CUSTOMER_SIGN_UP' | translate}}</span></div>
+                        <div class="ml-auto page-head--actions page-head--actions-xs">{{'ALREADY_HAVE_AN_ACCOUNT' | translate}} <a (click)="changeRouter('login')" class="page-head--link" href="javascript:;">{{'LOGIN' | translate}}</a></div>
+                    </div>
+                    
+                    <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-6 col-sm-6 col-xs-12">
+                                <div [ngClass]="userForm.controls['firstname'].dirty && userForm.controls['firstname'].errors ? 'form-group form-group--has-error' : 'form-group'">
+                                    <input type="text" class="form-control solid rounded" formControlName="firstname" id="firstname" name="firstname" placeholder="{{'FIRST_NAME' | translate}}">
+                                    <div *ngIf="userForm.controls['firstname'].dirty && userForm.controls['firstname'].errors">
+                                        <div *ngIf="userForm.controls['firstname'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-sm-6 col-xs-12">
+                                <div [ngClass]="userForm.controls['lastname'].dirty && userForm.controls['lastname'].errors ? 'form-group form-group--has-error' : 'form-group'">
+                                    <input type="text" class="form-control solid rounded" formControlName="lastname" id="lastname" name="lastname" required placeholder="{{'LAST_NAME' | translate}}">
+                                    <div *ngIf="userForm.controls['lastname'].dirty && userForm.controls['lastname'].errors">
+                                        <div *ngIf="userForm.controls['lastname'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-6 col-sm-6 col-xs-12">
+                                <div [ngClass]="userForm.controls['email'].dirty && userForm.controls['email'].errors ? 'form-group form-group--has-error' : 'form-group'">
+                                    <input type="email" class="form-control solid rounded" formControlName="email" id="email" name="email" required placeholder="{{'EMAIL_ADDRESS' | translate}}">
+                                    <div *ngIf="userForm.controls['email'].dirty && userForm.controls['email'].errors">
+                                        <div *ngIf="userForm.controls['email'].errors.required != null && userForm.controls['email'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                        <div *ngIf="userForm.controls['email'].errors.email != null && userForm.controls['email'].errors.email">
+                                            <div class="help-block" style="display: block">{{'PLEASE_INSERT_THE_VALID_EMAIL' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-sm-6 col-xs-12">
+                                <div [ngClass]="userForm.controls['phone'].dirty && userForm.controls['phone'].errors ? 'form-group form-group--has-error' : 'form-group'">
+                                    <input type="text" class="form-control solid rounded" formControlName="phone" id="phone" name="phone" required placeholder="{{'PHONE_NUMBER' | translate}}" mask='000.000.0000'>
+                                    <div *ngIf="userForm.controls['phone'].dirty && userForm.controls['phone'].errors">
+                                        <div *ngIf="userForm.controls['phone'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-12 col-sm-12 col-xs-12">
+                                <div [ngClass]="userForm.controls['address1'].dirty && userForm.controls['address1'].errors ? 'form-group form-group--has-error' : 'form-group'">
+                                    <input type="text" class="form-control solid rounded" formControlName="address1" id="address1" name="address1" required placeholder="{{'ADDRESS_1' | translate}}">
+                                    <div *ngIf="userForm.controls['address1'].dirty && userForm.controls['address1'].errors">
+                                        <div *ngIf="userForm.controls['address1'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control solid rounded" formControlName="address2" id="address2" name="address2" required placeholder="{{'ADDRESS_2' | translate}}">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-4 col-sm-4 col-xs-12">
+                                <div [ngClass]="userForm.controls['city'].dirty && userForm.controls['city'].errors ? 'form-group form-group--has-error' : 'form-group'">
+                                    <input type="text" class="form-control solid rounded" formControlName="city" id="city" name="city" required placeholder="{{'CITY' | translate}}">
+                                    <div *ngIf="userForm.controls['city'].dirty && userForm.controls['city'].errors">
+                                        <div *ngIf="userForm.controls['city'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-sm-4 col-xs-12">
+                                <div [ngClass]="userForm.controls['state'].dirty && userForm.controls['state'].errors ? 'form-group form-group--has-error' : 'form-group'">
+                                    <div class="selectdropdown">
+                                        <select class="form-control solid rounded" formControlName="state" id="state" name="state" required placeholder="State">
+                                            <option class="placeholder" selected value="">{{'STATE' | translate}}</option>
+                                            <option *ngFor="let state of statesList let i = index" value="{{state.State_Name}}">{{state.State_Name}}</option>
+                                        </select>
+                                    </div>
+                                    <div *ngIf="userForm.controls['state'].dirty && userForm.controls['state'].errors">
+                                        <div *ngIf="userForm.controls['state'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-sm-4 col-xs-12">
+                                <div [ngClass]="userForm.controls['zip'].dirty && userForm.controls['zip'].errors ? 'form-group form-group--has-error' : 'form-group'">
+                                    <input type="text" class="form-control solid rounded" formControlName="zip" id="zip" name="zip" required placeholder="{{'ZIP' | translate}}">
+                                    <div *ngIf="userForm.controls['zip'].dirty && userForm.controls['zip'].errors">
+                                        <div *ngIf="userForm.controls['zip'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-6 col-sm-6 col-xs-12">
+                                <div [ngClass]="userForm.controls['password'].dirty && userForm.controls['password'].errors ? 'form-group form-group--has-error' : 'form-group'">
+                                    <input type="password" class="form-control solid rounded" formControlName="password" id="password" name="password" required placeholder="{{'PASSWORD' | translate}}">
+                                    <div *ngIf="userForm.controls['password'].dirty && userForm.controls['password'].errors">
+                                        <div *ngIf="userForm.controls['password'].errors.required != null && userForm.controls['password'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                        <div *ngIf="userForm.controls['password'].errors.minlength != null && userForm.controls['password'].errors.minlength">
+                                            <p class="fs12" style="display: block">{{'PASSWORDS_MUST_BE_AT_LEAST_6_CHARACTERS' | translate}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-sm-6 col-xs-12">
+                                <div [ngClass]="userForm.controls['confirmpass'].dirty && userForm.controls['confirmpass'].errors ? 'form-group form-group--has-error' : 'form-group'">
+                                    <input type="password" class="form-control solid rounded" formControlName="confirmpass" id="confirmpass" name="confirmpass" required placeholder="{{'CONFIRM_PASSWORD' | translate}}">
+                                    <div *ngIf="userForm.controls['confirmpass'].dirty && userForm.controls['confirmpass'].errors">
+                                        <div *ngIf="userForm.controls['confirmpass'].errors.required != null && userForm.controls['confirmpass'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                        <div *ngIf="userForm.controls['confirmpass'].errors.mustMatch != null && userForm.controls['confirmpass'].errors.mustMatch">
+                                            <div class="help-block" style="display: block">{{'PLEASE_INSERT_THE_SAME_PASSWORD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center u-align-center">
+                            <div class="col-12 col-md-12 col-sm-12 col-xs-12">
+                                <h4 class="fs18"><strong>{{'TAX_EXEMPTION' | translate}}</strong></h4>
+                                <p class="fs12 no-margin">{{'AFTER_REGISTRATION_VERIFY_YOUR_EMAIL' | translate}}</p>
+                            </div>
+                        </div>
+
+                        <footer class="auth-footer">
+                            <div class="row justify-content-center u-align-center">
+                                <div class="col-12 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="button button--green button-md">{{'SIGNUP' | translate}}</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-sm-6 col-xs-12">
+                                    <div [ngClass]="userForm.controls['acceptpolicy'].dirty && userForm.controls['acceptpolicy'].errors ? 'form-group form-group--has-error' : 'form-group'">
+                                        <div class="checkbox checkbox-primary mb-2">
+                                            <input id="checkbox0" formControlName="notifyme" type="checkbox">
+                                            <label for="checkbox0"> {{'NOTIGY_ME_ABOUT_SITE_UPDATES_AND_CHANGES' | translate}} </label>
+                                        </div>
+                                        <div class="checkbox checkbox-primary mb-2">
+                                            <input id="checkbox2" formControlName="acceptpolicy" type="checkbox" checked>
+                                            <label for="checkbox2"> {{'I_ACCEPT' | translate}} <strong><a href="#" class="link-green">{{'PRIVACY_POLICY' | translate}}</a></strong></label>
+                                            <div>
+                                                <div *ngIf="userForm.controls['acceptpolicy'].dirty && userForm.controls['acceptpolicy'].errors">
+                                                    <div *ngIf="userForm.controls['acceptpolicy'].errors.required">
+                                                        <div class="help-block" style="display: block">{{'PLEASE_ACCEPT_OUR_PRIVACY_POLICY' | translate}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Include Newsletter component here -->
+<app-newsletter></app-newsletter>

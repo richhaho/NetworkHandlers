@@ -1,0 +1,117 @@
+/* Begin flexed related files
+   ======================== */
+
+.u-flexed {
+    @include flexbox();
+}
+.u-flex-wrap {
+    @include flex-wrap(wrap);
+}
+
+.u-inline-flexed {
+    @include inline-flex();
+}
+
+.u-flex-direction-column {
+    @include flex-direction(column, vertical);
+}
+
+.u-flexed-reversed {
+    order: 2;
+}
+
+.u-flex-direction-row {
+    @include flex-direction(row, horizontal);
+}
+
+.u-justify-start {
+    @include justify-content(flex-start);
+}
+
+.u-justify-center {
+    @include justify-content(center);
+}
+
+.u-justify-btw {
+    @include justify-content(space-between);
+}
+
+.u-justify-end {
+    @include justify-content(flex-end);
+}
+
+.u-align-start {
+    @include align-items(flex-start);
+}
+
+.u-align-center {
+    @include align-items(center);
+}
+
+.u-align-end {
+    @include align-items(flex-end);
+}
+
+
+
+.u-columns {
+    @include flexbox;
+    @include align-items(stretch);
+    @include flex-direction(column, vertical);
+    
+    .u-column1, .u-column2 {
+        @include flex(1 0 0);
+    }
+    .u-column1 {
+        &.right-layout {
+            min-width: 500px;
+            max-width: 500px;
+            @include margin-bottom(30);
+            @include padding-bottom(30);
+            border-bottom:1px solid $border;
+            
+            @media (max-width: 767px) {
+                min-width: 100%;
+                max-width: 500px;
+            }
+        }
+    }
+    .u-column2 {
+        @include padding-left(0);
+        @include padding-bottom(20);
+    }
+    
+    @include responsive(sm) {
+        @include flex-direction(row, horizontal);
+        
+        .u-column1 {
+            &.right-layout {
+                @include padding-right(30);
+                border-right:1px solid $border;
+                border-bottom:0px none;
+            }
+        }
+        .u-column2 {
+            @include padding-left(30);
+        }
+    }
+}
+
+
+@media (max-width: 640px) {
+    .m-flexed {
+        @include flex-direction(column, vertical);
+        
+        .control-label,
+        .control-details {
+            max-width: 100%;
+            @include flex(0 0 100%);
+            @include padding-left(0);
+            @include padding-right(0);
+        }
+    }
+}
+
+
+/* End flexed related files
+   ======================== */

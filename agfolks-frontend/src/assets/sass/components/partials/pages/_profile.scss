@@ -1,0 +1,309 @@
+ /* My Profile Page
+------------------------------------*/
+.My--Profile {
+    @include padding-top(40);
+    
+    .c-breadcrumb {
+        @include padding-top(8);
+        
+        @media (max-width:767px) {
+            @include padding-top(0);
+        }
+    }
+    
+    .auth--body {
+        &__inner {
+            max-width:100%;
+            width:calc(100% - 0px);
+            @include margin-left(0);
+            @include margin-right(0);
+
+            @include responsive(md) {
+                width:100%;
+                max-width:100%;
+            }
+        }
+    }
+    
+    .has--leftsidebar {
+        @include margin-top(30);
+        @include padding-left(10);
+        
+        @include responsive(md) {
+            @include margin-top(0);
+            @include padding-left(30);
+        }
+    }
+}
+.profile {
+    &--box {
+        width: 100%;
+        /*height: 100%;*/
+        @include flexbox;
+        @include flex-wrap(wrap);
+        @include padding-right(0);
+        @include flex-direction(column, vertical);
+        
+        @include responsive(sm) {
+            @include padding-right(10);
+        }
+        
+        &.bordered {
+            border: 1px solid $border;
+        }
+
+        &--user {
+            @include flexbox;
+            position: relative;
+            background-color: $white;
+            @include margin-bottom(5);
+            @include flex-wrap(nowrap);
+            @include padding-bottom(10);
+            @include align-items(center);
+            @include justify-content(center);
+            border-bottom: 2px solid $border;
+            @include flex-direction(row, horizontal);
+        }
+        
+        &--user__avatar {
+            height: 70px;
+            max-height: 70px;
+            overflow: hidden;
+            @include flex(0 0 70px);
+            @include margin-right(10);
+            @include margin-bottom(0);
+            
+            .profile-image {
+                overflow: hidden;
+                @include size(70px);
+                @include object-fit(cover);
+                @include object-position(center);
+            }
+        }
+        
+        &--user__details {
+            text-align: left;
+            color: $black_sh1;
+            @include padding(10);
+            background-color: $white;
+             @include flex(1 1 auto);
+        }
+
+        .username {
+            @include font-size(20);
+            line-height: 1;
+            font-weight: $weightBold;
+            @include margin-bottom(0);
+            
+            span {
+                width: 100%;
+                display: inline-block;
+            }
+        }
+        .cust--type {
+            @include font-size(16);
+            line-height: 1;
+            @include margin-bottom(0);
+
+            span {
+                font-style: italic;
+            }
+        }
+        
+        .control-label {
+            text-align: left;
+            color: rgba($black_sh1,0.65);
+            font-weight: $weightSemibold;
+        }
+        
+        .control-details {
+            @include padding-left(30);
+        }
+        
+        .form-control-static {
+            color: $black_sh1;
+            max-width: 300px;
+        }
+        
+        .control-details {
+            @include flexbox;
+            @include align-items(flex-start);
+            justify-content: flex-start;
+            @include flex-direction(column, vertical);
+        }
+        
+        .btn--edit {
+            @include margin(0);
+            @include padding(0);
+            position: relative;
+            line-height: 1;
+            @include margin-left(30);
+            
+            &:before {
+                color: $green;
+                content: "\f303";
+                position: relative;
+                font-family: $iconfont;
+                display: inline-block;
+                vertical-align: bottom;
+                @include font-size(15);
+                line-height: 1;
+                font-weight: $weightRegular;
+            }
+        }
+        
+        .link-green, .link-red {
+            @include font-size(14);
+            font-weight: $weightRegular;
+        }
+        .link-green {
+            color: $green;
+        }
+        .link-red {
+            color: $red;
+        }
+        
+        .address {
+            width: 100%;
+            @include margin-bottom(20);
+            
+            &.has-border {
+                @include padding-top(10);
+                border-top: 1px solid rgba($border,0.5);
+            }
+            
+            .link-green, .link-red {
+                @include padding-left(15);
+            }
+            .link-green {
+                @include padding-left(0);
+            }
+        }
+        
+        .bill--info {
+            margin-top: -6px;
+            
+            .form-control-static {
+                @include padding-top(0);
+            }
+        }
+    }
+    
+    &--editbtn {
+        left: 15px;
+        bottom: 35px;
+        color: $white;
+        display: block;
+        border: 0px none;
+        position: absolute;
+        @include size(36px);
+        @include font-size(0);
+        @include border-radius(50%);
+        background-color: rgba($white,0.25);
+        @include transition(all 0.2s ease-in-out);
+        
+        &:before {
+            top: 50%;
+            left: 50%;
+            content: "\f303";
+            position: absolute;
+            font-family: $iconfont;
+            display: inline-block;
+            vertical-align: bottom;
+            @include font-size(15);
+            line-height: 1;
+            font-weight: $weightRegular;
+            @include transform(translate(-50%,-50%));
+        }
+        
+        &:hover, &:focus, &:active {
+            background-color: rgba($hoverColor,1);
+        }
+    }
+        
+    &--actions {
+        list-style: none;
+        @include margin(0);
+        @include padding(0);
+        @include padding-top(2);
+        @include padding-bottom(30);
+
+        &__items {
+            list-style: none;
+            @include margin(0);
+            @include padding(0);
+            border-bottom: 1px solid $border;
+            
+            &:last-child {
+                border-bottom: 0px none;
+            }
+
+            > a {
+                display: block;
+                color: $black_sh1;
+                position: relative;
+                @include padding(13 15);
+                font-weight: $weightRegular;
+                @include transition(all 0.2s ease-in-out);
+
+                &:before {
+                    top: 50%;
+                    right: 10px;
+                    display: none;
+                    content: '\f118';
+                    color: $black_sh1;
+                    position: absolute;
+                    font-family: $woodmart;
+                    @include font-size(18);
+                    @include transform(translateY(-50%));
+                    @include transition(all 0.2s ease-in-out);
+                }
+
+                &:hover, &:focus, &:active, &.selected {
+                    color: $green;
+                    background-color: $white;
+                    
+                    &:before {
+                        color: $green;
+                    }
+                }
+                
+                .ag--icons {
+                    @include margin-right(10);
+                }
+            }
+            
+            &.is-selected {
+                > a {
+                    color: $green;
+                    background-color: $white;
+                    
+                    &:before {
+                        color: $green;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Header Search */
+.suggestion {
+    .profile {
+        &--actions {
+            &__items {
+                border-bottom: 0px none;
+                
+                > a {
+                    @include padding(10 15);
+                    
+                    &:before {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+

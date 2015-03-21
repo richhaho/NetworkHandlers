@@ -1,0 +1,181 @@
+/* Pagination */
+.pagination--list {
+    margin: 0px auto;
+    text-align: center;
+    display: inline-block;
+    
+    ul.pagination {
+        z-index: 1;
+        position: relative;
+        text-align: center;
+        
+        li {
+            text-align: center;
+            display: inline-block;
+            @include margin-right(2);
+
+            a, span {
+                border: 0px none;
+                color: $black_sh1;
+                @include padding(0);
+                @include size(32px);
+                @include font-size(14);
+                line-height: 32px;
+                display: inline-block;
+                vertical-align: middle;
+                @include border-radius(3px);
+                -webkit-box-sizing: content-box;
+                box-sizing: content-box;
+                @include transition(all .2s ease);
+                @include box-shadow(none!important);
+            }
+            a {
+                &:hover, &:focus {
+                    color: $black_sh1;
+                    background-color: $offwhite;
+                    font-weight: $weightSemibold;
+                }
+            }
+            span {
+                &.current {
+                    color: $white;
+                    background-color: $success;
+                    font-weight: $weightSemibold;
+                }
+            }
+            a {
+                &.next, &.prev {
+                    @include font-size(0);
+
+                    &:before {
+                        font-family: $woodmart;
+                        @include font-size(14);
+                        line-height: 32px;
+                    }
+                }
+            }
+            a {
+                &.next {
+                    &:before {
+                        content: "\f110";
+                    }
+                }
+            }
+            a {
+                &.prev {
+                    &:before {
+                        content: "\f111";
+                    }
+                }
+            }
+            
+            &.pagination-first, &.pagination-last {
+                display: none;
+                @include font-size(0);
+            }
+            
+            &.pagination-next, &.pagination-prev {
+                a {
+                    @include font-size(0);
+
+                    &:before {
+                        font-family: $woodmart;
+                        @include font-size(14);
+                        line-height: 32px;
+                    }
+                }
+            }
+            &.pagination-prev {
+                a { 
+                    &:before {
+                        content: "\f111";
+                    }
+                }
+            }
+            &.pagination-next {
+                a { 
+                    &:before {
+                        content: "\f110";
+                    }
+                }
+            }
+            
+            &.active {
+                a {
+                    color: $white;
+                    background-color: $success;
+                    font-weight: $weightSemibold;
+                }
+            }
+        }
+    }
+}
+
+/* Second Design(s) */
+.pagination {
+    margin: 0px auto;
+    text-align: center;
+    display: inline-block;
+
+    .page-numbers {
+        text-align: center;
+
+        li {
+            text-align: center;
+            display: inline-block;
+            @include margin-right(2);
+
+            a, span {
+                color: $black_sh1;
+                @include font-size(14);
+                display: inline-block;
+                vertical-align: middle;
+                @include size(32px);
+                line-height: 32px;
+                @include border-radius(3px);
+                -webkit-box-sizing: content-box;
+                box-sizing: content-box;
+                @include transition(all .2s ease);
+            }
+            a {
+                &:hover, &:focus {
+                    color: $black_sh1;
+                    background-color: $offwhite;
+                    font-weight: $weightSemibold;
+                }
+            }
+            span {
+                &.current {
+                    color: $white;
+                    background-color: $success;
+                    font-weight: $weightSemibold;
+                }
+            }
+            a {
+                &.next, &.prev {
+                     @include font-size(0);
+
+                    &:before {
+                        font-family: $woodmart;
+                        @include font-size(14);
+                        line-height: 32px;
+                    }
+                }
+            }
+            a {
+                &.next {
+                    &:before {
+                        content: "\f110";
+                    }
+                }
+            }
+            a {
+                &.prev {
+                    &:before {
+                        content: "\f111";
+                    }
+                }
+            }
+        }
+    }
+}

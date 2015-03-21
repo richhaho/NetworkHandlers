@@ -1,0 +1,718 @@
+/* CSS Document */
+
+.hero__inner {
+    @extend .bgCover;
+    position: relative;
+    
+    &.medium {
+        @include padding(40 0);
+        @include margin-bottom(30);
+        
+        @include responsive(xs) {
+            @include padding(60 0);
+            @include margin-bottom(30);
+        }
+    }
+    &.large {
+        @include padding(75 0);
+        @include margin-bottom(40);
+        
+        @include responsive(xs) {
+            @include padding(100 0);
+            @include margin-bottom(40);
+        }
+    }
+    
+    &.overlay {
+        &:before {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            content: '';
+            position: absolute;
+            background-color: rgba($black,0.2);
+        }
+    }
+    
+    .container, .container-fluid {
+        z-index: 1;
+        position: relative;
+    }
+    
+    &--content {
+        width: 100%;
+        
+        .subhead {
+            color: $black;
+            @extend .ls-20;
+            @include font-size(35);
+            line-height: 1;
+            font-family: $banneFont;
+            @include margin-bottom(10);
+            font-weight: $weightBold;
+            
+            @include responsive(xs) {
+                @include font-size(45);
+                line-height: 1;
+                
+                @include respond-to(sm) {
+                    @include font-size(60);
+                    line-height: 1;
+                    
+                    @include respond-to(md) {
+                        @include font-size(70);
+                        line-height: 1;
+                    }
+                }
+            }
+            
+            p {
+                @extend .ls-15;
+                @include margin(0);
+                line-height: normal;
+            }
+        }
+        
+        h2.subhead {
+            color: $white;
+            @extend .ls-20;
+            @include font-size(30);
+            line-height: 1.35;
+            font-family: $banneFont;
+            font-weight: $weightBold;
+            
+            @include responsive(xs) {
+                @include font-size(45);
+                line-height: 1.35;
+            }
+            
+            p {
+                @include margin(0);
+            }
+        }
+        
+        .text {
+            color: $white;
+            @include font-size(16);
+            font-weight: $weightRegular;
+            
+            strong {
+                /*color: $black;*/
+                font-weight: $weightSemibold;
+            }
+            
+            @include responsive(xs) {
+                @include font-size(18);
+            }
+            
+            p {
+                @include margin(0);
+            }
+        }
+    }
+    
+    &--productCategories {
+        width: 100%;
+        color: $white;
+        @include flexbox;
+        vertical-align: middle;
+        @include margin-top(5);
+        @include flex-wrap(wrap);
+        @include align-items(center);
+        @include justify-content(center);
+        
+        @media (max-width: 767px) {
+            overflow-x: auto;
+            @include flex-wrap(nowrap);
+            @include align-items(flex-start);
+            @include justify-content(flex-start);
+            
+            &::-webkit-scrollbar { 
+                display: none; 
+            }
+        }
+        
+        li {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            
+            .category-nav-link {
+                width: 100%;
+                @include flexbox;
+                position: relative;
+                @include padding(10 25);
+                @include align-items(center);
+                
+                @media (max-width: 767px) {
+                    @include padding(10 15);
+                    @include margin-right(10);
+                }
+                
+                .category-icon {
+                    color: $white;
+                    @include size(50px);
+                    display: inline-block;
+                    @include margin-right(10);
+                    
+                    .missio_svg {
+                        fill: $white;
+                        @include size(50px);
+                        @include transition(all .2s ease);
+                    }
+                    
+                    [class^="agfolks-"] {
+                        color: $white;
+                        @include size(50px);
+                        @include font-size(50);
+                        line-height: 50px;
+                        
+                        &:before {
+                            color: $white;
+                        }
+                    }
+                    
+                    &.lawn-garden,
+                    &.hay-pasture,
+                    &.forestry-land-maintenance,
+                    &.crop-tillage,
+                    &.livestock-fencing {
+                        .missio_svg {
+                            display: none;
+                        }
+                        
+                        &:before {
+                            color: $white;
+                            display: block;
+                            @include size(50px);
+                            @include font-size(50);
+                            line-height: 50px;
+                            font-family: 'icomoon' !important;
+                        }
+                    }
+                    
+                    &.lawn-garden {
+                        &:before {
+                            content: '\e900';
+                        }
+                    }
+                    &.hay-pasture {
+                        &:before {
+                            content: '\e903';
+                        }
+                    }
+                    &.forestry-land-maintenance {
+                        &:before {
+                            content: '\e904';
+                        }
+                    }
+                    &.crop-tillage {
+                        &:before {
+                            content: '\e905';
+                        }
+                    }
+                    &.livestock-fencing {
+                        &:before {
+                            content: '\e902';
+                        }
+                    }
+                    
+                    @media (max-width: 767px) {
+                        @include size(50px);
+                        max-width: 50px;
+                        @include flex(0 0 50px);
+                    }
+                }
+                
+                .category-summary {
+                    text-align: left;
+                    display: inline-block;
+                    vertical-align: middle;
+                    @include transition(all .2s ease);
+                    
+                    .category-name {
+                        @include font-size(16);
+                        @include margin-bottom(6);
+                        font-weight: $weightUltabold;
+                    }
+                    .category-products-count {
+                        color: rgba($white,0.75);
+                        @include font-size(14);
+                        @include margin-bottom(0);
+                        font-weight: $weightRegular;
+                        white-space: nowrap;
+                    }
+                }
+                
+                .category--links {
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 5;
+                    position: absolute;
+                }
+                
+                &:hover {
+                    .category-icon {
+                        .missio_svg {
+                            fill: $hoverColor;
+                        }
+                        [class^="agfolks-"] {
+                            &:before {
+                                color: $hoverColor;
+                            }
+                        }
+                        
+                        &.lawn-garden,
+                        &.hay-pasture,
+                        &.forestry-land-maintenance,
+                        &.crop-tillage,
+                        &.livestock-fencing {
+                            color: $hoverColor;
+                            
+                            &:before {
+                                color: $hoverColor;
+                            }
+                        }
+                        
+                    }
+                    .category-summary {
+                        .category-name {
+                            color: $hoverColor;
+                        }
+                        .category-products-count {
+                            color: rgba($hoverColor,0.75);
+                        }
+                    }
+                }
+            
+                &.is-selected {
+                    .category-icon {
+                        &.lawn-garden,
+                        &.hay-pasture,
+                        &.forestry-land-maintenance,
+                        &.crop-tillage,
+                        &.livestock-fencing {
+                            &:before {
+                                color: $hoverColor;
+                            }
+                        }
+                    }
+                    .category-summary {
+                        .category-name,
+                        .category-products-count {
+                            color: $hoverColor !important;
+                        }
+                    }
+                }
+                
+            }
+            
+            &.lawn-garden,
+            &.hay-pasture,
+            &.forestry-land-maintenance,
+            &.crop-tillage,
+            &.livestock-fencing {
+                .category-summary {
+                    .category-name {
+                        max-width: 100px;
+                    }
+                }
+            }
+            &.forestry-land-maintenance {
+                .category-summary {
+                    .category-name {
+                        max-width: 160px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.section__110 {
+    @extend .bgCover;
+    @include padding(55 0);
+    
+    @include responsive(xs) {
+        @include padding(90 0);
+    }
+}
+
+.section__60 {
+    @include padding(20 0 35);
+    @extend .bgCover;
+    
+    @include responsive(xs) {
+        @include padding(45 0 75);
+    }
+}
+
+.smalltext {
+    color: $green;
+    @include font-size(16);
+    font-weight: $weightSemibold;
+    @extend .ls25;
+
+    @include responsive(xs) {
+        @include font-size(18);
+    }
+}
+.mediumtext {
+    color: $black_sh1;
+    @include font-size(20);
+    font-weight: $weightSemibold;
+    @extend .ls15;
+
+    @include responsive(xs) {
+        @include font-size(24);
+    }
+}
+.subtext {
+    color: $black_sh1;
+    @include font-size(30);
+    font-weight: $weightUltabold;
+    @include margin-bottom(20);
+
+    @include responsive(xs) {
+        @include font-size(40);
+    }
+}
+
+.excerpt {
+    color: $black_sh1;
+    @include font-size(17);
+    line-height: 1.6;
+    @include margin-bottom(0);
+
+    @include responsive(xs) {
+        @include font-size(20);
+        line-height: 1.6;
+    }
+}
+
+.has--graphic__right, .has--graphic__left {
+    z-index: 2;
+    max-width: 375px;
+    position: relative;
+    
+    &:after {
+        top: -40px;
+        z-index: -1;
+        width: 500px;
+        height: calc(100% + 80px);
+        content: ' ';
+        display: none;
+        position: absolute;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+    
+    @include responsive(xs) {
+        &:after {
+            display: block;
+        }
+    }
+    
+    img {
+        /*@include box-shadow(0 0 20px 10px rgba($border,0.33));*/
+    }
+}
+
+.has--graphic__right {
+    float: none;
+    display: block;
+    margin: 0px auto;
+    max-width: 280px;
+    text-align: center;
+    @include margin-top(30);
+    
+    &:after {
+        right: -400px;
+        background-image: url('../images/curve-rt.svg');
+        background-position: top right;
+    }
+    
+    @include responsive(xs) {
+        float: right;
+        max-width: inherit;
+        @include margin-top(0);
+        @include margin-right(130);
+    }
+}
+.has--graphic__left {
+    float: none;
+    display: block;
+    margin: 0px auto;
+    max-width: 280px;
+    text-align: center;
+    @include margin-bottom(30);
+    
+    &:after {
+        left: -400px;
+        background-image: url('../images/curve-lt.svg');
+        background-position: top left;
+    }
+    
+    @include responsive(xs) {
+        float: left;
+        max-width: 375px;
+        @include margin-left(130);
+        @include margin-bottom(0);
+    }
+}
+
+
+.u-image--cover {
+    background-position: center!important;
+    background-repeat: no-repeat!important;
+    @include background-size(cover!important);
+}
+
+
+.Parallax-BG-Section, .Static-BG-Section {
+    @include padding(75 0);
+    @extend .u-image--cover;
+    
+    @include responsive(xs) {
+        @include padding(110 0);
+    }
+    
+    &.bg-overlay {
+        &:before {
+            background-color: rgba($black,0.33);
+        }
+    }
+    
+    .fs18 {
+        color: $gold;
+        @extend .ls25;
+        font-weight: $weightMedium;
+    }
+    
+    .fs36 {
+        color: $white;
+        @include font-size(25);
+        line-height: 1.2;
+        @include margin-bottom(0);
+        font-weight: $weightUltabold;
+
+        @include responsive(xs) {
+            @include font-size(36);
+            line-height: 1.1;
+        }
+        
+        &.gold {
+            color: $gold;
+            @include margin-bottom(30);
+        }
+    }
+    
+    .fs24 {
+        color: $white;
+        @include font-size(20);
+        line-height: 1.5;
+        @include margin-bottom(30);
+        font-weight: $weightRegular;
+
+        @include responsive(xs) {
+            @include font-size(24);
+            line-height: 1.5;
+        }
+        
+        &.gold {
+            color: $gold;
+            @include margin-bottom(30);
+        }
+    }
+}
+
+
+.Static-BG-Section {
+    @include padding(75 0);
+    @extend .bgCover;
+    
+    @include responsive(xs) {
+        @include padding(130 0);
+    }
+    
+    &.bg-overlay {
+        &:before {
+            background-color: rgba($black,0.33);
+        }
+    }
+}
+
+
+.offering {
+    @include flexbox;
+    margin: 0px -15px;
+    @include align-items(center);
+    
+    &--items {
+        text-align: center;
+        @include padding(0 15);
+        max-width: calc(100% / 5);
+        @include flex(0 0 calc(100% / 5));
+    }
+    
+    &--icon {
+        display: block;
+        margin: 0px auto;
+        position: relative;
+        @include padding(3);
+        @include size(80px);
+        border: 3px solid $gold;
+        @include margin-bottom(15);
+        @include border-radius(50%);
+        
+        @include responsive(xs) {
+            @include size(100px);
+        }
+        
+        img {
+            width: 100%;
+            @include border-radius(50%);
+        }
+        
+        [class^="agfolks-"] {
+            top: 50%;
+            left: 50%;
+            color: $gold;
+            position: absolute;
+            @include size(56px);
+            @include font-size(56);
+            line-height: 56px;
+            transform: translate(-50%,-50%);
+        }
+    }
+    
+    &--name {
+        color: $white;
+        @include font-size(20);
+        line-height: 1.2;
+        @include margin-bottom(0);
+        font-weight: $weightUltabold;
+    }
+}
+
+.help {
+    &--title {
+        color: $success;
+        @include font-size(20);
+        line-height: 1.2;
+        @include margin-bottom(10);
+        font-weight: $weightUltabold;
+
+        @include responsive(xs) {
+            @include font-size(24);
+        }
+    }
+    
+    &--lists {
+        list-style: none;
+        @include margin-bottom(30);
+        
+        &--items {
+            color: $black_sh1;
+            @include font-size(16);
+            line-height: 1.5;
+            @include margin-top(10);
+            
+            &:first-child {
+                @include margin-top(0);
+            }
+            
+            > a {
+                color: $black_sh1;
+                position: relative;
+                
+                &:before {
+                    top: 1px;
+                    left: 0px;
+                    content: '\f109';
+                    color: $black_sh1;
+                    position: relative;
+                    font-family: $woodmart;
+                    @include font-size(14);
+                    line-height: 1;
+                    @include margin-right(10);
+                }
+                
+                &:hover {
+                    color: $success;
+                    &:before {
+                        color: $success;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.typeahead__field {
+    width: 100%;
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include align-items(stretch);
+    box-sizing: border-box;
+    
+    .typeahead__query {
+        width: 1%;
+        position: relative;
+        @include flex(1 1 auto);
+        @include margin-bottom(0);
+        
+        .typeahead__cancel-button {
+            top: 50%;
+            @include transform(translateY(-50%));
+        }
+    }
+    
+    .form-control, .js-typeahead {
+        width: 100%;
+        height: 50px;
+        position: relative;
+        @include flex(1 1 auto);
+        @include margin-bottom(0);
+        box-sizing: border-box;
+        border: 1px solid $border;
+        border-right: 0px none;
+        @include border-radius(0px);
+        
+        &:focus {
+            border-color: $success;
+        }
+    }
+    
+    .typeahead__button {
+        z-index: 10;
+        height: 50px;
+        @include flexbox;
+        position: relative;
+        
+        .button {
+            color:$white;
+            @include font-size(15);
+            border: 2px solid $green;
+            background-color:$green;
+            @include border-radius(0px);
+            text-transform: uppercase;
+            font-weight: $weightBold;
+            @include transition(all 0.3s ease);
+            @include flexbox();
+            @include align-items(center);
+            @include justify-content(center);
+            background-image:linear-gradient(30deg,$green 50%,transparent 50%);
+
+            &:hover {
+                color:$green;
+                border: 2px solid $green;
+                background-color:rgba($white,0);
+            }
+        }
+    }
+}

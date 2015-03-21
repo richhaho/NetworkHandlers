@@ -1,0 +1,22 @@
+<!-- Include slider component here -->
+<div class="o-media-hero o-media-hero-sm">
+    <app-slider *ngIf="sliderData && sliderData.length" [sliderData]="sliderData" ></app-slider>
+</div>
+
+<!-- Include category component here -->
+<app-category> </app-category>
+
+<!-- Include attachments accessories component here -->
+<app-attachments-accessories></app-attachments-accessories>
+
+<!-- Include featured products component here -->
+<app-featured-products></app-featured-products>
+
+<!-- Include product for your project component here -->
+<!--<app-product-project></app-product-project>-->
+
+<!-- Include home cms page content here -->
+<app-homecms *ngIf="cmsPageData && cmsPageData.ID" [cmsPageData]="cmsPageData"></app-homecms>
+
+<!-- Include Newsletter component here -->
+<app-newsletter></app-newsletter>

@@ -1,0 +1,360 @@
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,900");
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700,900");
+@import url("http://fonts.googleapis.com/css?family=Dosis:400,200,600");
+
+/* Begin Segoe UI Bold fonts face files
+======================== */
+@import "partials/variables";
+@import "partials/SegoeUIBold";
+@import "partials/feathers";
+
+
+/* Begin fontawesome fonts face files
+   ======================== */
+@font-face {
+    font-family: 'Font Awesome 5 Brands';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/fontawesome/fa-brands-400.eot');
+    src: url('../fonts/fontawesome/fa-brands-400.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/fontawesome/fa-brands-400.woff2') format('woff2'),
+        url('../fonts/fontawesome/fa-brands-400.woff') format('woff'),
+        url('../fonts/fontawesome/fa-brands-400.ttf') format('truetype'),
+        url('../fonts/fontawesome/fa-brands-400.svg#fontawesome') format('svg');
+}
+
+@font-face {
+    font-family: 'Font Awesome 5 Pro';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/fontawesome/fa-light-300.eot');
+    src: url('../fonts/fontawesome/fa-light-300.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/fontawesome/fa-light-300.woff2') format('woff2'),
+        url('../fonts/fontawesome/fa-light-300.woff') format('woff'),
+        url('../fonts/fontawesome/fa-light-300.ttf') format('truetype'),
+        url('../fonts/fontawesome/fa-light-300.svg#fontawesome') format('svg');
+}
+
+@font-face {
+    font-family: 'Font Awesome 5 Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/fontawesome/fa-regular-400.eot');
+    src: url('../fonts/fontawesome/fa-regular-400.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/fontawesome/fa-regular-400.woff2') format('woff2'),
+        url('../fonts/fontawesome/fa-regular-400.woff') format('woff'),
+        url('../fonts/fontawesome/fa-regular-400.ttf') format('truetype'),
+        url('../fonts/fontawesome/fa-regular-400.svg#fontawesome') format('svg');
+}
+
+@font-face {
+    font-family: 'Font Awesome 5 Pro';
+    font-style: normal;
+    font-weight: 900;
+    src: url('../fonts/fontawesome/fa-solid-900.eot');
+    src: url('../fonts/fontawesome/fa-solid-900.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/fontawesome/fa-solid-900.woff2') format('woff2'),
+        url('../fonts/fontawesome/fa-solid-900.woff') format('woff'),
+        url('../fonts/fontawesome/fa-solid-900.ttf') format('truetype'),
+        url('../fonts/fontawesome/fa-solid-900.svg#fontawesome') format('svg');
+}
+
+/* End fontawesome fonts face files
+   ======================== */
+
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/agfolks/icomoon.eot?acgti');
+    src: url('../fonts/agfolks/icomoon.eot?acgti#iefix') format('embedded-opentype'),
+         url('../fonts/agfolks/icomoon.ttf?acgti') format('truetype'),
+         url('../fonts/agfolks/icomoon.woff?acgti') format('woff'),
+         url('../fonts/agfolks/icomoon.svg?acgti#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="agfolks-"], [class*=" agfolks-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.agfolks-lawn:before {
+    content: "\e900";
+}
+.agfolks-accessories:before {
+    content: "\e901";
+}
+.agfolks-fencing:before {
+    content: "\e902";
+}
+.agfolks-hay:before {
+    content: "\e903";
+}
+.agfolks-forestry:before {
+    content: "\e904";
+}
+.agfolks-crop:before {
+    content: "\e905";
+}
+/* */
+
+
+.if-brand {
+    font-family: 'Font Awesome 5 Brands';
+    font-weight: normal;
+}
+
+.if-light {
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 300;
+}
+
+.if-regular {
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 400;
+}
+
+.if-solid {
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 900;
+}
+
+$iconfont:  'Font Awesome 5 Pro';
+$woodmart:  'woodmart-font';
+$feather:   'feather';
+
+
+.ls-20 {
+    letter-spacing: -2px;
+}
+.ls-15 {
+    letter-spacing: -1.5px;
+}
+.ls-10 {
+    letter-spacing: -1px;
+}
+.ls-05 {
+    letter-spacing: -0.5px;
+}
+.ls-025 {
+    letter-spacing: -0.25px;
+}
+.ls0 {
+    letter-spacing: 0px;
+}
+.ls015 {
+    letter-spacing: 0.15px;
+}
+
+.ls025 {
+    letter-spacing: 0.25px;
+}
+.ls-015 {
+    letter-spacing: -0.075px;
+}
+.ls05 {
+    letter-spacing: 0.5px;
+}
+
+.ls04 {
+    letter-spacing: 0.4px;
+}
+
+.ls15 {
+    letter-spacing: 1.5px;
+}
+
+.ls25 {
+    letter-spacing: 2.5px;
+}
+
+.ls1 {
+    letter-spacing: 0.1px;
+}
+
+// Font Sizing
+// ================================
+$baseFontSize: 1rem;
+$uppercase: uppercase;
+
+// Styles
+// ================================
+
+/* Primary Fonts Style */
+$primaryFont:   'Lato', sans-serif;
+$secondaryFont: 'Dosis', serif;
+$tertiaryFont:  'Montserrat', serif;
+$banneFont:     'SegoeUIBold', serif;
+$weightLight: 300;
+$weightRegular: 400;
+$weightMedium: 500;
+$weightSemibold: 600;
+$weightBold: 700;
+$weightUltabold: 900;
+
+strong,
+.strong {
+    font-weight: 700;
+}
+
+em,
+.em {
+    font-style: italic;
+}
+
+.text {
+    &-green {
+        color:$green;
+    }
+    &-blue {
+        color:$blue;
+    }
+    &-muted {
+        color:rgba($black_sh1,0.33);
+    }
+    &-black {
+        color:$black_sh1;
+    }
+    &-red {
+        color:$red;
+    }
+    &-grey {
+        color: $grey;
+    }
+}
+
+
+// Text Decoration
+// ================================
+.txt-dec-none {
+    text-decoration: none;
+}
+
+// Defaults
+// ================================
+html,
+body {
+    font-family: $primaryFont;
+    font-size: $baseFontSize;
+    color: $greyish;
+}
+
+// Headings
+// ================================
+h1,
+h2,
+h3 {
+    font-family: $primaryFont;
+}
+
+h4,
+h5,
+h6 {
+    font-family: $primaryFont;
+}
+
+.form-section h2 {
+    font-family: $primaryFont;
+}
+
+.header-heading {
+    margin-bottom: 15px;
+}
+
+.fs12 {
+    @include font-size(14);
+}
+.fs18 {
+    @include font-size(18);
+}
+
+// Links
+// ================================
+a,
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+}
+
+
+/* Typography
+------------------------------------*/
+h1 {
+    line-height: 1.6;
+}
+
+h2 {
+    line-height: 1.5;
+}
+
+h3 {
+    line-height: 1.4;
+}
+
+h4 {
+    line-height: 1.3;
+}
+
+h5 {
+    line-height: 1.2;
+}
+
+h6 {
+    line-height: 1.2;
+}
+
+p {
+    margin-bottom: 15px;
+    letter-spacing: 0.025rem;
+    line-height: 1.5;
+}
+
+ul,
+ol {
+    position: relative;
+
+    li {
+        list-style: none;
+
+        a {
+            &:hover {
+                text-decoration: none;
+                @include transition(all 0.3s ease-in);
+            }
+        }
+    }
+}
+
+ol {
+    li {
+        list-style-position: outside;
+    }
+}
+
+.marker-list li {
+    list-style: square;
+    list-style-position: inside;
+}
+
+iframe {
+    border: none;
+}
+
+q {
+    @include font-size(18);
+    font-style: italic;
+    color: $black;
+}

@@ -1,0 +1,23 @@
+<div class="input-group">
+  <div class="search-input">
+    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchTxt" (input)="onSearchChange($event.target.value)">
+    <div class="suggestion" [hidden]="!isSuggestionVisible">
+      <ul class="profile--actions">
+        <li class="profile--actions__items" *ngFor="let product of productsList" (click)="changeRouter('product/'+product.Product_Slug);">
+          <a href="javascript:;">{{ product['Product_Name'] }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="input-group-prepend search-panel">
+    <button type="button" class="button dropdown-toggle" data-toggle="dropdown">
+      <span [innerHtml]="(itemCategory )? itemCategory : 'Select Category'" > </span> <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu listVerticalScrollBar pull-right" role="menu">
+      <li *ngFor="let category of categoryList let i = index"><a href="javascript:void(0);" (click)="setCategory(category)" [innerHTML]="category.Category_Name | safeHtml"></a></li>
+      <!--<li><a href="javascript:void(0);" (click)="setCategory('')">All</a></li>-->
+    </ul>
+  </div>
+  <span class="input-group-append" (click)="setCategory()"><button class="button" type="button"><span></span></button></span>
+</div>

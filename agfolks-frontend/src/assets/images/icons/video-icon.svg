@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70">
+    <g fill="none" fill-rule="evenodd">
+        <circle cx="35" cy="35" r="34.205" fill="#595859" opacity=".5" style="mix-blend-mode:multiply"/>
+        <path fill="#FFF" d="M27.84 51.466v-33.17L51.053 34.88z"/>
+        <path fill="#FFF" d="M35 1.59C16.549 1.59 1.59 16.55 1.59 35 1.59 53.451 16.55 68.41 35 68.41c18.451 0 33.41-14.959 33.41-33.41C68.41 16.549 53.45 1.59 35 1.59M35 70C15.67 70 0 54.33 0 35S15.67 0 35 0s35 15.67 35 35-15.67 35-35 35"/>
+    </g>
+</svg>

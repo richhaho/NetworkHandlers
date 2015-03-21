@@ -1,0 +1,410 @@
+<app-checkout-banner></app-checkout-banner>
+
+<div class="auth--body auth--body-md Order--History checkout--Page checkout--Page-sm">
+    <div class="auth--body__inner auth--body__inner-md">
+        <div class="container">
+            <div class="row u-mb--50 u-mb--50-sm" *ngIf="!(userData)">
+                <div class="col-12 col-lg-12 col-sm-12">
+                    <div class="checkout--info u-bold">{{'RETURNING_CUSTOMER' | translate}} <a href="javascript:void(0)" (click)="changeRouter('login')" class="js-showlogin text-green">{{'CLICK_HERE_TO_LOGIN' | translate}}</a></div>
+                </div>
+            </div>
+            <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+                <div class="row">
+
+                    <div class="col-12 col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                        <h2 class="subTitle subTitle-sm with--border">Billing details</h2>
+
+                        <div class="form-vertical form-vertical-sm">
+                            <div class="row form-group">
+                                <div [ngClass]="checkoutForm.controls['billing_first_name'].dirty && checkoutForm.controls['billing_first_name'].errors ? 'col-12 col-lg-6 col-sm-6 form-group--has-error' : 'col-12 col-lg-6 col-sm-6'">
+                                    <input value="" type="text" class="form-control solid rounded" formControlName="billing_first_name" id="billing_first_name" name="billing_first_name" placeholder="{{'FIRST_NAME' | translate}} *">
+                                    <div *ngIf="checkoutForm.controls['billing_first_name'].dirty && checkoutForm.controls['billing_first_name'].errors">
+                                        <div *ngIf="checkoutForm.controls['billing_first_name'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div [ngClass]="checkoutForm.controls['billing_last_name'].dirty && checkoutForm.controls['billing_last_name'].errors ? 'col-12 col-lg-6 col-sm-6 form-group--has-error' : 'col-12 col-lg-6 col-sm-6'">
+                                    <input value="" type="text" class="form-control solid rounded" formControlName="billing_last_name" id="billing_last_name" name="billing_last_name" placeholder="{{'LAST_NAME' | translate}} *">
+                                    <div *ngIf="checkoutForm.controls['billing_last_name'].dirty && checkoutForm.controls['billing_last_name'].errors">
+                                        <div *ngIf="checkoutForm.controls['billing_last_name'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-12 col-lg-12 col-sm-12">
+                                    <input value="" type="text" class="form-control solid rounded" formControlName="billing_companyname" id="billing_companyname" name="billing_companyname" placeholder="Company/Business Name (Optional)">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div [ngClass]="checkoutForm.controls['billing_email'].dirty && checkoutForm.controls['billing_email'].errors ? 'col-12 col-lg-6 col-sm-6 form-group--has-error' : 'col-12 col-lg-6 col-sm-6'">
+                                    <input value="" type="email" class="form-control solid rounded" formControlName="billing_email" id="billing_email" name="billing_email" placeholder="{{'EMAIL_ADDRESS' | translate}} *">
+                                    <div *ngIf="checkoutForm.controls['billing_email'].dirty && checkoutForm.controls['billing_email'].errors">
+                                        <div *ngIf="checkoutForm.controls['billing_email'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div [ngClass]="checkoutForm.controls['billing_phone'].dirty && checkoutForm.controls['billing_phone'].errors ? 'col-12 col-lg-6 col-sm-6 form-group--has-error' : 'col-12 col-lg-6 col-sm-6'">
+                                    <input value="" type="text" class="form-control solid rounded" formControlName="billing_phone" id="billing_phone" name="billing_phone" placeholder="{{'PHONE_NUMBER' | translate}} *">
+                                    <div *ngIf="checkoutForm.controls['billing_phone'].dirty && checkoutForm.controls['billing_phone'].errors">
+                                        <div *ngIf="checkoutForm.controls['billing_phone'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div [ngClass]="checkoutForm.controls['billing_address1'].dirty && checkoutForm.controls['billing_address1'].errors ? 'col-12 col-lg-12 col-sm-6 form-group--has-error' : 'col-12 col-lg-12 col-sm-12'">
+                                    <input value="" type="text" class="form-control solid rounded" formControlName="billing_address1" id="billing_address1" name="billing_address1" placeholder="{{'ADDRESS_1' | translate}} *">
+                                    <div *ngIf="checkoutForm.controls['billing_address1'].dirty && checkoutForm.controls['billing_address1'].errors">
+                                        <div *ngIf="checkoutForm.controls['billing_address1'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-12 col-lg-12 col-sm-12">
+                                    <input value="" type="text" class="form-control solid rounded" formControlName="billing_address2" id="billing_address2" name="billing_address2" placeholder="{{'ADDRESS_2' | translate}} (Optional)">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div [ngClass]="checkoutForm.controls['billing_city'].dirty && checkoutForm.controls['billing_city'].errors ? 'col-12 col-lg-4 col-sm-6 form-group--has-error' : 'col-12 col-lg-4 col-sm-4'">
+                                    <input value="" type="text" class="form-control solid rounded" formControlName="billing_city" id="billing_city" name="billing_city" placeholder="{{'CITY' | translate}}">
+                                    <div *ngIf="checkoutForm.controls['billing_city'].dirty && checkoutForm.controls['billing_city'].errors">
+                                        <div *ngIf="checkoutForm.controls['billing_city'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div [ngClass]="checkoutForm.controls['billing_state'].dirty && checkoutForm.controls['billing_state'].errors ? 'col-12 col-lg-4 col-sm-4 form-group--has-error' : 'col-12 col-lg-4 col-sm-4'">
+                                    <div class="selectdropdown">
+                                        <select class="form-control solid rounded" formControlName="billing_state" id="billing_state" name="billing_state" required>
+                                            <option class="placeholder" selected value="">{{'STATE' | translate}}</option>
+                                            <option *ngFor="let state of statesList let i = index" value="{{state.State_Name}}">{{state.State_Name}}</option>
+                                        </select>
+                                    </div>
+                                    <div *ngIf="checkoutForm.controls['billing_state'].dirty && checkoutForm.controls['billing_state'].errors">
+                                        <div *ngIf="checkoutForm.controls['billing_state'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div [ngClass]="checkoutForm.controls['billing_zip'].dirty && checkoutForm.controls['billing_zip'].errors ? 'col-12 col-lg-4 col-sm-6 form-group--has-error' : 'col-12 col-lg-4 col-sm-4'">
+                                    <input value="" type="text" class="form-control solid rounded" formControlName="billing_zip" id="billing_zip" name="billing_zip" placeholder="{{'ZIP' | translate}}">
+                                    <div *ngIf="checkoutForm.controls['billing_zip'].dirty && checkoutForm.controls['billing_zip'].errors">
+                                        <div *ngIf="checkoutForm.controls['billing_zip'].errors.required">
+                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="clearfix"></div>
+                            <div class="row u-mt--40  u-mt--40-sm">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <div class="checkbox checkbox-primary">
+                                        <input type="checkbox" name="shipping-is-different-from-billing" id="shipping-is-different-from-billing" value="option1" class="js-shipcheckbox">
+                                        <label for="shipping-is-different-from-billing" class="u-upper"><span class="u-upper">{{'SHIPPING_IS_DIFFERENT_FROM_BILLING' | translate}}</span></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="hr"><hr></div>
+                            
+                            
+                            <div class="row u-mt--20 u-mt--20-sm u-mb--50 u-mb--50-sm">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <div class="checkbox checkbox-primary">
+                                        <input type="checkbox" name="create-account-from-details" id="create-account-from-details" value="option1" class="js-shipcheckbox">
+                                        <label for="create-account-from-details"><span class="u-upper">{{'CREATE_ACCOUNT_FROM_DETAILS' | translate}}</span> <button type="button" class="info-tool" data-placement="top" tooltip="{{'TOOLTIP_MSG' | translate}}"><i class="fa fa-info"></i></button></label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <h2 class="subTitle subTitle-sm">Shipping details</h2>
+                            <div class="checkout__shipping--fields">
+                                <div class="checkbox checkbox-primary">
+                                    <input (click)="SameAsShippingAddress()" type="checkbox" name="ship-to-different-address-checkbox" id="ship-to-different-address-checkbox" value="option1" class="js-shipcheckbox">
+                                    <label for="ship-to-different-address-checkbox">Ship to same address?</label>
+                                </div>
+
+                                <div id="CheckoutShippingAddress" class="checkout__shipping_address" style="display: ;">
+                                    <div class="row form-group">
+                                        <div [ngClass]="checkoutForm.controls['shipping_first_name'].dirty && checkoutForm.controls['shipping_first_name'].errors ? 'col-12 col-lg-6 col-sm-6 form-group--has-error' : 'col-12 col-lg-6 col-sm-6'">
+                                            <input value="" type="text" class="form-control solid rounded" formControlName="shipping_first_name" id="shipping_first_name" name="shipping_first_name" placeholder="{{'FIRST_NAME' | translate}} *">
+                                            <div *ngIf="checkoutForm.controls['shipping_first_name'].dirty && checkoutForm.controls['shipping_first_name'].errors">
+                                                <div *ngIf="checkoutForm.controls['shipping_first_name'].errors.required">
+                                                    <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div [ngClass]="checkoutForm.controls['shipping_last_name'].dirty && checkoutForm.controls['shipping_last_name'].errors ? 'col-12 col-lg-6 col-sm-6 form-group--has-error' : 'col-12 col-lg-6 col-sm-6'">
+                                            <input value="" type="text" class="form-control solid rounded" formControlName="shipping_last_name" id="shipping_last_name" name="shipping_last_name" placeholder="{{'LAST_NAME' | translate}} *">
+                                            <div *ngIf="checkoutForm.controls['shipping_last_name'].dirty && checkoutForm.controls['shipping_last_name'].errors">
+                                                <div *ngIf="checkoutForm.controls['shipping_last_name'].errors.required">
+                                                    <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div [ngClass]="checkoutForm.controls['shipping_email'].dirty && checkoutForm.controls['shipping_email'].errors ? 'col-12 col-lg-6 col-sm-6 form-group--has-error' : 'col-12 col-lg-6 col-sm-6'">
+                                            <input value="" type="email" class="form-control solid rounded" formControlName="shipping_email" id="shipping_email" name="shipping_email" placeholder="{{'EMAIL_ADDRESS' | translate}} *">
+                                            <div *ngIf="checkoutForm.controls['shipping_email'].dirty && checkoutForm.controls['shipping_email'].errors">
+                                                <div *ngIf="checkoutForm.controls['shipping_email'].errors.required">
+                                                    <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div [ngClass]="checkoutForm.controls['shipping_phone'].dirty && checkoutForm.controls['shipping_phone'].errors ? 'col-12 col-lg-6 col-sm-6 form-group--has-error' : 'col-12 col-lg-6 col-sm-6'">
+                                            <input value="" type="text" class="form-control solid rounded" formControlName="shipping_phone" id="shipping_phone" name="shipping_phone" placeholder="{{'PHONE_NUMBER' | translate}} *">
+                                            <div *ngIf="checkoutForm.controls['shipping_phone'].dirty && checkoutForm.controls['shipping_phone'].errors">
+                                                <div *ngIf="checkoutForm.controls['shipping_phone'].errors.required">
+                                                    <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div [ngClass]="checkoutForm.controls['shipping_address1'].dirty && checkoutForm.controls['shipping_address1'].errors ? 'col-12 col-lg-12 col-sm-6 form-group--has-error' : 'col-12 col-lg-12 col-sm-12'">
+                                            <input value="{{userData.address}}" type="text" class="form-control solid rounded" formControlName="shipping_address1" id="shipping_address1" name="shipping_address1" placeholder="{{'ADDRESS_1' | translate}} *">
+                                            <div *ngIf="checkoutForm.controls['shipping_address1'].dirty && checkoutForm.controls['shipping_address1'].errors">
+                                                <div *ngIf="checkoutForm.controls['shipping_address1'].errors.required">
+                                                    <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col-12 col-lg-12 col-sm-12">
+                                            <input value="{{userData.address2}}" type="text" class="form-control solid rounded" formControlName="shipping_address2" id="shipping_address2" name="shipping_address2" placeholder="{{'ADDRESS_2' | translate}}">
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div [ngClass]="checkoutForm.controls['shipping_city'].dirty && checkoutForm.controls['shipping_city'].errors ? 'col-12 col-lg-6 col-sm-4 form-group--has-error' : 'col-12 col-lg-4 col-sm-4'">
+                                            <input value="{{userData.city}}" type="text" class="form-control solid rounded" formControlName="shipping_city" id="shipping_city" name="shipping_city" placeholder="{{'CITY' | translate}}">
+                                            <div *ngIf="checkoutForm.controls['shipping_city'].dirty && checkoutForm.controls['shipping_city'].errors">
+                                                <div *ngIf="checkoutForm.controls['shipping_city'].errors.required">
+                                                    <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div [ngClass]="checkoutForm.controls['shipping_state'].dirty && checkoutForm.controls['shipping_state'].errors ? 'col-12 col-lg-4 col-sm-4 form-group--has-error' : 'col-12 col-lg-4 col-sm-4'">
+                                            <div class="selectdropdown">
+                                                <select class="form-control solid rounded" formControlName="shipping_state" id="shipping_state" name="shipping_state" required>
+                                                    <option class="placeholder" selected value="">{{'STATE' | translate}}</option>
+                                                    <option *ngFor="let state of statesList let i = index" value="{{state.State_Name}}">{{state.State_Name}}</option>
+                                                </select>
+                                            </div>
+                                            <div *ngIf="checkoutForm.controls['shipping_state'].dirty && checkoutForm.controls['shipping_state'].errors">
+                                                <div *ngIf="checkoutForm.controls['shipping_state'].errors.required">
+                                                    <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div [ngClass]="checkoutForm.controls['shipping_zip'].dirty && checkoutForm.controls['shipping_zip'].errors ? 'col-12 col-lg-6 col-sm-4 form-group--has-error' : 'col-12 col-lg-4 col-sm-4'">
+                                            <input value="{{userData.zip}}" type="text" class="form-control solid rounded" formControlName="shipping_zip" id="shipping_zip" name="shipping_zip" placeholder="{{'ZIP' | translate}}">
+                                            <div *ngIf="checkoutForm.controls['shipping_zip'].dirty && checkoutForm.controls['shipping_zip'].errors">
+                                                <div *ngIf="checkoutForm.controls['shipping_zip'].errors.required">
+                                                    <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                        <div class="checkout--order__review checkout--order__review-sm">
+                            <h3 class="subTitle subTitle-sm">{{'YOUR_ORDER' | translate}}</h3>
+
+                            <div class="checkout--order__review--inner u-mb--15">
+                                <div class="cart__totals">
+                                    <div class="cart__totals--inner">
+                                        <table class="shop_table shop_table_responsive checkout--order__review--table u-mb--15" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th class="product-name">{{'YOUR_ORDER' | translate}}</th>
+                                                    <th class="product-total">{{'TOTAL' | translate}}</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr class="cart_item" *ngFor="let cartItem of cartProductList; let i=index ">
+                                                    <td class="product-name">
+                                                        <span [innerHtml]="((cartItem && cartItem.Product_Name)? cartItem.Product_Name : '') | safeHtml"> </span>
+                                                        <strong class="product-quantity"> x{{cartItem.Product_Count}}</strong>
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <span class="amount" *ngIf="cartItem && (cartItem.DiscountType=='amount' || cartItem.DiscountType=='percent')">${{(cartItem && cartItem.Discount_Price )? (cartItem.Discount_Price * cartItem.Product_Count) : ''}}</span>
+                                                        <span class="amount" *ngIf="!(cartItem && (cartItem.DiscountType=='amount' || cartItem.DiscountType=='percent'))">${{(cartItem && cartItem.Product_Price )? (cartItem.Product_Price * cartItem.Product_Count) :''}}</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                            <tfoot>
+                                                <tr class="order-subtotal">
+                                                    <th class="product-name u-upper"><strong>{{'SUBTOTAL' | translate}}</strong></th>
+                                                    <td class="product-total"><strong>${{(subTotal && subTotal>0)? subTotal : '0.00'}}</strong></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        
+                                        <div class="cart__totals--proceed-to-checkout no-btp">
+                                            <h4 class="subTitle subTitle-sm">{{'SHIPPING_CHECK_LIST' | translate}} <small>(Check all the apply.)</small></h4>
+                                            <div class="row u-mt--15">
+                                                <div class="col-12 col-lg-12 col-sm-12 col-xs-12">
+                                                    <div class=" u-flexed u-flex-wrap u-justify-start">
+                                                        <label class="u-mr--10"><strong>Select One</strong></label>
+                                                        <div class="radio radio-primary u-mb--15">
+                                                            <input id="Farm" type="radio" name="type" formControlName="type" value="Farm">
+                                                            <label for="Farm"> Farm</label>
+                                                        </div> <div class="sep">/</div>
+
+                                                        <div class="radio radio-primary u-mb--15">
+                                                            <input id="Business" type="radio" name="type" formControlName="type" value="Business">
+                                                            <label for="Business"> Business</label>
+                                                        </div> <div class="sep">/</div>
+
+                                                        <div class="radio radio-primary u-mb--15">
+                                                            <input id="Residence" type="radio" name="type" formControlName="type" value="Residence">
+                                                            <label for="Residence"> Residence</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12 col-lg-12 col-sm-12 col-xs-12">
+                                                    <div class=" u-flexed u-flex-wrap u-justify-start">
+                                                        <div class="checkbox checkbox-primary u-mb--15">
+                                                            <input name="Pickup" id="Pickup" formControlName="Pickup" type="checkbox">
+                                                            <label for="Pickup"> <div class="u-flexed">Local Pickup if Available for MAXIMUM Freight Savings! <button type="button" class="info-tool" data-placement="top" tooltip="Pickup is usually within 50 Miles of your location."><i class="fa fa-info"></i></button></div></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12 col-lg-12 col-sm-12 col-xs-12">
+                                                    <div class=" u-flexed u-flex-wrap u-justify-start">
+                                                        <div class="checkbox checkbox-primary u-mb--15">
+                                                            <input id="LoadingDock" formControlName="LoadingDock" type="checkbox">
+                                                            <label for="LoadingDock"> Loading Dock</label>
+                                                        </div>
+
+                                                        <div class="checkbox checkbox-primary u-mb--15 ml-auto">
+                                                            <input id="EqpUpload" formControlName="EqpUpload" type="checkbox">
+                                                            <label for="EqpUpload"> Have Equipment to Unload</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12 col-lg-12 col-sm-12 col-xs-12">
+                                                    <div class=" u-flexed u-flex-wrap u-justify-start">
+                                                        <div class="checkbox checkbox-primary u-mb--15">
+                                                            <input id="LiftGate" formControlName="LiftGate" type="checkbox">
+                                                            <label for="LiftGate"> Need Lift Gate <span class="text-green">(Additional charge may apply.)</span></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12 col-lg-12 col-sm-12 col-xs-12">
+                                                    <div class=" u-flexed u-flex-wrap u-justify-start">
+                                                        <div class="checkbox checkbox-primary u-mb--15">
+                                                            <input id="Semi-Trucks" formControlName="LiftGate" type="checkbox">
+                                                            <label for="Semi-Trucks"> Limited Access for Semi-Trucks</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+
+                                            <div class="row">
+                                                <div class="col-12 col-lg-12 col-sm-12 col-xs-12">
+                                                    <div class=" u-flexed u-flex-wrap u-justify-start">
+                                                        <div class="checkbox checkbox-primary u-mb--15">
+                                                            <input id="CallAhead" formControlName="CallAhead" type="checkbox">
+                                                            <label for="CallAhead"> Call ahead <span class="text-green">(Additional charge may apply.)</span></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="cart__totals--proceed-to-checkout">
+                                            <div class="text-left">
+                                                <h4 class="subTitle subTitle-sm u-mb--0">Have a coupon?</h4>
+                                                <p class="text-grey">If you have a coupon code, please apply it below.</p>
+                                                <div class="coupon">
+                                                    <div class="input-group">
+                                                        <span class="tags"></span>
+                                                        <input type="text" class="form-control" placeholder="Search all orders">
+                                                        <div class="input-group-append">
+                                                            <button class="btn input-btn" type="button" id="updateCart">Apply coupon</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="cart__totals--proceed-to-checkout no-btp">
+                                            <table class="shop_table shop_table_responsive checkout--order__review--table u-mb--5" cellspacing="0">
+                                                <tfoot>
+                                                    <tr class="order-total no-border">
+                                                        <th><span class="u-upper">{{'TOTAL' | translate}}</span></th>
+                                                        <td><span class="text-green">${{(subTotal && subTotal>0)? subTotal : '0.00'}}</span></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+
+                                        <div class="cart__totals--proceed-to-checkout no-btp">
+                                            <div class="privacy-policy-text">
+                                                <p class="finance--availability">{{'FINANCING_AVAILABLE' | translate}}</p>
+                                            </div>
+                                            <div class="privacy-policy-text">
+                                                <p>{{'CART_MESSAGE' | translate}}<a href="#" class="privacy-policy-link" target="_blank">{{'PRIVACY_POLICY' | translate}}</a>.</p>
+                                            </div>
+                                            <button type="submit" class="button button--green button-block button-md button--makepay">{{'PLACE_ORDER' | translate}}</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

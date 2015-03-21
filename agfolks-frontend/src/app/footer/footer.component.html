@@ -1,0 +1,79 @@
+<!-- Begin Footer Section -->
+<footer class="c-preFooter c-preFooter-sm">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                <div class="c-preFooter--about c-preFooter--about-xs">
+                    <div class="c-preFooter--logo"><a href="index.html"><img src="./assets/images/af-logo.svg" class="image-fluid" alt="AgFolks" /></a></div>
+                    <blockquote>
+                        <p>“The farmer is the only man in our economy who buys everything at retail, sells everything at wholesale, and pays the freight both ways.”</p>
+                        <cite>- John F. Kennedy, 1960</cite>
+                    </blockquote>
+
+                    <p>The AgFolks team is passionate about saving farmers money. We enjoy working with manufacturers and farmers to change the economic history of agriculture!</p>
+                </div>
+            </div>
+
+            <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="c-preFooter__navigation c-preFooter__navigation-xs">
+                            <h4>{{'MAIN_LINK' | translate}}</h4>
+                            <ul class="c-preFooter__navigation--items c-preFooter__navigation--items-xs" *ngIf="footerMList && footerMList.length">
+                                <li  *ngFor="let fItem of footerMList let i = index">
+                                    <a href="javascript:;" (click)="changeRouter(fItem.url);"> {{fItem.title}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Print Category section here-->
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" *ngIf="categoryList && categoryList.length">
+                        <div class="c-preFooter__navigation c-preFooter__navigation-xs">
+                            <h4>{{'CATEGORIES' | translate}}</h4>
+                            <ul class="c-preFooter__navigation--items c-preFooter__navigation--items-xs">
+                                <li *ngFor="let category of categoryList let i = index">
+                                    <a href="javascript:;" (click)="changeRouter('store/'+category.Category_Slug);" [innerHTML]="category.Category_Name"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="c-preFooter__navigation c-preFooter__navigation-xs">
+                            <h4>{{'SUPPORT_CENTER' | translate}} </h4>
+                            <ul class="c-preFooter__navigation--items c-preFooter__navigation--items-xs">
+                                <li><a href="#">Help</a></li>
+                                <li><a href="#">Track Order</a></li>
+                                <li><a href="#">Delivery</a></li>
+                                <li><a href="#">Returns</a></li>
+                                <li><a href="/contact-us">Contact Us</a></li>
+                            </ul>
+                        </div>
+                
+                        <div class="c-preFooter__social c-preFooter__social-xs">
+                            <ul class="c-preFooter__social--items c-preFooter__social--items-xs">
+                                <li><a href="#"><i class="fab fa-facebook-f icon"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter icon"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram icon"></i></a></li>
+                                <li><a href="#"><i class="fas fa-envelope-open icon"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</footer>
+<!-- //End Footer Section -->
+<footer class="c-footer c-footer-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="c-footer--copyright"><span>AgFolks</span> &copy; {{'COPYRIGHT' | translate}}</div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- //End Footer Section -->

@@ -1,0 +1,105 @@
+<div class="auth--body auth--body-md My--Profile">
+    <div class="auth--body__inner auth--body__inner-md">
+        <div class="container">
+            <div class="row">
+                <aside class="col-12 col-lg-3 col-xl-3">
+                    <div class="row u-mb--30 u-mb--30-sm">
+                        <div class="col-12 col-lg-12 col-xl-12">
+                            <h3 class="section--title section--title-sm">{{'MY_ACCOUNT' | translate}}</h3>
+                        </div>
+                    </div>
+                    
+                    <!--Add side bar-->
+                    <app-side-bar></app-side-bar>
+                </aside>
+                
+                <div class="col-12 col-lg-9 col-xl-9 has--leftsidebar has--leftsidebar-md">
+                    <div class="c-breadcrumb">
+                        <nav class="missio-breadcrumb">
+                            <a class="breadcrumb-link" href="/">Home</a> <a class="breadcrumb-link " href="javascript:void(0);" (click)="changeRouter('account')">My Account</a> <span class="breadcrumb-last">{{'DASHBOARD' | translate}}</span>
+                        </nav>
+                    </div>
+                    
+                    <div class="page-head page-head-sm">
+                        <h3 class="u-heading--small u-heading--small-sm">{{'DASHBOARD' | translate}}</h3>
+                    </div>
+
+                    <div class="card_buttons">
+                        <div class="card_buttons__items card_buttons__items-sm has-hover-effect">
+                            <div class="card_buttons__items--inner has-shadow">
+                                <div class="card_buttons--left">
+                                    <img src="assets/images/icons/user2.svg" alt="{{'PROFILE' | translate}}" class="img-fluid">
+                                </div>
+                                <div class="card_buttons--body">
+                                    <h3 class="card_buttons--title card_buttons--title-sm">{{'PROFILE' | translate}}</h3>
+                                    <p class="card_buttons--description card_buttons--description-sm">{{'MANAGE_PROFILE' | translate}} </p>
+                                </div>
+                            </div>
+                            <a href="javascript:void:;" (click)="changeRouter('account/profile')" class="card_buttons--link"></a>
+                        </div>
+                        
+                        <div class="card_buttons__items card_buttons__items-sm has-hover-effect">
+                            <div class="card_buttons__items--inner has-shadow">
+                                <div class="card_buttons--left">
+                                    <img src="assets/images/icons/product.svg" alt="{{'YOUR_ORDER' | translate}}" class="img-fluid">
+                                </div>
+                                <div class="card_buttons--body">
+                                    <h3 class="card_buttons--title card_buttons--title-sm">{{'YOUR_ORDER' | translate}}</h3>
+                                    <p class="card_buttons--description card_buttons--description-sm">{{'TRACK_RETURN_OR_BUY_THINGS_AGAIN' | translate}}
+                                    </p>
+                                </div>
+                            </div>
+                            <a href="javascript:void:;" (click)="changeRouter('account/order-history')" class="card_buttons--link"></a>
+                        </div>
+
+                        <div class="card_buttons__items card_buttons__items-sm has-hover-effect">
+                            <div class="card_buttons__items--inner has-shadow">
+                                <div class="card_buttons--left">
+                                    <img src="assets/images/icons/lock.svg" alt="{{'LOGIN_SECURITY' | translate}}" class="img-fluid">
+                                </div>
+                                <div class="card_buttons--body">
+                                    <h3 class="card_buttons--title card_buttons--title-sm">{{'LOGIN_SECURITY' | translate}}</h3>
+                                    <p class="card_buttons--description card_buttons--description-sm">{{'EDIT_LOGIN_NAME_AND_MOBILE_BUMBER' | translate}}
+                                    </p>
+                                </div>
+                            </div>
+                            <a href="javascript:void:;" (click)="changeRouter('account/profile')" class="card_buttons--link"></a>
+                        </div>
+
+                        <div class="card_buttons__items card_buttons__items-sm has-hover-effect">
+                            <div class="card_buttons__items--inner has-shadow">
+                                <div class="card_buttons--left">
+                                    <img src="assets/images/icons/location.svg" alt="{{'YOUR_ADDRESS' | translate}}" class="img-fluid">
+                                </div>
+                                <div class="card_buttons--body">
+                                    <h3 class="card_buttons--title card_buttons--title-sm">{{'YOUR_ADDRESS' | translate}}</h3>
+                                    <p class="card_buttons--description card_buttons--description-sm">{{'EDIT_ADDRESS_FOR_ORDERS_AND_GIFTS' | translate}}
+                                    </p>
+                                </div>
+                            </div>
+                            <a href="javascript:void(0);" (click)="changeRouter('account/shipping-addresses')" class="card_buttons--link"></a>
+                        </div>
+
+                        <div class="card_buttons__items card_buttons__items-sm has-hover-effect">
+                            <div class="card_buttons__items--inner has-shadow">
+                                <div class="card_buttons--left">
+                                    <img src="assets/images/icons/payment-method.svg" alt="{{'PAYMENT_OPTIONS' | translate}}" class="img-fluid">
+                                </div>
+                                <div class="card_buttons--body">
+                                    <h3 class="card_buttons--title card_buttons--title-sm">{{'PAYMENT_OPTIONS' | translate}}</h3>
+                                    <p class="card_buttons--description card_buttons--description-sm">{{'EDIT_OR_AND_PAYMENT_METHODS' | translate}} </p>
+                                </div>
+                            </div>
+                            <a href="#" class="card_buttons--link"></a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Newsletter component here -->
+<app-newsletter></app-newsletter>

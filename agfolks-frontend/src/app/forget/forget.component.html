@@ -1,0 +1,59 @@
+<!-- Include Breadcrumbs component here -->
+<app-bread-crumbs></app-bread-crumbs>
+
+<div class="auth--body auth--body-md">
+    <div class="auth--body__inner auth--body__inner-md">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div id="form_customer_login" class="u-columns u-columns-sm">
+                    <div class="u-column1 right-layout">
+                        <div class="form-vertical form-vertical-sm">
+                            <div class="login">
+                                <h2 class="">{{'FORGET_YOUR_PASSWORD' | translate }}</h2>
+                                <p class="alert alert-success" *ngIf="successMsg">{{ successMsg | translate }}</p>
+                                <form *ngIf="!successMsg" [formGroup]="forgetForm" (ngSubmit)="onSubmit(forgetForm.value)">
+                                    <div class="row justify-content-center">
+                                        <div class="col-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <div  [ngClass]="forgetForm.controls['email'].dirty && forgetForm.controls['email'].errors ? 'form-group form-group--has-error' : 'form-group'">
+                                                    <input autocomplete="nope" type="email" class="form-control solid rounded" formControlName="email" id="email" name="email" required placeholder="{{'EMAIL_ADDRESS' | translate}}">
+                                                    <div *ngIf="forgetForm.controls['email'].dirty && forgetForm.controls['email'].errors">
+                                                        <div *ngIf="forgetForm.controls['email'].errors.required != null && forgetForm.controls['email'].errors.required">
+                                                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                                                        </div>
+                                                        <div *ngIf="forgetForm.controls['email'].errors.email != null && forgetForm.controls['email'].errors.email">
+                                                            <div class="help-block" style="display: block">{{'PLEASE_INSERT_THE_VALID_EMAIL' | translate}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <div class="u-flexed u-flexed u-align-center">
+                                                    <button type="submit" class="button button--green button-md">{{'SUBMIT' | translate}}</button>
+                                                    <a href="javascript:;" (click)="changeRouter('login')" class="ml-auto button-text button-text-green">{{'BACK_TO_LOGIN' | translate}}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="u-column2">
+                        <div class="form-vertical form-vertical-sm">
+                            <h2>{{'SIGNUP' | translate}}</h2>
+                            <div class="registration-info">{{'REGISTERING_MESSAGE' | translate}}</div>
+                            <a routerLink="/sign-up" class="button button--green button-md button-inline">{{'SIGNUP' | translate}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Newsletter component here -->
+<app-newsletter></app-newsletter>

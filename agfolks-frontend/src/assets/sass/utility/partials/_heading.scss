@@ -1,0 +1,147 @@
+/* Begin utility view style */
+.u-heading {
+    &--large {
+        @include font-size(20);
+        font-weight: $weightBold;
+        color: $black;
+        z-index: 11;
+
+        @include responsive (xs) {
+            @include font-size(28);
+        }
+    }
+}
+
+.u-bg {
+    &-white {
+        background-color: $white;
+    }
+    &-offwhite{
+        background-color: $offwhite;
+    }
+}
+.u-page-info{
+    $self: &; 
+    &__title{
+        @include font-size(20);
+        font-weight: $weightBold;
+        color: $black;
+        z-index: 11;
+        margin-bottom:19px;
+        @include responsive (xs) {
+            @include font-size(28);
+        }
+    }
+    &__discription {
+        p {
+            @include font-size(13);
+            color: $greyish;
+            line-height:1.54;
+            margin-bottom:18px;
+
+        }
+    }
+}
+
+.u-title {
+    &--heading {
+        color: $info;
+        @include font-size(24);
+        line-height: 1.15;
+        font-weight: $weightBold;
+        @include margin-bottom(5);
+
+        @include responsive (xs) {
+            @include font-size(40);
+        }
+    }
+    
+    &--subheading {
+        color: $black;
+        @include font-size(18);
+        font-weight: $weightLight;
+
+        @include responsive (xs) {
+            @include font-size(32);
+        }
+    }
+}
+
+.sectionhead {
+    position:relative;
+    @include flexbox();
+    width:$viewportSize;
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include margin-bottom(20);
+    border-bottom:1px rgba($greyish, 0.5) solid;
+    @include padding(75 0);
+    background-image:url('../images/background/static.jpg');
+    @extend .u-image-covered;
+    
+    @include responsive(xs) {
+        @include padding(100 0);
+        @include margin-bottom(30);
+    }
+    
+    .container {
+        z-index: 1;
+    }
+    
+    &:before {
+        top:0;
+        left:0;
+        content:'';
+        position:absolute;
+        @include size(100%);
+        background-color:rgba($black,0.25);
+    }
+    
+    &__name {
+        text-align:center;
+        
+        h1 {
+            color:$white;
+            @include font-size(40);
+            line-height:1;
+            font-family: $tertiaryFont;
+            font-weight:$weightBold;
+            @include padding-bottom(10);
+            text-shadow:0px 2px 0px rgba($black,0.25);
+        }
+        
+        @include responsive(xs) {
+            h1 {
+                @include font-size(60);
+                line-height:1;
+            }
+        }
+    }
+    
+    &.has-bg-green {
+        background-color:$black_sh1;
+    }
+    
+    .breadcrumbs {
+        @include font-size(0);
+        @include margin-top(10);
+        
+        > a, > span {
+            color:$white;
+            @include font-size(16);
+            
+            &:after {
+                content:"/";
+                display:inline-block;
+                @include padding(0 8);
+            }
+            
+            &:last-child {
+                &:after {
+                    content:none;
+                }
+            }
+        }
+    }
+}
+/* Begin utility view style */

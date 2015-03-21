@@ -1,0 +1,67 @@
+<div class="featured-products featured-products-xs">
+    <div class="container">
+        <div class="sectionTitle-wrapper sectionTitle-wrapper-xs">
+            <h2 class="heading--title--medium heading--title--medium-xs">{{'FEATURED_PRODUCTS' | translate}}</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Begin Featured Products Row -->
+        <div class="row" *ngIf="storeList && storeList.length">
+            <div class="col-md-3 col-sm-6 col-xs-6" *ngFor="let storeItem of storeList let i=index">
+                <div class="product-grid-item product-hover-base">
+                    <div class="content-product-imagin" style="margin-bottom:-135px;"></div>
+                    <div class="product-element-top">
+                        <a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);" class="product-image-link">
+                            <img src="{{storeItem.imageUrl}}" alt="{{storeItem.Product_Name}}">
+
+                        </a>
+                        <div class="hover-img">
+                            <a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);">
+                                <img src="{{storeItem.imageUrl}}" alt="">
+                            </a>
+                        </div>
+                        <div class="wrapp-swatches">
+                            <div class="swatches-on-grid">
+                                <div class="swatch-on-grid" style="background-color:#D52727;">Red</div>
+                                <div class="swatch-on-grid" style="background-color:#fcba08;">Yellow</div>
+                            </div>
+                            <div class="product-compare-button"><a href="javascript:;" data-toggle="tooltip"
+                                    data-placement="left" title="{{'ADD_TO_COMPARE' | translate}}"></a></div>
+                        </div>
+                    </div>
+                    <div class="product-information">
+                        <h3 class="product-title">
+                            <a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);" [innerHtml]="(storeItem.Product_Name | safeHtml) | truncate:[50, '...']"></a>
+                        </h3>
+                        <div class="product-cats"><a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);" [innerHtml]="storeItem.Category_Name | safeHtml"></a>
+                        </div>
+                        <div class="product-price" *ngIf="(storeItem && (storeItem.DiscountType=='amount' || storeItem.DiscountType=='percent'))">${{storeItem.Discount_Price}}</div>
+                        <div class="product-price" *ngIf="!(storeItem && (storeItem.DiscountType=='amount' || storeItem.DiscountType=='percent'))">${{storeItem.Product_Price}}</div>
+                        <div class="fade-in-block">
+                            <div class="hover-content more-description">
+                                <div class="product-description js-description">
+                                    {{storeItem.Product_Short_Description | truncate:[108, '...']}}</div>
+                                <a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);" class="more-details-btn"><span>more</span></a>
+                            </div>
+                            <div class="product-buttons">
+                                <div class="wrap-wishlist-button"><a href="javascript:;"
+                                        tooltip="{{'ADD_TO_WISH_LIST' | translate}}"><span></span></a>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="add-tocart-btn"><a href="javascript:;" (click)="productAddToCart(storeItem,1)" tooltip="{{'ADD_TO_CART' | translate}}"><span></span></a></div>
+                                <div class="wrap-quickview-button">
+                                    <div class="quick-view">
+                                        <a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);" class="quickview-icon" tooltip="{{'QUICK_VIEW' | translate}}"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- //End Featured Products Row -->
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>

@@ -1,0 +1,617 @@
+ /* My Account Page
+------------------------------------*/
+   
+.Order--History {
+    .input-group {
+        position: relative;
+        
+        .search {
+            top: 50%;
+            left: 10px;
+            z-index: 4;
+            display: block;
+            position: absolute;
+            @include size(20px);
+            @include transform(translateY(-50%));
+            
+            &:before {
+                color: $border;
+                content:'\f125';
+                text-align: center;
+                font-family: $woodmart;
+                @include font-size(16);
+                line-height: 20px;
+            }
+        }
+        
+        .form-control {
+            min-height: 46px;
+            color: $black_sh1;
+            border-width: 2px;
+            border-color: $border;
+            border-right: 0px none;
+            @include font-size(16);
+            @include padding-left(32);
+            @include border-radius(0!important);
+            
+            &:focus {
+                border-width: 2px;
+                border-color: $green;
+            }
+        }
+        .input-btn {
+            color: $white;
+            min-height: 46px;
+            @include font-size(16);
+            font-weight: $weightBold;
+            background-color: $green;
+            text-transform: uppercase;
+            @include border-radius(0!important);
+            
+            &:hover {
+                background-color: darken($green,10%);
+            }
+        }
+    }
+    
+    &--Filter {
+        
+        .form-label {
+            color: $black_sh1;
+            @include margin-right(10);
+        }
+        
+        .order--count {
+            font-weight: $weightBold;
+        }
+        
+        .dropdown-menu {
+            overflow: hidden;
+            overflow-y: auto;
+            @include padding(5 0);
+            -webkit-overflow-scrolling:touch;
+            @include border-radius(0px 5px 5px 5px!important);
+            
+            > li {
+                border: 0px none;
+                margin: 0!important;
+                padding: 0!important;
+                
+                &:before {
+                    display: none;
+                }
+                
+                > a {
+                    border: 0px none;
+                    color: $black_sh1;
+                    @include padding(5 15);
+                    @include font-size(16);
+                    font-weight: $weightMedium;
+                    
+                    &:hover {
+                        color: $white;
+                        background: $success;
+                    }
+                }
+            }
+        }
+    }
+    
+    &--Cards {
+        width: 100%;
+        @include flexbox;
+        @include flex-direction(column, vertical);
+        
+        &__Items {
+            min-height:130px;
+            background:$white;
+            @include padding(20);
+            height:calc(100% - 30px);
+            border:1px solid $border;
+            @include margin-bottom(30);
+            @include border-radius(5px);
+            @include transition(all 0.2s ease-in-out);
+            
+            @include flexbox;
+            @include align-items(flex-start);
+            @include flex-direction(column, vertical);
+            
+            &.noStyle {
+                min-height: inherit;
+                @include padding(0);
+                
+                ul {
+                    width: 100%;
+                    height: 100%;
+                    @include flexbox;
+                    @include align-items(flex-start);
+                    @include flex-direction(row, horizontal);
+                    
+                    @media (max-width: 767px) {
+                        @include flex-wrap(nowrap);
+                    }
+                    
+                    li {
+                        width: 20%;
+                        height: 100%;
+                        color: $black;
+                        @include padding(30 20);
+                        background-color: $green;
+                        border-left: 1px solid $border;
+                        
+                        @media (max-width: 767px) {
+                            width: auto;
+                        }
+                        
+                        &:first-child {
+                            border-left: 0px none;
+                        }
+                        
+                        &:nth-child(1) {
+                            background-color: lighten($green, 25%);
+                        }
+                        &:nth-child(2) {
+                            background-color: lighten($green, 12.5%);
+                        }
+                        &:nth-child(3) {
+                            background-color: lighten($green, 5%);
+                        }
+                        &:nth-child(4) {
+                            background-color: lighten($green, 12.5%);
+                        }
+                        &:nth-child(5) {
+                            background-color: lighten($green, 25%);
+                        }
+                        
+                        h4 {
+                            @include font-size(20);
+                            @include margin-bottom(10);
+                            font-weight: $weightUltabold;
+                        }
+                        p {
+                            @include font-size(16);
+                            @include margin-bottom(0);
+                            font-weight: $weightSemibold;
+                        }
+                    }
+                }
+            }
+        }
+        
+        &__Head, &__Body {
+            @include flexbox;
+            @include align-items(center);
+            @include flex-direction(row, horizontal);
+            
+            &--GridLeft {
+                max-width: 75%;
+                @include flex(0 0 75%);
+                @include justify-content(flex-start);
+                @include order(1);
+            }
+            
+            &--GridRight {
+                max-width: 25%;
+                text-align: right;
+                @include flex(0 0 25%);
+                @include justify-content(flex-end);
+                @include order(2);
+            }
+        }
+        
+        &__Head {
+            @include margin(-20);
+            @include margin-bottom(20);
+            @include padding(15 20);
+            width: calc(100% + 40px);
+            background-color: $white_sh3;
+            border-bottom:1px solid $border;
+            @include border-radius(5px 5px 0 0);
+            
+            .blocks {
+                @include flexbox;
+                @include align-items(center);
+                @include flex-direction(column, vertical);
+                color: $black_sh1;
+                @include font-size(14);
+                
+                > span {
+                    width: 100%;
+                    display: block;
+                    @include padding(3 0);
+                    
+                    &.label {
+                        color: $black_sh2;
+                        text-transform: uppercase;
+                    }
+                    
+                    &.value {
+                        font-weight: $weightSemibold;
+                    }
+                    
+                    a {
+                        color: $green;
+                        @include font-size(14);
+                        font-weight: $weightSemibold;
+                    }
+                }
+            }
+        }
+        
+        .inline-nav {
+            @include inline-flex;
+            
+            li {
+                position: relative;
+                
+                &:before {
+                    content: '|';
+                    padding: 0 6px;
+                    color: $black_sh3;
+                }
+                
+                &:first-child {
+                    &:before {
+                        display: none;
+                    }
+                }
+                
+                a {
+                    color: $green;
+                    @include font-size(14);
+                    font-weight: $weightSemibold;
+                }
+            }
+        }
+        
+        &__Body {
+            width: calc(100% + 0px);
+            @include align-items(flex-start);
+            @include border-radius(0 0 5px 5px);
+            
+            &--GridLeft {
+                @include padding-right(0);
+                
+                @include responsive(xs) {
+                    @include padding-right(50);
+                }
+            }
+            
+            + .Order--History--Cards__Body {
+                @include margin(-20);
+                @include margin-top(20);
+                @include margin-bottom(0);
+                @include padding(15 20);
+                @include padding-top(25);
+                width: calc(100% + 40px);
+                border-top: 1px solid $border;
+            }
+            
+            .address {
+                &--details {
+                    @include padding-right(0);
+                    @include margin-bottom(35);
+
+                    @include responsive(sm) {
+                        @include padding-right(30);
+                        @include margin-bottom(10);
+                    }
+                    
+                    &.last {
+                        @include padding-right(0);
+                    }
+                }
+                &--title {
+                    color: $black_sh1;
+                    @include font-size(18);
+                    font-weight: $weightUltabold;
+                }
+            }
+            
+            .Order--Summary {
+                line-height: 24px;
+            }
+        }
+    }
+    
+    .auth--body {
+        &__inner {
+            max-width:100%;
+            width:calc(100% - 0px);
+            @include margin-left(0);
+            @include margin-right(0);
+
+            @include responsive(md) {
+                width:100%;
+                max-width:100%;
+            }
+        }
+    }
+}
+
+/* Card Buttons */
+.Details__Top {
+    $detailsTopSelf: &;
+    width: 100%;
+    color: $black_sh1;
+    
+    h3 {
+        @include font-size(18);
+        font-weight: $weightUltabold;
+    }
+}
+
+.Order__Prdt {
+    $orderPrdtSelf: &;
+    
+    &__Excerpt {
+        @include flexbox;
+        @include flex-direction(row, horizontal);
+    }
+    
+    &__Thumbnail {
+        display: block;
+        @include size(100px);
+        
+        a {
+            display: block;
+        }
+    }
+    
+    &__Details {
+        @include margin-left(20);
+        width: calc(100% - 120px);
+        
+        .prdt__name {
+            color: $green;
+            @include margin-bottom(6);
+            font-weight: $weightSemibold;
+            
+            a {
+                color: $green;
+                @include font-size(14);
+                line-height: 1.4;
+            }
+            
+            @include responsive(xs) {
+                a {
+                    @include font-size(16);
+                    line-height: 1.4;
+                }
+            }
+        }
+        
+        .prdt__text {
+            color: $black_sh2;
+            @include font-size(15);
+            line-height: 1.4;
+            @include margin-bottom(6);
+            
+            &.price {
+                color: $green;
+                @include font-size(18);
+                font-weight: $weightSemibold;
+            }
+        }
+    }
+}
+
+.Order__Buttons__Group {
+    @include flexbox;
+    @include flex-direction(column, vertical);
+    
+    .button {
+        &:first-child {
+            @include margin-bottom(20);
+        }
+        &:last-child {
+            @include margin-bottom(20);
+        }
+    }
+}
+
+
+@media (min-width: 768px) {
+    .reverse--table {
+        width: 100%;
+        border: 1px solid $border;
+        @include margin-bottom(30);
+        
+        thead th,
+        tbody td {
+            width: 20%;
+            color: $black;
+            vertical-align: top;
+            font-weight: $weightMedium;
+            border-left: 1px solid $border;
+
+            &:nth-child(1) {
+                background-color: lighten($green, 25%);
+            }
+            &:nth-child(2) {
+                background-color: lighten($green, 12.5%);
+            }
+            &:nth-child(3) {
+                background-color: lighten($green, 5%);
+            }
+            &:nth-child(4) {
+                background-color: lighten($green, 12.5%);
+            }
+            &:nth-child(5) {
+                background-color: lighten($green, 25%);
+            }
+        }
+        
+        thead {
+            th {
+                @include font-size(20);
+                @include padding(25 15 5);
+                font-weight: $weightUltabold;
+            }
+        }
+        tbody {
+            td {
+                @include font-size(16);
+                @include padding(5 15 20);
+                font-weight: $weightMedium;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 767px) {
+	.reverse--table {
+		width: 100%;
+		margin: 0 auto;
+		border-spacing: 0;
+        border-top: 1px solid $border;
+	}
+	.reverse--table thead {
+		border: 0;
+		width: 1px;
+		padding: 0;
+		height: 1px;
+		overflow: hidden;
+		position: absolute;
+		clip: rect(1px, 1px, 1px, 1px);
+	}
+	.reverse--table tbody,
+    .reverse--table tr,
+    .reverse--table th,
+    .reverse--table td {
+		padding: 0;
+		display: block;
+		text-align: left;
+		white-space: normal;
+	}
+	.reverse--table tr td,  .reverse--table tr th {
+		width: 100%;
+		overflow: hidden;
+		position: relative;
+		white-space: normal;
+		vertical-align: top;
+		@include padding(10);
+		vertical-align: middle;
+		border: 1px solid $border;
+		border-top: none;
+	}
+	.reverse--table th[scope="row"] {
+		width: 100%;
+		margin: 0 auto;
+		display: block;
+		text-align: center;
+		@include padding(10 0);
+		background-color: $green;
+	}
+	.reverse--table td[data-header]:before {
+		width: 50%;
+		float: left;
+		color: $black;
+		display: block;
+		text-align: left;
+		font-weight: bold;
+		content: attr(data-header);
+	}
+    
+    .reverse--table td[data-header] {
+        /*&:nth-child(1) {
+            background-color: lighten($green, 25%);
+        }
+        &:nth-child(2) {
+            background-color: lighten($green, 12.5%);
+        }
+        &:nth-child(3) {
+            background-color: lighten($green, 5%);
+        }
+        &:nth-child(4) {
+            background-color: lighten($green, 12.5%);
+        }
+        &:nth-child(5) {
+            background-color: lighten($green, 25%);
+        }*/
+	}
+    
+	.reverse--table td[data-header] > * {
+		width: 50%;
+		float: right;
+		clear: right;
+		display: block;
+		@include margin(0);
+        word-break: break-all;
+		@include padding-left(10);
+	}
+	.reverse--table td[data-header]:after {
+		top: 0;
+		left: 0;
+		width: 50%;
+		content: "";
+		display: block;
+		position: absolute;
+		padding-bottom: 200%;
+		border-right: 1px solid $border;
+	}
+    
+    .m767-hidden {
+        display: none;
+    }
+}
+
+
+.Thankyou--Message {
+    @include flexbox;
+    @include padding(15);
+    border: 3px dashed $green;
+    @include align-content(center);
+    @include align-items(flex-start);
+    @include justify-content(center);
+    @include flex-direction(column, vertical);
+    
+    @include responsive(sm) {
+        @include padding(15);
+        @include align-items(center);
+        @include justify-content(center);
+    }
+    
+    .graphic--100 {
+        display: block;
+        margin-left: 0px;
+        @include size(60px);
+        @include margin-bottom(10);
+        
+        @include responsive(sm) {
+            margin: 0px auto;
+            @include size(80px);
+            @include margin-bottom(0);
+        }
+    }
+    
+    .message {
+        &--title {
+            color: $green;
+            @include font-size(30);
+            line-height: 1;
+            font-family: $banneFont;
+            @include margin-bottom(5);
+            
+            @include responsive(sm) {
+                @include font-size(42);
+                line-height: 1;
+            }
+        }
+        
+        &--description {
+            color: $green;
+            @include font-size(16);
+            line-height: 1.65;
+            @include margin-bottom(0);
+            font-weight: $weightSemibold;
+            
+            @include responsive(sm) {
+                @include font-size(18);
+                line-height: 1.65;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,179 @@
+
+<app-category-count> </app-category-count>
+
+<div class="content__wrap content__wrap-sm">
+    <div class="Shop__Listings Shop__Listings-xs">
+        <div class="container">
+
+            <div class="row u-mb--50">
+                <!-- Begin Product(s) Listing Row -->
+                <div class="col-12 col-lg-9 col-md-12 col-sm-12 col-xs-12 content-with-products content-with-products-md">
+
+                    <div class="shop--filters shop--filters-sm">
+                        <div class="single-breadcrumbs-wrapper no-margin">
+                            <div class="single-breadcrumbs">
+                                <nav class="missio-breadcrumb">
+                                <a class="breadcrumb-link" href="/" title="Back to the frontpage">Home</a> 
+                                <span [innerHtml]="((findSelectedCategories) ? findSelectedCategories.Category_Name : 'Shop') | safeHtml" class="breadcrumb-last"></span>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="ml-auto products--view products--view-sm">
+                            <div class="products--view__grid">
+                                <div class="products--ordering no-margin">
+                                    <span class="products--view__title">Show</span>
+                                    <div class="sort-by">
+                                        <select name="sort_by" class="orderby">
+                                            <option value="12" selected="selected" (click)="limit=12;get_products_list('null','true')">12</option>
+                                            
+                                            <option value="9" (click)="limit=9;get_products_list('null','true')">9</option>
+                                            
+                                            <option value="6" (click)="limit=6;get_products_list('null','true')">6</option>
+                                            
+                                            <option value="3" (click)="limit=3;get_products_list('null','true')">3</option>
+                                            
+                                            <option value="All" (click)="limit=1000;get_products_list('null','true')">All</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="products--view__grid last">
+                                <a rel="nofollow" href="javascript:;" (click)="ChangeGrid('1')" [ngClass]="(ProductPerRow == 1) ? 'shop-view per-row-list is-selected' : 'shop-view per-row-list'" ><svg class="missio--icon"><path d="M0 0h18v2H0zM0 16h18v2H0zM0 8h18v2H0z"/></svg></a>
+                                
+                                <a rel="nofollow" href="javascript:;" (click)="ChangeGrid('2')" [ngClass]="(ProductPerRow == 2) ? 'shop-view per-row-list is-selected' : 'shop-view per-row-list'"><svg class="missio--icon"><path d="M7 2v5H2V2h5m2-2H0v9h9V0zM17 2v5h-5V2h5m2-2h-9v9h9V0zM7 12v5H2v-5h5m2-2H0v9h9v-9zM17 12v5h-5v-5h5m2-2h-9v9h9v-9z"/></svg></a>
+                                
+                                <a rel="nofollow" href="javascript:;" (click)="ChangeGrid('3')" [ngClass]="(ProductPerRow == 3) ? 'shop-view per-row-list is-selected' : 'shop-view per-row-list'"><svg class="missio--icon"><path d="M0 0h5v5H0zM7 0h5v5H7zM14 0h5v5h-5zM0 7h5v5H0zM7 7h5v5H7zM14 7h5v5h-5zM0 14h5v5H0zM7 14h5v5H7zM14 14h5v5h-5z"/></svg></a>
+                                
+                                <a rel="nofollow" href="javascript:;" (click)="ChangeGrid('4')" [ngClass]="(ProductPerRow == 4) ? 'shop-view per-row-list is-selected' : 'shop-view per-row-list'"><svg class="missio--icon"><path d="M0 0h4v4H0zM5 0h4v4H5zM10 0h4v4h-4zM15 0h4v4h-4zM0 5h4v4H0zM5 5h4v4H5zM10 5h4v4h-4zM15 5h4v4h-4zM0 15h4v4H0zM5 15h4v4H5zM10 15h4v4h-4zM15 15h4v4h-4zM0 10h4v4H0zM5 10h4v4H5zM10 10h4v4h-4zM15 10h4v4h-4z"/></svg></a>
+                            </div>
+                            
+                            <div class="products--ordering">
+                                <div class="sort-by">
+                                    <select name="sort_by" (change)="sortingFilter($event)" class="orderby">
+                                        <option [value]="0" selected="selected">{{'DEFAULT_SORTING' | translate}}</option>
+                                        <option [value]="1">{{'SORT_FFEATURED' | translate}}</option>
+                                        <!--<option [value]="2">Best Selling</option>-->
+                                        <option [value]="3">{{'SORT_A_Z' | translate}}</option>
+                                        <option [value]="4">{{'SORT_Z_A' | translate}}</option>
+                                        <option [value]="5">{{'SORT_P_L_H' | translate}}</option>
+                                        <option [value]="6">{{'SORT_P_L_H' | translate}}</option>
+                                        <option [value]="7">{{'SORT_D_N_O' | translate}}</option>
+                                        <option [value]="8">{{'SORT_D_O_N' | translate}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="Product--Grid--View--Controls Product--Grid--View--per-row-{{ProductPerRow}}">
+                        <div class="row Product--Grid--View--per-row-{{ProductPerRow}}" *ngIf="productsList && productsList.length">
+                            <div class="col-12 col-md-4 col-sm-6 col-xs-6" *ngFor="let storeItem of productsList let i=index">
+                                <div class="product-grid-item product-hover-base">
+                                    <div class="content-product-imagin" style="margin-bottom:-135px;"></div>
+                                    <div class="product-element-top">
+                                        <a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);" class="product-image-link"><img src="{{storeItem.imageUrl}}" alt="{{storeItem.Product_Name}}"></a>
+                                        <div class="hover-img"><a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);" ><img src="{{storeItem.imageUrl}}" alt="{{storeItem.Product_Name}}"></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-information">
+                                        <h3 class="product-title">
+                                        <a href="javascript:;" (click)="changeRouter('product/'+Accessory.Product_Slug);" href="javascript:;" [innerHtml]="(storeItem.Product_Name | safeHtml) | truncate:[50, '...']"></a>
+                                        </h3>
+                                        <div class="product-cats">
+                                            <a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);"  [innerHtml]="storeItem.Category_Name | safeHtml"></a>
+                                        </div>
+                                        <div class="product-price" *ngIf="(storeItem && (storeItem.DiscountType=='amount' || storeItem.DiscountType=='percent'))"> ${{storeItem.Discount_Price}}</div>
+                                        <div class="product-price" *ngIf="!(storeItem && (storeItem.DiscountType=='amount' || storeItem.DiscountType=='percent'))"> ${{storeItem.Product_Price}}</div>
+                                        <div class="fade-in-block">
+                                            <div class="hover-content more-description">
+                                                <div class="product-description js-description">{{storeItem.Product_Short_Description | truncate:[108, '...']}}</div>
+                                                <a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);" class="more-details-btn"><span>more</span></a>
+                                            </div>
+                                            <div class="product-buttons">
+                                                <div class="wrap-wishlist-button"><a href="javascript:;" 
+                                                tooltip="{{'ADD_TO_WISH_LIST' | translate}}"><span>{{'ADD_TO_WISH_LIST' | translate}}</span></a>
+                                                <div class="clear"></div>
+                                                </div>
+                                                <div class="add-tocart-btn"><a href="javascript:;"  (click)="productAddToCart(storeItem,1)" tooltip="{{'ADD_TO_CART' | translate}}"><span></span></a></div>
+                                                <div class="wrap-quickview-button">
+                                                    <div class="quick-view">
+                                                        <a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);" class="quickview-icon" tooltip="{{'QUICK_VIEW' | translate}}"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <!-- Begin Grid List View -->
+                        <div class="Product--List--Grid--View" *ngIf="productsList && productsList.length">
+                            <div class="product-grid-item" *ngFor="let storeItem of productsList let i=index">
+                                
+                                <div class="product-wrapper">
+                                    <div class="product-element-top"><a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);" class="product-image-link"><img src="{{storeItem.imageUrl}}" alt="{{storeItem.Product_Name}}"></a>
+                                        <div class="hover-img"><a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);" ><img src="{{storeItem.imageUrl}}" alt="{{storeItem.Product_Name}}"></a>
+                                        </div>
+
+                                        <div class="product-buttons">
+                                            <div class="wrap-wishlist-button"><a href="javascript:;" 
+                                            tooltip="{{'ADD_TO_WISH_LIST' | translate}}" data-placement="left"><span>{{'ADD_TO_WISH_LIST' | translate}}</span></a>
+                                            <div class="clear"></div>
+                                            </div>
+                                            <div class="add-tocart-btn"><a href="javascript:;"  (click)="productAddToCart(storeItem,1)" tooltip="{{'ADD_TO_CART' | translate}}" data-placement="left"><span></span></a></div>
+                                            <div class="wrap-quickview-button">
+                                                <div class="quick-view">
+                                                    <a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);" class="quickview-icon" tooltip="{{'QUICK_VIEW' | translate}}" data-placement="left"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-information">
+                                        <h3 class="product-title">
+                                        <a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);" [innerHtml]="(storeItem.Product_Name | safeHtml) | truncate:[50, '...']"></a>
+                                        </h3>
+                                        <div class="product-cats">
+                                            <a href="javascript:;" (click)="changeRouter('product/'+storeItem.Product_Slug);"  [innerHtml]="storeItem.Category_Name | safeHtml"></a>
+                                        </div>
+                                        <div class="product-price" *ngIf="(storeItem && (storeItem.DiscountType=='amount' || storeItem.DiscountType=='percent'))"> ${{storeItem.Discount_Price}}</div>
+                                        <div class="product-price" *ngIf="!(storeItem && (storeItem.DiscountType=='amount' || storeItem.DiscountType=='percent'))"> ${{storeItem.Product_Price}}</div>
+
+                                        <div class="product-description js-description">{{storeItem.Product_Short_Description | truncate:[108, '...']}}</div>
+
+                                        <div class="woodmart-add-btn">
+                                            <a href="javascript:;" (click)="productAddToCart(storeItem,1)" name="add" class="button button-inline button--lgreen button-sm button--cart">Add to Cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <!-- //End Grid List View -->
+                        
+                    </div>
+                    <div class="products-footer u-mt--40" *ngIf="totalItems">
+                        <div class="pagination--list">
+                            <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="get_products_list($event)" [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [itemsPerPage]="limit"></pagination>
+                        </div>
+                    </div>
+                    <div class="text-center product-not-found product-not-found-sm u-mt--40" *ngIf="productNFound"> 
+                          {{'PRODUCT_NOT_FOUND' | translate}} 
+                    </div>
+                </div>
+                <!-- //End Featured Products Row -->
+
+                <!-- Begin Product(s) Filter Row -->
+                <aside class="col-12 col-lg-3 col-md-12 col-sm-12 col-xs-12 content-with-sidebar content-with-sidebar-xs">
+                    <app-product-filter (dataEvent)="shopFilters($event)" ></app-product-filter>
+                </aside>
+                <!-- Product filter end here-->
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

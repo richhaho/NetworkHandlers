@@ -1,0 +1,70 @@
+<!-- Include Breadcrumbs component here -->
+<app-bread-crumbs></app-bread-crumbs>
+
+<div class="auth--body auth--body-md">
+  <div class="auth--body__inner auth--body__inner-md">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div id="form_customer_login" class="u-columns u-columns-sm">
+          <div class="u-column1 right-layout">
+            <div class="form-vertical form-vertical-sm">
+              <div class="login">
+                <h2 class="">{{'LOGIN' | translate}}</h2>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+                  <div class="row justify-content-center">
+                    <div class="col-12 col-md-12 col-sm-12 col-xs-12">
+                      <div  [ngClass]="loginForm.controls['email'].dirty && loginForm.controls['email'].errors ? 'form-group form-group--has-error' : 'form-group'">
+                        <input autocomplete="nope" type="email" class="form-control solid rounded" formControlName="email" id="email" name="email" required placeholder="{{'EMAIL_ADDRESS' | translate}}">
+                        <div *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].errors">
+                          <div *ngIf="loginForm.controls['email'].errors.required != null && loginForm.controls['email'].errors.required">
+                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                          </div>
+                          <div *ngIf="loginForm.controls['email'].errors.email != null && loginForm.controls['email'].errors.email">
+                            <div class="help-block" style="display: block">{{'PLEASE_INSERT_THE_VALID_EMAIL' | translate}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-sm-12 col-xs-12">
+                      <div [ngClass]="loginForm.controls['password'].dirty && loginForm.controls['password'].errors ? 'form-group form-group--has-error' : 'form-group'">
+                        <input autocomplete="nope" type="password" class="form-control solid rounded" formControlName="password" id="password" name="password" required placeholder="{{'PASSWORD' | translate}}">
+                        <input style="display: none;" type="password"  name="password2" >
+                        <div *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].errors">
+                          <div *ngIf="loginForm.controls['password'].errors.required != null && loginForm.controls['password'].errors.required">
+                            <div class="help-block" style="display: block">{{'PLEASE_FILL_OUT_THIS_FIELD' | translate}}</div>
+                          </div>
+                          <div *ngIf="loginForm.controls['password'].errors.minlength != null && loginForm.controls['password'].errors.minlength">
+                            <p class="fs12" style="display: block">{{'PASSWORDS_MUST_BE_AT_LEAST_6_CHARACTERS' | translate}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-md-12 col-sm-12 col-xs-12">
+                      <div class="form-group">
+                        <div class="u-flexed u-flexed u-align-center">
+                          <button type="submit" class="button button--green button-md">{{'LOGIN' | translate}}</button>
+                          <a href="javascript:" (click)="changeRouter('forget')" class="ml-auto button-text button-text-green">{{'FORGET_YUOR_PASSWORD' | translate}}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="u-column2">
+            <div class="form-vertical form-vertical-sm">
+              <h2>{{'SIGNUP' | translate}}</h2>
+              <div class="registration-info">{{'REGISTERING_MESSAGE' | translate}}</div>
+              <a href="javascript:" (click)="changeRouter('sign-up')" class="button button--green button-md button-inline">{{'SIGNUP' | translate}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Include Newsletter component here -->
+<app-newsletter></app-newsletter>

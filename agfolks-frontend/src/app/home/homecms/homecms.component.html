@@ -1,0 +1,92 @@
+<!-- Include template here according to condition(s) -->
+<div *ngIf="cmsPageData.template_id==3; then template_3;"></div>
+
+<div *ngIf="cmsPageData.template_id==5; then template_5;"></div>
+
+<div *ngIf="cmsPageData.template_id==4; then template_4;"></div>
+
+<div *ngIf="cmsPageData.template_id==6; then template_6;"></div>
+
+<div *ngIf="cmsPageData.template_id==7; then template_7;"></div>
+
+<div *ngIf="cmsPageData.template_id=='' || cmsPageData.template_id==1 || cmsPageData.template_id==2; then template;"></div>
+
+
+<!-- For Full Width Template -->
+<ng-template #template_3>
+    <div *ngIf="cmsPageData && cmsPageData.page_desc" [innerHtml]="cmsPageData.page_desc | safeHtml"></div>
+</ng-template>
+
+
+<!-- For Right Sidebar Template -->
+<ng-template #template_5>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                <div *ngIf="cmsPageData && cmsPageData.page_desc" [innerHtml]="cmsPageData.page_desc | safeHtml"></div>
+            </div>
+            
+            <aside class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <!-- Right Sidebar Code Comes Here -->
+            </aside>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- For Left Sidebar Template -->
+<ng-template #template_4>
+    <div class="container">
+        <div class="row">
+            <aside class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <!-- Left Sidebar Code Comes Here -->
+            </aside>
+            
+            <div class="col-12 col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                <div *ngIf="cmsPageData && cmsPageData.page_desc" [innerHtml]="cmsPageData.page_desc | safeHtml"></div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- For Left & Right Sidebar Template -->
+<ng-template #template_6>
+    <div class="container">
+        <div class="row">
+            <aside class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <!-- Left Sidebar Code Comes Here -->
+            </aside>
+            
+            <div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div *ngIf="cmsPageData && cmsPageData.page_desc" [innerHtml]="cmsPageData.page_desc | safeHtml"></div>
+            </div>
+            
+            <aside class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <!-- Right Sidebar Code Comes Here -->
+            </aside>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- For Without Sidebar Template -->
+<ng-template #template_7>
+    <div class="content--pages">
+        <div class="content--pages__container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-10 col-sm-10 col-xs-12 col-centered">
+                        <div *ngIf="cmsPageData && cmsPageData.page_desc" [innerHtml]="cmsPageData.page_desc | safeHtml"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- For Default Template -->
+<ng-template #template>
+    <div *ngIf="cmsPageData && cmsPageData.page_desc" [innerHtml]="cmsPageData.page_desc | safeHtml"></div>
+</ng-template>

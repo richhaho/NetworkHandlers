@@ -1,0 +1,278 @@
+/* Begin footer style */
+
+.c-preFooter {
+    $self: &;
+    
+    color:$white;
+    @include flexbox;
+    @include padding(30 0);
+    background-color:$black_sh1;
+    border-top:5px solid $success;
+    @include flex-direction(row, horizontal);
+    @include justify-content(space-between);
+
+    @include responsive(sm) {
+        @include padding(45 0);
+    }
+    
+    &--about, &__navigation, &__Instagram, &__address, &__social {
+        @include margin-bottom(30);
+        
+        @include responsive(xs) {
+            @include margin-bottom(0);
+        }
+        
+        h4 {
+            @extend .u-upper;
+            color:$hoverColor;
+            @extend .ls-025;
+            @include font-size(16);
+            font-weight:$weightRegular;
+            @include margin-bottom(20);
+        }
+        
+        p {
+            color:$white;
+            @include font-size(16);
+            line-height:1.5;
+            @include margin-bottom(0);
+        }
+    }
+    
+    &--about {
+        font-weight:$weightRegular;
+        @include margin-bottom(30);
+        
+        p {
+            text-align:justify;
+            @include font-size(16);
+            line-height:1.4;
+        }
+        
+        @include responsive(xs) {
+            @include padding-right(0);
+            
+            @include respond-to(sm) {
+                @include padding-right(0);
+                
+                @include respond-to(md) {
+                    @include padding-right(0);
+                    @include margin-bottom(40);
+                    
+                    @include respond-to(lg) {
+                        @include margin-bottom(0);
+                        @include padding-right(60);
+                    }
+                }
+                
+            }
+        }
+        
+        blockquote {
+            text-align:right;
+            font-style:italic;
+            @include padding(8 15);
+            @include font-size(16);
+            @include padding-bottom(10);
+            @include border-radius(4px);
+            border:2px solid $hoverColor;
+            @include margin-bottom(20);
+            
+            p {
+                text-align:left;
+                @include font-size(16);
+                line-height:1.4;
+                @include margin-bottom(10);
+            }
+            
+            cite {
+                font-style:normal;
+            }
+        }
+    }
+    
+    &__navigation, &__address, &__social {
+        max-width:100%;
+        @include flexbox;
+        @include margin(0);
+        @include padding-left(0);
+        @include margin-bottom(30);
+        @include flex-flow(row wrap);
+        @include justify-content(center);
+        @include flex-direction(column, vertical);
+        
+        @include responsive(xs) {
+            max-width:100%;
+            @include padding-left(0);
+            @include margin-bottom(0);
+        }
+        
+        &--items {
+            list-style:none;
+            @include margin(0);
+            @include padding(0);
+            @include padding-right(0);
+            
+            @include responsive(xs) {
+                @include padding-right(20);
+            }
+        
+            li {
+                color:$white;
+                list-style:none;
+                @include margin(0);
+                @include padding(0);
+                @include font-size(15);
+                @include margin-bottom(8);
+                
+                &:last-child {
+                    border-bottom:0px none;
+                    @include margin-bottom(0);
+                }
+            }
+
+            a {
+                display:block;
+                @include padding(8 0);
+                @include font-size(15);
+                color:rgba($white,0.95);
+                font-weight:$weightRegular;
+                @include transition(all 0.3s ease);
+
+                &:hover, &:focus {
+                    color:$hoverColor;
+                }
+            }
+        }
+    }
+    
+    #{ $self }__navigation--items li {
+        &.last {
+            @include margin-top(7);
+            a {
+                color:$white;
+                display:inline-table;
+                @include padding(7 10);
+                background-color:$success;
+                
+                &:hover, &:focus {
+                    color:$white;
+                    background-color:$black_sh2;
+                }
+            }
+        }
+    }
+    
+    &__address {
+        &--items {
+            li {
+                @include margin-bottom(15);
+                a {
+                    color:$success;
+                    &:hover, &:focus {
+                        color:$black_sh2;
+                    }
+                }
+            }
+        }
+    }
+    
+    &__social {
+        @include margin-top(30);
+        @include flex-flow(row nowrap);
+        @include justify-content(flex-start);
+        @include flex-direction(row, horizontal);
+        
+        &--items {
+            @include flexbox;
+            @include margin(0);
+            @include flex-flow(row nowrap);
+            @include justify-content(flex-start);
+            @include flex-direction(row, horizontal);
+            
+            @include responsive(xs) {
+            }
+            
+            > li {
+                @include margin-left(10);
+                
+                &:first-child {
+                    @include margin-left(0);
+                }
+            
+                > a {
+                    color:$white;
+                    display:block;
+                    position:relative;
+                    text-align:center;
+                    @include size(32px);
+                    @include padding(0);
+                    @include font-size(17);
+                    line-height:30px;
+                    background-color:$success;
+                    
+                    svg, .icon {
+                        top:50%;
+                        left:50%;
+                        fill:$white;
+                        position:absolute;
+                        @include transform(translate(-50%,-50%));
+                    }
+                    
+                    &:hover, &:focus {
+                        color:$white;
+                        background-color:$hoverColor;
+                        
+                        svg, .icon {
+                            fill:$white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &--logo {
+        display:block;
+        margin:0px auto;
+        overflow:hidden;
+        @include padding(5);
+        @include size(100px);
+        background-color:$white;
+        @include margin-bottom(10);
+        @include border-radius(50%);
+        border:1px solid $hoverColor;
+        img {
+            @include size(88px);
+        }
+    }
+}
+
+
+.c-footer {
+    color:$white;
+    @include flexbox;
+    text-align:center;
+    @include padding(15 0);
+    background-color:$success;
+    @include flex-direction(row, horizontal);
+    @include justify-content(space-between);
+
+    @include responsive(sm) {
+        @include padding(20 0);
+    }
+    
+    &--copyright {
+        color:$white;
+        @include font-size(15);
+        font-weight:$weightRegular;
+        
+        span {
+            font-weight:$weightBold;
+            font-family:$tertiaryFont;
+            text-transform:capitalize;
+        }
+    }
+}
+
+/* End footer style */

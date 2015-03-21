@@ -1,0 +1,187 @@
+/* Begin Popover file
+   ======================== */
+
+.popover {
+    max-width: 240px;
+    @include box-shadow(0 3px 6px 0 rgba($black, 0.15));
+    
+    &-body {
+        @include font-size(15);
+        font-weight:$weightRegular;
+        font-family: $primaryFont;
+
+        ul {
+            li {
+                @include margin-bottom(4);
+                &:first-child {
+                    font-weight: $weightBold;
+                }
+                &:last-child {
+                    @include margin-bottom(0);
+                }
+            }
+        }
+    }
+}
+
+.c-popover {
+    &-x {
+        top: auto;
+        left: auto;
+        bottom: auto;
+        z-index: 1060;
+        display: block;
+        max-width: 276px;
+        position: absolute;
+        right: calc(100% + 13px);
+        background-color: $white;
+        border: 1px solid $border;
+        @include border-radius(5px);
+        @include box-shadow(0 3px 3px 0 rgba(221, 221, 221, 0.5));
+
+        .popover-title {
+            @include border-radius(5px 5px 0 0);
+        }
+        
+        /* Arrow */
+        > .arrow, > .arrow:after {
+            width: 0;
+            height: 0;
+            display: block;
+            position: absolute;
+            border: solid transparent;
+        }
+        > .arrow {
+            border-width: 11px;
+            
+            &:after {
+                content: "";
+                border-width: 10px;
+            }
+        }
+        
+        &.top {
+            
+            > .arrow {
+                left: 50%;
+                bottom: -11px;
+                margin-left: -11px;
+                border-top-color: $border;
+                border-top-color: rgba($black, .25);
+                border-bottom-width: 0;
+                
+                &:after {
+                    bottom: 1px;
+                    content: " ";
+                    margin-left: -10px;
+                    border-top-color: $white;
+                    border-bottom-width: 0;
+                }
+            }
+        }
+        
+        &.right > .arrow {
+            top: 50%;
+            left: -11px;
+            margin-top: -11px;
+            border-right-color: $border;
+            border-right-color: rgba($border, 1);
+            border-left-width: 0;
+            
+            &:after {
+                left: 1px;
+                content: " ";
+                bottom: -10px;
+                border-right-color: $white;
+                border-left-width: 0;
+            }
+        }
+        
+        &.bottom > .arrow {
+            top: -11px;
+            left: 50%;
+            margin-left: -11px;
+            border-top-width: 0;
+            border-bottom-color: $border;
+            border-bottom-color: rgba($border, 1);
+            
+            &:after {
+                top: 1px;
+                content: " ";
+                margin-left: -10px;
+                border-top-width: 0;
+                border-bottom-color: $white;
+            }
+        }
+        
+        &.left > .arrow {
+            top: 50%;
+            right: -11px;
+            margin-top: -11px;
+            border-right-width: 0;
+            border-left-color: $border;
+            border-left-color: rgba($border, 1);
+            
+            &:after {
+                right: 1px;
+                content: " ";
+                bottom: -10px;
+                border-right-width: 0;
+                border-left-color: $white;
+            }
+        }
+        
+        /* Body */
+        &-body {
+            padding: 15px;
+            padding-bottom: 0px;
+            
+            
+        }
+        
+        /* Footer */
+        &-footer {
+            padding: 15px;
+            text-align: right;
+            background-color: $white;
+            border-radius: 0 0 5px 5px;
+            
+            .btn + .btn {
+                margin-bottom: 0;
+                margin-left: 4px;
+            }
+            
+            .btn-block + .btn-block {
+                margin-left: 0;
+            }
+        }
+        
+        /* Close */
+        .close {
+            outline: none;
+            line-height: 20px;
+        }
+    }
+
+    /* Sizes */
+    &-lg {
+        min-width: 450px;
+    }
+    &-md {
+        min-width: 250px;
+    }
+}
+
+/* hide modal backdrop */
+.popover-x-body .modal-backdrop {
+    opacity: 1;
+    z-index: 1;
+    display: none;
+    background: transparent;
+}
+.popover-x-body.modal-open {
+    overflow-y: auto;
+}
+
+/* End Popover file
+   ======================== */

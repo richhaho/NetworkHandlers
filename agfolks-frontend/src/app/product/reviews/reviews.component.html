@@ -1,0 +1,114 @@
+<div class="product--specifications">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="javascript:;" [ngClass]="{'active': reQuesTab=='reviews'}"  data-toggle="tab" href="javascript:;" (click)="reQuesTab='reviews'" role="tab">{{'REVIEWS' | translate}}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="javascript:;" [ngClass]="{'active': reQuesTab=='questionAnswer'}"  data-toggle="tab" href="javascript:;" (click)="reQuesTab='questionAnswer'" [innerHtml]="'QUESTIONS_ANSWERS' | translate" role="tab"></a>
+    </li>
+  </ul>
+  <div class="tab-content tab-content-xs no-padding" id="myTabContent2">
+
+    <div *ngIf="reQuesTab=='reviews'; then reviews"></div>
+    
+    <div *ngIf="reQuesTab=='questionAnswer'; then questionAnswer;"></div>
+
+    <ng-template #reviews>
+    <div class="tab-pane show active" id="Reviews">
+      <div class="tab-content--inner">
+        <div class="reviews--summary u-flexed u-align-center">
+          <div class="star-rating">
+            <span class="star-badge">
+              <span class="star-badge-wrap"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                  class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+              <span class="star-badge-caption">Based on 3 review</span>
+            </span>
+          </div>
+          <div class="ml-auto"><a href="#" class="button button--lgreen button-md">{{'WRITE_A_REVIEW' | translate}}</a></div>
+        </div>
+
+        <div class="reviews--content--inner">
+          <div class="reviews--content">
+            <div class="reviews--content__header">
+              <div class="star-rating u-mb--15">
+                <span class="star-badge">
+                  <span class="star-badge-wrap"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                      class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+                </span>
+              </div>
+              <div class="reviews--content__header--title">
+                <h3 class="user-name">halothemes</h3>
+                <p class="byline">Naminos elementum disumos an cosmo on <strong>May 16, 2019</strong></p>
+              </div>
+            </div>
+            <div class="reviews--content__body">
+              <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque
+                diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper
+                mattis drostique des commodo pharetras loremos.Donec pretium egestas sapien et mollis.</p>
+            </div>
+          </div>
+          <div class="w-fade"></div>
+
+          <div class="more--reviews--content">
+            <div class="reviews--content reviews--content-xs">
+              <div class="reviews--content__header">
+                <div class="star-rating u-mb--15">
+                  <span class="star-badge">
+                    <span class="star-badge-wrap"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+                  </span>
+                </div>
+                <div class="reviews--content__header--title">
+                  <h3 class="user-name">halothemes</h3>
+                  <p class="byline">Naminos elementum disumos an cosmo on <strong>May 16, 2019</strong></p>
+                </div>
+              </div>
+              <div class="reviews--content__body">
+                <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis.
+                  Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an
+                  sullamcorper mattis drostique des commodo pharetras loremos.Donec pretium egestas sapien et
+                  mollis.</p>
+              </div>
+            </div>
+
+            <div class="reviews--content reviews--content-xs">
+              <div class="reviews--content__header">
+                <div class="star-rating u-mb--15">
+                  <span class="star-badge">
+                    <span class="star-badge-wrap"><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                        class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
+                  </span>
+                </div>
+                <div class="reviews--content__header--title">
+                  <h3 class="user-name">halothemes</h3>
+                  <p class="byline">Naminos elementum disumos an cosmo on <strong>May 16, 2019</strong></p>
+                </div>
+              </div>
+              <div class="reviews--content__body">
+                <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis.
+                  Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an
+                  sullamcorper mattis drostique des commodo pharetras loremos.Donec pretium egestas sapien et
+                  mollis.</p>
+              </div>
+            </div>
+          </div>
+
+          <a class="moreless-button text-green" href="javascript:;">Read More</a>
+
+        </div>
+      </div>
+    </div>
+    </ng-template>
+
+    <ng-template #questionAnswer>
+    <div class="tab-pane show active" id="QuestionAnswer">
+      <div class="tab-content--inner">
+        Questions &amp; Answers
+      </div>
+    </div>
+    </ng-template>
+
+  </div>
+  <div class="clearfix"></div>
+
+</div>

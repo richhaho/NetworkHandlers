@@ -1,0 +1,439 @@
+<!-- Begin Product Detail Section -->
+<div class="product-details product-details-xs single-product-detail">
+    <div class="container">
+        <div class="row u-mb--60 u-mb--60-sm">
+
+            <!-- Begin Product Gallery Section -->
+            <div class="col-12 col-lg-7 col-md-12 col-sm-12 gallery-images ">
+                <div class="u-flexed product-img-slide">
+                    <div class="product-images">
+                        <div class="product-main-image js-product-slider" *ngIf="productInfo && productInfo.slider && productInfo.slider.length">
+
+                            <div class="item" *ngFor="let slide of productInfo.slider">
+                                <a href="javascript:;" class="hover-images effect"><img src="{{PORTAL_URL}}files/store/products/{{productInfo.CID}}/{{productInfo.ID}}/{{slide.Image}}" alt="photo" class="img-reponsive js-zoom"></a>
+                                
+                                <!--<a href="javascript:;" class="hover-images effect"><ngx-image-zoom
+                                    [thumbImage]="myThumbnail"
+                                    [fullImage]="myFullresImage"
+                                ></ngx-image-zoom></a>-->
+                                
+                            </div>
+                        </div>
+
+                        <div class="missio--product__additional-galleries">
+                            <div class="missio--product-video__gallery">
+                                <a href="javascript:;" (click)="openModal(VideoModal)"><span>Watch video</span></a>
+                            </div>
+                            <div class="missio--product__gallery">
+                                <a href="javascript:;" class="js-show-product-gallery" id="js-show-product-gallery"><span>Click to Enlarge</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="multiple-img-list-ver2 js-click-product" *ngIf="productInfo && productInfo.slider && productInfo.slider.length">
+
+                        <div class="product-col" *ngFor="let slide of productInfo.slider">
+                            <div class="img">
+                                <img src="{{PORTAL_URL}}files/store/products/{{productInfo.CID}}/{{productInfo.ID}}/{{slide.Image}}" alt="photo" class="img-reponsive">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- //End Product Gallery Section -->
+
+            <!-- Begin Summary Detail Section -->
+            <div class="col-12 col-lg-5 col-md-12 col-sm-12 summary entry-summary">
+                <div class="summary-inner summary-inner-xs">
+                    <div class="single-breadcrumbs-wrapper">
+                        <div class="single-breadcrumbs">
+                            <nav class="missio-breadcrumb">
+                                <a class="breadcrumb-link" href="javascript:;" (click)="changeRouter('');" tooltip="{{'BACK_TO_THE_FRONTPAGE' | translate}}">{{'HOME' | translate}}</a>
+                                <a class="breadcrumb-link" (click)="changeRouter('store/'+((productInfo && productInfo.Category_Slug)? productInfo.Category_Slug : ''));" href="javascript:;" [innerHtml]="((productInfo && productInfo.Category_Name)? productInfo.Category_Name : '') | safeHtml"></a>
+                                <span class="breadcrumb-last" [innerHtml]="((productInfo && productInfo.Product_Name)? productInfo.Product_Name : '') | safeHtml"></span>
+                            </nav>
+
+                            <div class="missio-products-nav" *ngIf="productInfo">
+                                <!-- Prev Product Item(s) -->
+                                <div class="product-btn product-prev"><a href="javascript:;"><b data-translate="products.product.product_prev">Previous product</b><span class="product-btn-icon"></span></a>
+                                    <div class="wrapper-short">
+                                        <div class="product-short">
+                                            <div class="product-short-image">
+                                                <a href="javascript:;" class="product-thumb"><img src="{{PORTAL_URL}}files/store/products/{{productInfo?.nextProduct[0]?.CID}}/{{productInfo?.nextProduct[0]?.ID}}/{{productInfo?.nextProduct[0]?.Product_Image}}" class="" alt="" width="200" height="230"></a>
+                                            </div>
+                                            <div class="product-short-description">
+                                                <a href="javascript:;" class="product-title" [innerHtml]="((productInfo && productInfo.nextProduct)? productInfo?.nextProduct[0]?.Product_Name : '') | safeHtml"></a><strong class="price text-green">${{productInfo?.nextProduct[0]?.Product_Price}}</strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Back to Shop -->
+                                <a href="javascript:;" (click)="changeRouter('store');" class="product-back-btn" data-placement="top" tooltip="{{'BACK_TO_SHOP' | translate}}"><span>{{'BACK_TO_SHOP' | translate}}</span></a>
+
+                                <!-- Next Product Item(s) -->
+                                <div *ngIf="productInfo && productInfo.nextProduct && productInfo.nextProduct.length" class="product-btn product-next"><a href="javascript:;"><b>{{'NEXT_PRODUCT' | translate}}</b><span class="product-btn-icon"></span></a>
+                                    <div class="wrapper-short">
+                                        <div class="product-short">
+                                            <div class="product-short-image">
+                                                <a href="javascript:;" class="product-thumb"><img src="{{PORTAL_URL}}files/store/products/{{productInfo?.nextProduct[0]?.CID}}/{{productInfo?.nextProduct[0]?.ID}}/{{productInfo?.nextProduct[0]?.Product_Image}}" class="" alt="" width="200" height="230"></a>
+                                            </div>
+                                            <div class="product-short-description">
+                                                <a href="javascript:;" class="product-title" [innerHtml]="((productInfo && productInfo.nextProduct)? productInfo?.nextProduct[0]?.Product_Name : '') | safeHtml"></a><strong class="price text-green">${{productInfo?.nextProduct[0]?.Product_Price}}</strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 itemprop="product-name" class="product_title product_title-sm" [innerHtml]="((productInfo && productInfo.Product_Name)? productInfo.Product_Name : '') | safeHtml"></h1>
+                    <p itemprop="manufacturer-name" class="manufacturer_name" [innerHtml]="((productInfo && productInfo.Added_By)? 'Manufacturer: '+productInfo.Added_By : '') | safeHtml">
+                    </p>
+
+                    <div class="product-rating">
+                        <div class="star-rating">
+                            <span class="star-badge">
+                                <span class="star-badge-wrap"><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
+                                <span class="star-badge-caption">No reviews</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="price-box">
+                        <div class="price-box--wrap">
+                            <del *ngIf="productInfo && (productInfo.DiscountType=='amount' || productInfo.DiscountType=='percent')">${{(productInfo && productInfo.Product_Price )?productInfo.Product_Price :''}}</del>
+                            <ins *ngIf="productInfo && (productInfo.DiscountType=='amount' || productInfo.DiscountType=='percent')">${{(productInfo && productInfo.Discount_Price )? productInfo.Discount_Price : ''}}</ins>
+                            <ins *ngIf="!(productInfo && (productInfo.DiscountType=='amount' || productInfo.DiscountType=='percent'))">${{(productInfo && productInfo.Product_Price )?productInfo.Product_Price :''}}</ins>
+                        </div>
+
+
+                        <div class="has-info">
+                            <div class="has-info--time">{{'ESTIMATED_LOAD_TIME'| translate}} <span>(2 weeks)</span></div>
+                            <div class="has-info--shipping" *ngIf="productInfo  && productInfo.Product_Shipping_Free == 'yes'">
+                                <div class="order-shipping">
+                                    <label class="badge">{{'FREE_SHIPPING'| translate}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="short-description">
+                        {{(productInfo && productInfo.Product_Short_Description)? productInfo.Product_Short_Description : ''}}
+                    </div>
+                    <div class="single_variation_wrap">
+                        <div class="quantity">
+                            <input type="button" value="-" class="minus" (click)="manageProductQuantity(productInfo.Product_Stock,false)">
+                            <input type="text" id="qty" name="quantity" value="{{productQuantity}}" min="1" class="input-text qty text" size="4">
+                            <input type="button" value="+" class="plus" (click)="manageProductQuantity(productInfo.Product_Stock, true)">
+                        </div>
+
+                        <a href="javascript:;" name="add" (click)="productAddToCart(productInfo.ID,productInfo.CID, productQuantity)" class="button button--lgreen button-md button--cart">{{'ADD_TO_CART' | translate}}</a>
+                    </div>
+
+                    <div class="product_button-groups">
+                        <a href="javascript:;" (click)="AddtoWishlist(productInfo.ID,productInfo.Product_Slug,WishlistModal); " class="link-wishlist add_to_wishlist">{{'ADD_TO_WISH_LIST' | translate}}</a>
+                        
+                        <a href="javascript:;" class="link-guide size_guide">{{'SIZE_GUIDE' | translate}}</a>
+
+                        <a href="javascript:;" (click)="openModal(FinanceModal)" class="link-wishlist finance">{{'FINANCING_AVAILABEL' | translate}}</a>
+
+                        <!--<a href="javascript:;" class="link-wishlist add_to_wishlist loading">Add to Wish List</a>-->
+                    </div>
+
+
+                    <ul class="product_meta" *ngIf="productInfo">
+                        <li class="sku_wrapper" *ngFor="let attribute of productInfo.attributes">
+                            <strong>{{attribute.Attribute_Name}}:</strong><span class="sku">{{attribute.Attribute_Value}}</span>
+                        </li>
+                        <li class="sku_wrapper" *ngIf="productInfo.Product_Model_Number != ''">
+                            <strong>Model #:</strong><span class="sku">{{productInfo.Product_Model_Number}}</span>
+                        </li>
+                        
+                        
+                        <li class="posted_in">
+                            <strong>{{'CATEGORIES'| translate}}: </strong>
+                            <a href="javascript:;" (click)="changeRouter('store/'+((productInfo && productInfo.Category_Slug)? productInfo.Category_Slug : ''));" [innerHtml]="((productInfo && productInfo.Category_Name)? productInfo.Category_Name : '') | safeHtml"></a>
+                        </li>
+                        <li class="product-share">
+                            <strong>Share: </strong> <a href="javascript:;" data-placement="top" tooltip="{{'SHARE_ON_FACEBOOK' | translate}}"><i class="fab fa-facebook-f icon"></i></a> <a href="javascript:;" data-placement="top" tooltip="{{'SHARE_ON_TWITTER' | translate}}"><i
+                  class="fab fa-twitter icon"></i></a> <a href="javascript:;" data-placement="top" tooltip="{{'SHARE_ON_GOOGLE' | translate}}"><i class="fab fa-google-plus-g icon"></i></a> <a href="javascript:;" data-placement="top" tooltip="{{'SHARE_ON_EMAIL' | translate}}"><i
+                  class="fas fa-envelope-open icon"></i></a> <a href="javascript:;" data-placement="top" tooltip="{{'SHARE_ON_PINTEREST' | translate}}"><i class="fab fa-pinterest icon"></i></a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <!-- //End Summary Detail Section -->
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 poduct-tabs-inner">
+
+                <div class="product--specifications">
+                    <ul class="nav nav-tabs nav-tabs--items5" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link" [ngClass]="{'active': setTab=='description'}" *ngIf="productInfo && productInfo.Product_Description" data-toggle="tab" href="javascript:;" (click)="setTab='description'" role="tab">{{'DESCRIPTION' | translate}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [ngClass]="{'active': setTab=='specifications'}" *ngIf="productInfo && productInfo.Specifications" data-toggle="tab" href="javascript:;" (click)="setTab='specifications'" role="tab">{{'SPECIFICATIONS' | translate}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [ngClass]="{'active': setTab=='warranty'}" *ngIf="productInfo && productInfo.Warranty" data-toggle="tab" href="javascript:;" (click)="setTab='warranty'" role="tab">{{'WARRANTY' | translate}}</a>
+                        </li>
+                        <li class="nav-item" *ngIf="Product_Accessories && Product_Accessories.length">
+                            <a class="nav-link" [ngClass]="{'active': setTab=='accessories'}"  data-toggle="tab" href="javascript:;" (click)="setTab='accessories'" role="tab">{{'ACCESSORIES' | translate}}</a>
+                        </li>
+                        <li class="nav-item" *ngIf="productInfo && productInfo.Product_Parts.length">
+                            <a class="nav-link" [ngClass]="{'active': setTab=='orderParts'}" data-toggle="tab" href="javascript:;" (click)="setTab='orderParts'" role="tab"> {{'ORDER_PARTS' | translate}} </a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content tab-content-xs no-padding" id="myTabContent">
+                        <div *ngIf="setTab=='description'; then description"></div>
+
+                        <div *ngIf="setTab=='specifications'; then specifications;"></div>
+
+                        <div *ngIf="setTab=='warranty'; then warranty;"></div>
+
+                        <div *ngIf="setTab=='accessories'; then accessories;"></div>
+
+                        <div *ngIf="setTab=='orderParts'; then orderParts;"></div>
+
+                        <ng-template #description>
+                            <div class="tab-pane show active">
+                                <div class="tab-content--inner" [innerHtml]="productInfo && productInfo.Product_Description | safeHtml">
+                                </div>
+                            </div>
+                        </ng-template>
+
+                        <ng-template #specifications>
+                            <div class="tab-pane show active">
+                                <div class="tab-content--inner" [innerHtml]="productInfo && productInfo.Specifications | safeHtml">
+                                </div>
+                            </div>
+                        </ng-template>
+
+                        <ng-template #warranty>
+                            <div class="tab-pane show active">
+                                <div class="tab-content--inner" [innerHtml]="productInfo && productInfo.Warranty | safeHtml">
+                                </div>
+                            </div>
+                        </ng-template>
+
+                        <ng-template #accessories>
+                            <div class="tab-pane show active" *ngIf="Product_Accessories && Product_Accessories.length">
+                                <!--<div class="tab-content--inner" [innerHtml]="productInfo && productInfo.Accessories | safeHtml">-->
+                                    
+                                <div class="tab-content--inner">
+                                    
+                                    <div class="tab-content--accessories">
+                                        <div class="row">
+                                            <div *ngFor="let Accessory of Product_Accessories" class="col-12 col-md-2 mobile--half">
+                                                <div class="accessories--box">
+                                                    <a (click)="changeRouter('product/'+Accessory.Product_Slug);"  href="javascript:;" class="accessories--box--product">
+                                                        <img src="{{Accessory.imageUrl}}" alt="" class="img-responsive">
+                                                    </a>
+
+                                                    <div class="accessories--box--details">
+                                                        <p class="accessories--name accessories--name-sm">{{Accessory.Product_Name}}</p>
+                                                        <div class="accessories--price accessories--price-sm">${{Accessory.Product_Price}}</div>
+                                                    </div>
+
+                                                    <footer class="accessories--box--footer">
+                                                        <a (click)="changeRouter('product/'+Accessory.Product_Slug);" href="javascript:;" class="btn-view">View</a>
+                                                        <a (click)="productAddToCart(Accessory.ID,Accessory.CID,1)" href="javascript:;" class="btn-cart"><i class="fa fa-shopping-cart"></i></a>
+                                                    </footer>
+                                                </div>
+                                            </div>
+
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </ng-template>
+
+                        <ng-template #orderParts>
+                            <div class="tab-pane show active" *ngIf="productInfo && productInfo.Product_Parts.length">
+                                <div class="tab-content--inner">
+                                    <div class="row">
+                                        <div class="col-12 col-md-5" *ngIf="productInfo && productInfo.PartsDiagram != ''">
+                                            <figure>
+                                                <img src="{{PORTAL_URL + 'files/store/products/' + productInfo.CID + '/' + productInfo.ID + '/' + productInfo.PartsDiagram}}" class="img-fluid" alt="">
+                                            </figure>
+                                        </div>
+                                        <div class="col-12 col-md-7">
+                                            <div class="custom-table">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Item</th>
+                                                                <th scope="col">Qty</th>
+                                                                <th scope="col">P/N</th>
+                                                                <th scope="col">Description</th>
+                                                                <th scope="col">Price</th>
+                                                                <th scope="col">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let Parts of productInfo.Product_Parts let i=index">
+                                                                <th scope="row">{{i+1}}</th>
+                                                                <th>{{Parts.Product_Stock}}</th>
+                                                                <td>{{Parts.Product_Model_Number}}</td>
+                                                                <td>{{Parts.Product_Short_Description}}</td>
+                                                                <td>${{Parts.Product_Price}}</td>
+                                                                <td><a (click)="productAddToCart(Parts.ID,Parts.CID,1)" href="javascript:;"  class="btn-cart"><i class="fa fa-shopping-cart"></i></a></td>
+                                                            </tr>
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="Other--Documents u-mb--50" *ngIf="productInfo && productInfo.documents && productInfo.documents.length">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#OtherDocuments" role="tab">Other Documents</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content tab-content-xs no-padding" id="myTabContent3">
+                            <div class="tab-pane show active" id="OtherDocuments">
+                                <div class="tab-content--inner">
+                                    <ul class="Other--Documents__Inner">
+                                        <li *ngFor="let document of productInfo.documents">
+                                            <div class="icon__wrap"><img src="./assets/images/icons/{{document.file_type}}.svg" class="img-fluid" alt="{{document.file_type}}">
+                                            </div>
+                                            <div class="document__name">{{document.file_name}}</div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <!--Product reviews sectons start here -->
+                    <app-reviews></app-reviews>
+                    <!--Product reviews sectons start end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <!-- //End Product Detail Section -->
+
+    <!--Model section start here -->
+    <ng-template #VideoModal>
+        <div class="modal-dialog-exlarge modal-dialog-exlarge-md">
+            <button type="button" class="modal-close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body modal-body-sm">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TB4p6XJUjYA?enablejsapi=1&controls=1&iv_load_policy=3&rel=0;&autoplay=1&mute=0&loop=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <!--Model secton end here -->
+
+    <!--Model section start here -->
+    <!-- FINANCING AVAILABEL model -->
+    <ng-template #FinanceModal>
+        <div class="modal-dialog-medium modal-dialog-medium-md">
+            <div class="modal-header modal-header-sm">
+                <h3>{{'FINANCING_AVAILABEL' | translate}}</h3>
+                <button type="button" class="modal-close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modal-body-sm">
+                <div class="u-mb--30">
+                    <p>Garden year-round. Grow fresh herbs, vegetables, salad greens, flowers and more in this smart countertop garden Up to 6 plants can be grown at a time. Plants grow in water,not soil. Advanced hydroponics made simple High-performance, full spectrum 20-watt LED lighting system is tuned to the specific spectrum that allows plants to maximize photosynthesis, resulting in rapid, natural growth and abundant harvests</p>
+                </div>
+                <div class="modal-body--buttons">
+                    <a href="#" class="button button-block button--lgreen button-md">Finance Option 01</a>
+                    <a href="#" class="button button-block button--lgreen button-md">Finance Option 02</a>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    
+    <!-- Wish list model -->
+    <ng-template #WishlistModal>
+        <div class="modal-dialog-large modal-dialog-large-md">
+            <div class="modal-header modal-header-sm">
+                <h3>{{'WISH_LIST' | translate}}</h3>
+                <button type="button" class="modal-close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modal-body-sm">
+
+                <div class="cart-table-section cart-table-section-xs">
+                    <table class="shop_table shop_table_responsive cart u-mb--0" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th class="product-thumbnail" colspan="2">Product Name</th>
+                                <th class="product-price">Price</th>
+                                <th class="product-quantity">Stock Status</th>
+                                <th class="product-subtotal">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="cart_item" *ngFor="let Wishlist of Wishlists" >
+
+                                <td class="th--prdt" colspan="2">
+                                    <div class="u-flexed u-align-center">
+                                        <div class="prdt--image">
+                                            <a href="javascript:;" (click)="changeRouter('product/'+Wishlist.Product_Slug);" class="product-image-link">
+                                                <img src="{{Wishlist.imageUrl}}" alt="{{Wishlist.Product_Name}}" height="491">
+                                            </a>
+                                        </div>
+                                        <div class="prdt--name">
+                                            <a class="text-black" href="javascript:void(0)" (click)="changeRouter('product/'+Wishlist.Product_Slug);" [innerHtml]="((Wishlist && Wishlist.Product_Name)? Wishlist.Product_Name : '') | safeHtml"></a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="wishlist-product-price">${{Wishlist.Product_Price}}</td>
+                                <td class="product-stock-status">
+                                    <span class="wishlist-in-stock">{{(Wishlist.Product_Stock > 0)?'In Stock':'Out of Stock'}}</span>
+                                </td>
+                                <td class="product-subtotal">
+                                    <a *ngIf="(Wishlist.Product_Stock > 0)" href="javascript:;" (click)="productAddToCart(Wishlist.Product_ID,Wishlist.Product_CID,1)" class="button button--green button-sm button-inline button--cart">{{'ADD_TO_CART' | translate}}</a>
+                                </td>
+                            </tr>
+                            <tr  class="cart_item" *ngIf="(Wishlists.length == 0)" >
+                                <td class="product-remove" colspan="6">
+                                    <div class="prdt--name">
+                                        {{'NO_PRODUCTS_IN_WISHLIST' | translate}}
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    
+    <!--Model secton end here -->
+    
+
+</div>
+
+<app-product-like></app-product-like>

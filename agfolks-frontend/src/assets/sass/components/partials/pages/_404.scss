@@ -1,0 +1,175 @@
+/* About Us Page
+------------------------------------*/
+
+.AgFolks__404 {
+    z-index:1;
+    position:relative;
+    @include padding-top(50);
+    @include padding-bottom(50);
+    background-color:$white;
+    @include flexbox;
+    @include align-items(center);
+    
+    @include responsive(xs) {
+        @include padding-top(80);
+        @include padding-bottom(80);
+    }
+    
+    @media (max-width:420px) {
+        @include margin-top(0);
+    }
+    @media screen and (min-width:421px) and (max-width:991px) {
+        @include margin-top(0);
+    }
+    
+    .info {
+        z-index:1;
+        position:relative;
+        max-width: 600px;
+        margin: 0px auto;
+        position:relative;
+        @include padding(0 15);
+        
+        @include responsive(xs) {
+            @include padding(0);
+        }
+        
+        h1 {
+            color: $white;
+            margin-bottom:0px;
+            @include font-size(70);
+            font-weight: $weightSemibold;
+            font-family: $secondaryFont;
+        }
+        h2 {
+            color: $black_sh1;
+            @include font-size(40);
+            @include margin-bottom(20);
+            font-family: $tertiaryFont;
+            
+            strong {
+                font-family: $tertiaryFont;
+            }
+        }
+        p {
+            color: $white;
+            @include font-size(18);
+            @include margin-bottom(20);
+        }
+        
+        .title {
+            color: $green;
+            @extend .ls05;
+            @include font-size(70);
+            font-weight: $weightSemibold;
+            line-height: 1;
+            font-weight: $weightLight;
+            font-family: $secondaryFont;
+            @include margin-bottom(25);
+
+            @include responsive(xs) {
+                @include font-size(110);
+                line-height: 1;
+            }
+        }
+
+        .fs20 {
+            color: $black_sh1;
+            @include font-size(16);
+            @include margin-bottom(20);
+
+            @include responsive(xs) {
+                @include font-size(20);
+            }
+        }
+    }
+}
+
+a.animated-btn {
+	color:$white;
+	font-size:18px;
+    font-weight:600;
+	@include padding(15 25);
+	position:relative;
+	text-align:center;
+	display:inline-block;
+	text-decoration:none;
+	border:2px solid $blue;
+	@include transition(all .2s);
+	@include border-radius(30px);
+    
+    i {
+        top:50%;
+        left:auto;
+        right:25px;
+        width:auto;
+        height:auto;
+        color:$blue;
+        margin-right:0px;
+        padding-right:0px;
+        position:absolute;
+        @include opacity(0);
+        font-size:inherit!important;
+        @include transition(all .25s);
+        @include transform(translate(0, -50%));
+    }
+    
+    &:hover, &:active, &:focus {
+        color:$white;
+        padding-right:35px;
+        background-color:$red;
+        i {
+            right:10px;
+            color:$white;
+            @include opacity(1);
+        }
+    }
+    
+    &.lg {
+        padding:15px 35px;
+        
+        &:hover, &:active, &:focus {
+            padding-right:45px;
+        }
+    }
+    
+    &.green {
+        color:$white;
+        border-color:$green;
+        background-color:$green;
+        
+        &:hover, &:active, &:focus {
+            i {
+                color:$white;
+            }
+        }
+    }
+    
+    &.red {
+        color:$white;
+        border-color:$red;
+        background-color:$red;
+        
+        &:hover, &:active, &:focus {
+            i {
+                color:$white;
+            }
+        }
+    }
+    
+    &.white {
+        color:$green_sh1;
+        border-color:$white;
+        background-color:$white;
+        
+        &:hover, &:active, &:focus {
+            color:$green_sh1;
+            border-color:$white;
+            background-color:$white;
+            i {
+                color:$green_sh1;
+            }
+        }
+    }
+}
+

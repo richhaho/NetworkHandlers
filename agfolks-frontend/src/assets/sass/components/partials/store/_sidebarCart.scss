@@ -1,0 +1,283 @@
+/* Sidebar Cart Section
+------------------------------------*/
+
+.SidebarCart {
+    top:0;
+    right:0;
+    left:auto;
+    width:320px;
+    z-index:500;
+    text-align:left;
+    overflow:hidden;
+    visibility:hidden;
+    @include opacity(0);
+    @include padding(0);
+    height:$viewportSize;
+    position:fixed!important;
+    @include transition(all 0.3s ease);
+    @include transform(translate3d(100%, 0, 0));
+    background:rgba($white, 0.95) none repeat scroll 0 0;
+    
+    @include flexbox;
+    @include flex-direction(column, vertical);
+
+    &.navigation-active {
+        visibility:visible;
+        @include opacity(1);
+        @include transform(translate3d(0, 0, 0));
+    }
+
+    &--Close {
+        top:5px;
+        right:21px;
+        z-index:510;
+        cursor:pointer;
+        color:$black_sh1;
+        position:absolute;
+        @include padding(0);
+        @include opacity(0);
+        @include font-size(25);
+        line-height:1.5em;
+        @include transform(scale(0));
+        @include transition(all 0.6s ease);
+        @include transition-duration(0.6s, 0.5s, 0.5s);
+        @include transition-property(color, opacity, transform);
+        @include transition-timing-function(cubic-bezier(0.4, 0, 0.2, 1));
+        
+        &:hover {
+            color:$black_sh1;
+        }
+
+        &.open {
+            @include opacity(1);
+            @include transform(scale(1));
+        }
+        
+        [class^="icon_close"] {
+            cursor:pointer;
+            margin-top:0px;
+            line-height:20px;
+            text-align:center;
+            display:inline-block;
+            vertical-align:middle;
+            @include size(20px,20px);
+            @include border-radius(50%);
+            @include transition(all 0.4s ease-in-out);
+
+            &:hover {
+                @include transform(translateY(0px) rotate(90deg)!important);
+            }
+
+            &:before, &:after {
+                top:50%;
+                left:-15%;
+                right:-15%;
+                content:' ';
+                height:1.5px;
+                position:absolute;
+                background-color:rgba($black_sh1, 1);
+                @include transition(all 0.2s ease-in-out);
+            }
+
+            &:before {
+                @include transform(rotate(45deg));
+            }
+            &:after {
+                @include transform(rotate(-45deg));
+            }
+
+            &:hover {
+                &:before, &:after {
+                    background-color:$success;
+                }
+            }
+        }
+    }
+
+    &--Overlay {
+        top:0;
+        left:0;
+        z-index:120;
+        display:none;
+        position:fixed;
+        background:rgba($black, 0.5);
+        @include size(#{$viewportSize});
+    }
+
+    .widget {
+        &--heading {
+            @include flexbox;
+            @include padding(15);
+            @include flex(0 0 auto);
+            @include align-items(center);
+            border-bottom: 1px solid $border;
+            @include justify-content(space-between);
+            @include flex-direction(row, horizontal);
+        }
+        
+        &--title {
+            color:$black;
+            @include font-size(20);
+            line-height:1.35;
+            font-weight:$weightBold;
+            text-transform:uppercase;
+        }
+        
+        &__shopping_cart {
+            @include flexbox;
+            position:relative;
+            @include flex(1 1 auto);
+            @include align-items(stretch);
+            @include flex-direction(column, vertical);
+            @include transition(opacity .1s ease .25s);
+            
+            &__content {
+                @include flexbox;
+                @include flex(1 1 auto);
+                @include align-items(stretch);
+                @include flex-direction(column, vertical);
+                @include justify-content(space-between);
+                background:rgba($white, 1) none repeat scroll 0 0;
+                
+                &--body {
+                    
+                }
+                
+                &--footer {
+                    @include padding(10 15);
+                    @include flex(0 0 auto);
+                    @include padding-bottom(15);
+                    border-top:2px solid rgba(129,129,129,0.2);
+                }
+            }
+            
+            .cart_list {
+                text-align:left;
+                @include margin(0);
+                
+                &__items {
+                    @include flexbox;
+                    position:relative;
+                    @include padding(15);
+                    @include margin-bottom(0);
+                    @include align-items(flex-start);
+                    @include flex-direction(row, horizontal);
+                    @include transition(background-color .3s ease);
+                    border-bottom:1px solid rgba($border,0.33);
+                    
+                    &:hover {
+                        background-color:darken($white_sh1,2%);
+                    }
+                    
+                    .cart-item-image {
+                        float:none;
+                        margin-right:0;
+                        max-width:65px;
+                        position:relative;
+                        @include flex(0 0 auto);
+                        @include margin-right(15);
+                        @include transition(opacity .6s ease);
+                    }
+                    
+                    .cart-info {
+                        @include flex(1 1 auto);
+                        @include padding-right(20);
+                    }
+                    
+                    .product-title {
+                        color:$black;
+                        display:block;
+                        @include font-size(16);
+                        line-height:1.35;
+                        font-weight:$weightMedium;
+                        @include margin-bottom(7);
+                        @include transition(all .2s ease);
+                    }
+                    .product-quantity {
+                        color:#bbb;
+                        white-space:nowrap;
+                        vertical-align:top;
+                        @include inline-flex;
+                        @include font-size(13);
+                    }
+                    .amount {
+                        color:$success;
+                        @include font-size(14);
+                        @include padding-left(5);
+                        font-weight:$weightSemibold;
+                    }
+                }
+            }
+            
+            .remove {
+                top:10px;
+                right:10px;
+                z-index:2;
+                color:$greyish;
+                position:absolute;
+                text-align:center;
+                @include font-size(0);
+                line-height:20px;
+                @include size(20px);
+                margin-bottom:0;
+                @include border-radius(50%);
+                
+                &:after {
+                    content:"\f10f";
+                    font-family:$woodmart;
+                    @include font-size(8);
+                    line-height:20px;
+                    font-weight:$weightBold;
+                }
+                
+                &:hover {
+                    background-color: #fff;
+                    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+                    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1)
+                }
+            }
+            
+            .cart__total {
+                color:$black;
+                @include font-size(16);
+                @include padding-bottom(8);
+                @include flexbox;
+                @include flex-wrap(wrap);
+                @include align-items(center);
+                @include justify-content(space-between);
+                
+                strong {
+                    color:$success;
+                    @include font-size(18);
+                    line-height:20px;
+                    font-weight:$weightBold;
+                }
+            }
+            .cart__buttons {
+                .button {
+                    @include margin-top(8);
+                }
+            }
+        }
+    }
+
+    .widget-scroll {
+        overflow:hidden;
+        position:relative;
+        @include size(100%);
+        @include flex(1 1 auto);
+        
+        &-content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            overflow: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+    }
+}
+
+/* Sidebar Cart Section */

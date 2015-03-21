@@ -1,0 +1,40 @@
+@import 'partials/hero';
+
+.o-body-container {
+    @include margin-bottom(30);
+
+    &--right-layout {
+        height: 100%;
+        @include padding-top(20);
+        border-top: 1px solid $offwhite;
+    }
+    &--left-layout {
+        height: 100%;
+    }
+
+    @include responsive(md) {
+        @include margin-bottom(50);
+        
+        .o-body-container--right-layout,
+        .o-body-container--left-layout {
+            border-top: none;
+            @include padding-top(0);
+        }
+        
+        .o-body-container--right-layout {
+            @include padding-left(20);
+            border-left: 1px solid $offwhite;
+        }
+        
+        .o-body-container--left-layout {
+            @include padding-right(20);
+            border-right: 1px solid $offwhite;
+        }
+    }
+
+    &--forvideo {
+        @include margin-bottom(0);
+        background-color: $offwhite;
+        @include padding-bottom(50);
+    }
+}

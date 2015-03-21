@@ -1,0 +1,171 @@
+/* About Us Page
+------------------------------------*/
+
+.agfloks-body h2 {
+    color: $success;
+    @include font-size(70);
+    line-height: 75px;
+    text-transform: initial;
+    font-weight: $weightBold;
+    font-family: $tertiaryFont;
+}
+.section_passion p {
+    color: $black_sh1;
+    @include font-size(16);
+    line-height: 24px;
+}
+
+
+.section_about {
+    text-align: left;
+    background-image: url("../images/background/banner_aboutus.jpg")!important;
+    
+    .container {
+        position: relative;
+    }
+    
+    .heading_title h1 {
+        color: $white;
+        text-align: left;
+        @include font-size(70);
+        line-height: 75px;
+        font-weight: $weightUltabold;
+        text-transform: initial;
+    }
+    
+    .sectionhead__name {
+        text-align: left;
+        
+        div {
+            color: $white;
+            
+            strong {
+                color: $black;
+                font-weight: $weightUltabold;
+            }
+        }
+    }
+}
+
+.content-flexed {
+    max-width: 770px;
+    padding-bottom: 40px;
+    margin: 0px auto;
+}
+.content-flexed p {
+    color: $black_sh1;
+    @include font-size(24);
+    line-height: 35px;
+    font-weight: $weightLight;
+}
+.section_passion h2 {
+    color: $success;
+    font-family: $primaryFont;
+    @include font-size(45);
+    line-height: 50px;
+    font-weight: $weightBold;
+    text-transform: initial;
+    font-style: italic;
+    margin-bottom: 5px;
+}
+.section_passion h3 {
+    color: $success;
+    font-family: $primaryFont;
+    @include font-size(24);
+    line-height: 30px;
+    font-weight: $weightBold;
+    text-transform: uppercase
+}
+.agfloks-body {
+    background: #f7f8f8;
+    @include padding(50 0);
+}
+.agfloks-body > div {
+    background: transparent;
+}
+.agfloks-body h3 {
+    color: $black_sh1;
+    @include font-size(24);
+    line-height: 30px;
+    font-weight: $weightBold;
+    @include margin(10 0 20 0);
+    font-family: $tertiaryFont;
+}
+.section_agfloks p {
+    color: $black_sh1;
+    @include font-size(16);
+    line-height: 30px;
+}
+.agfloks-special--block {
+    background: $success;
+    padding: 5% !important;
+}
+.agfloks-special--block h3 {
+    color: $white;
+    font-family: $primaryFont;
+    @include font-size(36);
+    line-height: 40px;
+     font-weight: $weightLight;
+}
+.agfloks-special--block p {
+    color: #fff;
+    @include font-size(17);
+    line-height: 30px;
+    font-weight: $weightLight;
+}
+.section_passion, .section_agfloks {
+    @include flexbox;
+    @include margin(0 -15);
+    @include flex-wrap(wrap);
+}
+.section_passion__item, .section_agfloks__item {
+    max-width: 100%;
+    position: relative;
+    @include flex(0 0 100%);
+    @include padding(0 15);
+    @include margin-bottom(20);
+    @include transition(all 0.2s ease-in-out);
+    
+    h2 {
+        font-weight: $weightUltabold;
+    }
+    
+    h3 {
+        font-weight: $weightBold;
+    }
+    
+    p {
+        max-width: 100%;
+    }
+    
+    @include responsive(xs) {
+        p {
+            max-width: 85%;
+        }
+    }
+}
+.section_agfloks {
+    @include flexbox;
+    @include margin(0 -15);
+    @include flex-wrap(wrap);
+}
+.section_agfloks__item {
+    max-width: 100%;
+    position: relative;
+    @include flex(0 0 100%);
+    @include padding(0 15);
+    @include margin-bottom(20);
+    @include transition(all 0.2s ease-in-out);
+}
+@media (min-width: 768px) {
+    .section_passion__item--one-half {
+        max-width: 40%;
+    }
+    .section_passion__item--two-half {
+        max-width: 60% ;
+        @include flex(0 0 60%);
+    }
+    .section_agfloks__item {
+        max-width: 33.33%;
+    }
+}

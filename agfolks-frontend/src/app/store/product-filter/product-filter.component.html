@@ -1,0 +1,192 @@
+<!-- Begin Product(s) Filter Row -->
+
+<div class="sidebar--widget sidebar--widget-xs">
+    <h2 class="sidebar--widget__title">{{'CATEGORIES'|  translate}}
+        <button type="button" class="button_clear_filter "
+            (click)="changeRouter('store')">{{'CLEAR_FILTERS' | translate}}</button></h2>
+    <div class="sidebar--widget__content">
+        <ul class="sidebar--widget__categories" *ngIf="categoryList && categoryList.length">
+            <li class="sidebar--widget__categories--items" *ngFor="let mCategory of categoryList let i =index">
+                <a id="{{mCategory.Category_Slug}}" href="javascript:void(0);" class="level-top" [innerHTML]="mCategory.Category_Name"
+                    (click)="productFilter($event,mCategory,'category')"></a>
+                <span *ngIf="mCategory && mCategory.childrenMenu && mCategory.childrenMenu.length"
+                     class="next-item"><i class="fa fa-angle-right"></i></span>
+
+                <ul class="sub-menu" *ngIf="mCategory && mCategory.childrenMenu && mCategory.childrenMenu.length">
+                    <li *ngFor="let jCategory of mCategory.childrenMenu let j =index">
+                        <a id="{{jCategory.Category_Slug}}" href="javascript:void(0);" [innerHTML]="jCategory.Category_Name"
+                            (click)="productFilter($event,jCategory,'category')"></a>
+                        <span *ngIf="jCategory && jCategory.childrenMenu && jCategory.childrenMenu.length"
+                            class="next-item" ><i class="fa fa-angle-right"></i></span>
+
+                        <ul class="sub-menu"
+                            *ngIf="jCategory && jCategory.childrenMenu && jCategory.childrenMenu.length">
+                            <li *ngFor="let kCategory of jCategory.childrenMenu let k =index">
+                                <a id="{{kCategory.Category_Slug}}" href="javascript:void(0);" [innerHTML]="kCategory.Category_Name"
+                                    (click)="productFilter($event,kCategory,'category')"></a>
+                                <span *ngIf="kCategory && kCategory.childrenMenu && kCategory.childrenMenu.length"
+                                    class="next-item" ><i
+                                        class="fa fa-angle-right"></i></span>
+
+                                <ul class="sub-menu"
+                                    *ngIf="kCategory && kCategory.childrenMenu && kCategory.childrenMenu.length">
+                                    <li *ngFor="let lCategory of kCategory.childrenMenu let l =index">
+                                        <a id="{{lCategory.Category_Slug}}" href="javascript:void(0);" [innerHTML]="lCategory.Category_Name"
+                                            (click)="productFilter($event,lCategory,'category')"></a>
+                                        <span
+                                            *ngIf="lCategory && lCategory.childrenMenu && lCategory.childrenMenu.length"
+                                            class="next-item" ><i
+                                                class="fa fa-angle-right"></i></span>
+
+                                        <ul class="sub-menu"
+                                            *ngIf="lCategory && lCategory.childrenMenu && lCategory.childrenMenu.length">
+                                            <li *ngFor="let pCategory of lCategory.childrenMenu let p =index">
+                                                <a id="{{pCategory.Category_Slug}}" href="javascript:void(0);" [innerHTML]="pCategory.Category_Name"
+                                                    (click)="productFilter($event,pCategory,'category')"></a>
+                                                <span
+                                                    *ngIf="pCategory && pCategory.childrenMenu && pCategory.childrenMenu.length"
+                                                    class="next-item" ><i
+                                                        class="fa fa-angle-right"></i></span>
+
+                                                <ul class="sub-menu"
+                                                    *ngIf="pCategory && pCategory.childrenMenu && pCategory.childrenMenu.length">
+                                                    <li *ngFor="let tCategory of pCategory.childrenMenu let t =index">
+                                                        <a id="{{tCategory.Category_Slug}}" href="javascript:void(0);"
+                                                            [innerHTML]="tCategory.Category_Name"
+                                                            (click)="productFilter($event,tCategory,'category')"></a>
+                                                        <span
+                                                            *ngIf="tCategory && tCategory.childrenMenu && tCategory.childrenMenu.length"
+                                                            class="next-item" ><i
+                                                                class="fa fa-angle-right"></i></span>
+
+                                                        <ul class="sub-menu"
+                                                            *ngIf="tCategory && tCategory.childrenMenu && tCategory.childrenMenu.length">
+                                                            <li
+                                                                *ngFor="let sCategory of tCategory.childrenMenu let s =index">
+                                                                <a id="{{sCategory.Category_Slug}}" href="javascript:void(0);"
+                                                                    [innerHTML]="sCategory.Category_Name"
+                                                                    (click)="productFilter($event,sCategory,'category')"></a>
+                                                                <span
+                                                                    *ngIf="sCategory && sCategory.childrenMenu && sCategory.childrenMenu.length"
+                                                                    class="next-item"
+                                                                    ><i
+                                                                        class="fa fa-angle-right"></i></span>
+
+                                                                <ul class="sub-menu"
+                                                                    *ngIf="sCategory && sCategory.childrenMenu && sCategory.childrenMenu.length">
+                                                                    <li
+                                                                        *ngFor="let nCategory of sCategory.childrenMenu let n =index">
+                                                                        <a id="{{nCategory.Category_Slug}}" href="javascript:void(0);"
+                                                                            [innerHTML]="nCategory.Category_Name"
+                                                                            (click)="productFilter($event,nCategory,'category')"></a>
+                                                                        <span
+                                                                            *ngIf="nCategory && nCategory.childrenMenu && nCategory.childrenMenu.length"
+                                                                            class="next-item"><i
+                                                                                class="fa fa-angle-right"
+                                                                                ></i></span>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="sidebar--widget sidebar--widget-xs">
+    <h2 class="sidebar--widget__title">{{'FILTER_BY_PRICE' | translate}}</h2>
+    <div class="sidebar--widget__content">
+        <form method="get" action="#">
+            <div class="price_slider_wrapper">
+                <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="optionsRangeSlider"
+                    [options]="options"></ng5-slider>
+                <div class="price_slider_amount">
+                    <label for="amount">{{'PRICE' | translate}}</label>
+                    <input class="price_amount" type="text" value="{{'$'+minValue + ' - $'+ maxValue}} " readonly>
+                    <button type="submit" class="button button--filter"
+                        (click)="productFilter($event,{'minValue':minValue, 'maxValue':maxValue},'price')">{{'FILTER' | translate}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<accordion [closeOthers]="false">
+    <div *ngFor="let dataItem of productAttribute let i =index;">
+        <accordion-group [isOpen]="dataItem.class">
+            <button accordion-heading class="btn">{{'FILTER_BY' | translate}} {{(dataItem.Name)? dataItem.Name : ''}}</button>
+                <div class="card-body" *ngIf="dataItem && dataItem.Options">
+                    <div class="sidebar--widget sidebar--widget-xs">
+                        <div class="sidebar--widget__content">
+                            <ul class="sidebar--widget__colors">
+                                <li class="sidebar--widget__colors--items" *ngFor="let otpItem of dataItem.data let k =index;">
+                                    <div [ngSwitch]="dataItem.Field_Name">
+                                        <!--this for color-->
+                                        <div *ngSwitchCase="'colour'" >
+                                            <div class="sidebar--widget__colors--items">
+                                            <div class="items"  id="{{otpItem.ID+otpItem.Field_Name+otpItem.dataId}}">
+                                                <input type="checkbox" value="{{(otpItem && otpItem.Options)? otpItem.Options : ''}}" class="hide" >
+                                                <span class="color-swatch" title="{{(otpItem && otpItem.Options)? otpItem.Options : ''}}">
+                                                    <i class="color_box" [style.background-color]="otpItem.Options"></i>
+                                                </span>
+                                                <span class="name">{{(otpItem && otpItem.Options)? otpItem.Options : ''}}</span>
+                                                <a class="color--links" href="javascript:void(0);" (click)="productFilter($event,otpItem,'type');"></a>
+                                            </div>
+                                            <span class="count">{{(otpItem && otpItem.Total)? otpItem.Total : 0}}</span>
+                                            </div>
+                                        </div>
+                                        <!--this for others-->
+                                        <div *ngSwitchDefault >
+                                            <div class="sidebar--widget__colors--items">
+                                            <div class="items" id="{{otpItem.ID+otpItem.Field_Name+otpItem.dataId}}">
+                                                <input type="checkbox" value="{{(otpItem && otpItem.Options)? otpItem.Options : ''}}" class="hide" >
+                                                <span class="name">{{(otpItem && otpItem.Options)? otpItem.Options : ''}}</span>
+                                                <a class="color--links" href="javascript:void(0);" (click)="productFilter($event,otpItem,'type');"></a>
+                                            </div>
+                                            <span class="count">{{(otpItem && otpItem.Total)? otpItem.Total : 0}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        </accordion-group>
+    </div>
+
+    <accordion-group class="last-element" [isOpen]="manufacturerQueryString && manufacturerQueryString.length? true: false">
+        <button accordion-heading>{{'MANUFACTURERS' | translate}}</button>
+        <div>
+            <div class="card-body">
+                <div class="sidebar--widget sidebar--widget-xs">
+                    <div class="sidebar--widget__content">
+                        <ul class="sidebar--widget__brands">
+                            <li class="sidebar--widget__brands--items"
+                                *ngFor="let item of manufacturers let i =index;">
+                                <div class="items">
+                                    <a href="javascript:void(0);" (click)="productFilter($event,item,'manufacturer');">
+                                        <span class="swatch-inner" id="{{item.ID}}">
+                                            {{(!(item && item.Logo))?item.Company_Name:''}}
+                                            <img *ngIf="item && item.Logo"
+                                                src="{{PORTAL_URL}}files/logos/{{item.ID}}/{{item.Logo}}"
+                                                alt="{{item.Company_Name}}" class="img-fluid"></span></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </accordion-group>
+</accordion>

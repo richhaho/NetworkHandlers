@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Basic Includes
+   ================================ */
+@import 'core/reset';
+@import 'core/variables';
+@import 'core/mixins';
+@import 'core/typography';
+
+/* Begin Basic Coding
+   ================================ */
+
+html,
+body {
+    height: 100%;
+    @include size($viewportSize);
+}
+
+body {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    color: $black_sh1;
+    font-weight: $weightRegular;
+    overflow-x: hidden!important;
+    font-family: $primaryFont!important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: $white none repeat scroll 0 0;
+}
+
+ul li,
+ol li {
+    font-weight: $weightRegular;
+}
+
+/* End Basic Coding
+   ================================ */
+
+
+/* Includes
+   ================================ */
+
+@import 'components/components';
+@import 'objects/objects';
+@import 'utility/utility';

@@ -1,0 +1,266 @@
+/* Track package Page
+------------------------------------*/
+.Track--Package {
+    position: relative;
+    @include padding-top(20);
+    
+    .Ordered--Product {
+        float: right;
+        max-width: 350px;
+        @include border-radius(10px);
+        
+        img {
+            width: 100%;
+            @include border-radius(10px);
+        }
+    }
+}
+
+
+.track__timeline {
+    @include flexbox;
+    position: relative;
+        
+    &--bar {
+        left: 27px;
+        width: 3px;
+        margin: 0px;
+        display: block;
+        position: absolute;
+        height: calc(100% - 60px);
+        background-color: $border;
+    }
+    
+    ul, ol {
+        padding: 0px;
+        position: relative;
+        padding-left: 30px;
+
+        > li {
+            width:100%;
+            min-height: 60px;
+            position:relative;
+            display:inline-block;
+            @include font-size(18);
+            background-color:$white;
+            @include padding-left(40);
+            @include margin-bottom(20);
+
+            &:last-child {
+                @include margin-bottom(0);
+            }
+            
+
+            &:before {
+                top: 0px;
+                left: -22px;
+                content:' ';
+                position: absolute;
+                @include size(40px);
+                background-color: $white;
+                border: 2px solid $border;
+                @include border-radius(100%);
+                @include box-shadow(0 0 0 3px rgba($white, 1));
+            }
+            &:after {
+                top: 0px;
+                left: -22px;
+                content: '\f109';
+                text-align: center;
+                position: absolute;
+                @include font-size(20);
+                font-family: $woodmart;
+                color: rgba($border,0.33);
+                @include size(40px);
+                line-height: 40px;
+            }
+            
+            .milestone-content {
+                text-align: left;
+                min-height: 35px;
+                @include flexbox;
+                color: $black_sh1;
+                @include font-size(18);
+                @include padding-right(40);
+                @include align-items(center);
+                @include justify-content(flex-start);
+                @include flex-direction(column, vertical);
+                
+                p {
+                    width: 100%;
+                    line-height: 1.4;
+                    text-align: left;
+                    @include padding-top(4);
+                    @include margin-bottom(0);
+                }
+            }
+            
+            &.completed {
+                &:before {
+                    background: $green;
+                    border: 2px solid $green;
+                }
+                
+                &:after {
+                    color: $white;
+                }
+                
+                .milestone-content {
+                    @include font-size(22);
+                    font-weight: $weightSemibold;
+                
+                    .small {
+                        font-style: italic;
+                        @include font-size(18);
+                        line-height: 1.4;
+                        font-weight: $weightMedium;
+                    }
+                }
+            }
+
+            &.active {
+                &:before {
+                    animation: counterPulse 2s infinite;
+                }
+            }
+        }
+    }
+}
+
+
+@-webkit-keyframes counterPulse {
+    0% {
+        @include box-shadow(0 0 0 0 rgba($green, 0.4));
+    }
+
+    70% {
+        @include box-shadow(0 0 0 10px rgba($green, 0));
+    }
+
+    100% {
+        @include box-shadow(0 0 0 0 rgba($green, 0));
+    }
+}
+
+@keyframes counterPulse {
+    0% {
+        @include box-shadow(0 0 0 0 rgba($green, 0.4));
+    }
+
+    70% {
+        @include box-shadow(0 0 0 10px rgba($green, 0));
+    }
+
+    100% {
+        @include box-shadow(0 0 0 0 rgba($green, 0));
+    }
+}
+   
+
+
+.c-section {
+    max-width: 750px;
+    margin: 0px auto;
+    @include padding(0);
+    background-color: $white;
+    @include box-shadow(0 0 30px 10px rgba($border, 0.33));
+    
+    &--header {
+        @include padding(15);
+        border-bottom: 2px solid $success;
+    }
+    
+    &--headerInner {
+        color: $black_sh1;
+        text-align: center;
+        @include padding(30 15);
+        background-color: #f1f6f9;
+        
+        .Icon__Cart {
+            font-size: 0;
+            display: block;
+            margin: 0px auto;
+            position: relative;
+            @include size(80px);
+            @include margin-bottom(15);
+            @include border-radius(50%);
+            background-color: $success;
+            
+            &:before {
+                top: 50%;
+                left: 50%;
+                color: $white;
+                content: '\f07a';
+                position: absolute;
+                @include font-size(30);
+                font-family: $iconfont;
+                @include transform(translate(-50%,-50%));
+            }
+        }
+            
+        .title {
+            color: $black_sh1;
+            @include font-size(24);
+            @include margin-bottom(15);
+            font-weight: $weightUltabold;
+            
+            @include responsive(xs) {
+                @include font-size(30);
+            }
+        }
+        
+        .descr {
+            @include font-size(16);
+            line-height: 1.5;
+        }
+    }
+    
+    &--body {
+        width: 100%;
+        @include padding(0 0 20);
+        background-color: $white;
+        
+        .product-thumbnail {
+            width: 120px;
+            max-width: 120px;
+            @include padding(15);
+        }
+        
+        .product-name {
+            text-align: left;
+            @include padding(15);
+        }
+        
+        .product-subtotal {
+            @include padding(15);
+        }
+        
+        td.nb {
+            border: 0px none;
+        }
+        td.p10 {
+            @include padding(10);
+        }
+        
+        .Customer--Information {
+            @include padding(15);
+            border-top: 2px solid $border;
+            
+            h4 {
+                color: $black_sh1;
+                @include font-size(20);
+                font-weight: $weightBold;
+                @include margin-bottom(15);
+            }
+            
+            .details {
+                color: $black_sh1;
+                @include font-size(16);
+                font-weight: $weightRegular;
+                line-height: 1.5;
+            }
+        }
+    }
+}
+
+

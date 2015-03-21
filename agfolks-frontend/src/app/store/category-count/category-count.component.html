@@ -1,0 +1,27 @@
+<div class="hero__inner medium medium-xs shop--hero" data-overlay="2" [style.backgroundImage]="'url('+ sliderImage +')'" >
+    <div class="container-fluid">
+        <header class="hero__inner--content hero__inner--content-xs text-center">
+            <div class="u-flexed u-align-center u-justify-center">
+                <button *ngIf="(findSelectedCategories && (findSelectedCategories.Category_Name))" type="button" class="button--back button--back-xs" (click)="changeRouter('store')">{{'BACK' | translate}}</button>
+                <h1 class="subhead subhead-xs text-white" [innerHtml]="((findSelectedCategories)? findSelectedCategories.Category_Name : sliderTitle) | safeHtml"></h1>
+            </div>
+            <div class="u-flexed u-mt--25">
+                <ul class="hero__inner--productCategories has-product-count" *ngIf="categoriesData && categoriesData.length">
+                    <li *ngFor="let category of categoriesData" class="{{category.Category_Slug}}">
+                        <div class="category-nav-link" [ngClass]="((findSelectedCategories) && findSelectedCategories.ID == category.ID) ? 'is-selected' : ''" >
+                            <div class="category-icon {{category.Category_Slug}}">
+                                <img src="{{PORTAL_URL}}files/store/categories/{{CID}}/{{category.Category_Icon}}" alt="{{category.Category_Name}}" class="missio_svg">
+                            </div>
+                            <figcaption class="category-summary">
+                                <h4 class="category-name" [innerHtml]="((category && category.Category_Name)? category.Category_Name : '') | safeHtml"></h4>
+                                <p class="category-products-count no-margin">{{category.total_products}} Products</p>
+                            </figcaption>
+                            <a href="javascript:;" (click)="changeRouter('store/'+category.Category_Slug);" class="category--links"></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+    </div>
+</div>
+<div class="clearfix"></div>

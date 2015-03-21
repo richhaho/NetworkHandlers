@@ -1,0 +1,390 @@
+/* Layout ▸ Modal
+----------------------------- */
+
+.temp__buttons {
+    @include flexbox();
+    @include margin-bottom(20);
+}
+
+.modal-backdrop {
+    &.show {
+        @include opacity(.75);
+    }
+}
+
+.modal-body {
+    width: 100%;
+    overflow-y: auto;
+    @include padding(10);
+    display: inline-block;
+    -webkit-overflow-scrolling: touch;
+    -khtml-overflow-scrolling: touch;
+    -moz-overflow-scrolling: touch;
+    -ms-overflow-scrolling: touch;
+    -o-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+    /*height: calc(100vh - 200px);*/
+    max-height: calc(100vh - 200px);
+    
+    .preHeader, .header, .navigation, .page-menu, .hero__inner, .c-preFooter, .c-footer, .SidebarCart,
+    .sectionhead, .Newsletter {
+        display: none!important;
+    }
+    
+    .auth--body {
+        @include margin(0);
+        @include padding(0);
+        
+        &__inner {
+            @include margin(0);
+            @include padding(0);
+        }
+    }
+}
+
+.modal-header {
+    @include padding(20 10);
+    border-bottom: 1px solid $border;
+}
+
+.modal-close {
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    color: $white;
+    cursor: pointer;
+    position: absolute;
+    @include padding(0);
+    @include size(40px);
+    @include font-size(0);
+    line-height: 1;
+    @include margin-bottom(10);
+    border: 0px none;
+    @include opacity(1);
+    background-color:transparent;
+    @include transition(all 0.3s ease-out);
+    background-color: $hoverColor;
+    /* image replacement */
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    color: transparent;
+
+    &::after,
+    &::before {
+        content: '';
+        @include center;
+        position: absolute;
+        @include size(2px,22px);
+        background-color: $black;
+    }
+
+    &::after {
+        @include transform(translateX(-50%) translateY(-50%) rotate(45deg));
+    }
+
+    &::before {
+        @include transform(translateX(-50%) translateY(-50%) rotate(-45deg));
+    }
+    
+    &:hover, &:focus {
+        @include opacity(1);
+    }
+}
+
+.modal {
+    &:hover {
+        .modal-close {
+            @include opacity(1);
+        }
+    }
+}
+
+
+.modal {
+    &-dialog {
+        width: 100%;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &.show {
+        display:-webkit-box!important;
+        display:-webkit-flex!important;
+        display:-moz-flex!important;
+        display:-ms-flexbox!important;
+        display:flex!important;
+        @include justify-content(center);
+        @include align-items(center);
+        @include transform(translate(0, 0));
+    }
+}
+.modal-dialog {
+    
+    .modal-content {
+        border: 0px none;
+        @include border-radius(0);
+        background-color: transparent;
+    }
+    
+    &-exlarge {
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        min-width: 90%!important;
+        max-width: 950px!important;
+        background-color: $white;
+        background-clip: padding-box;
+        @include border-radius(.3rem);
+        border: 1px solid rgba($black, 0.2);
+        
+        @include responsive(md) {
+            min-width: 950px!important;
+            max-width: 950px!important;
+        }
+        
+        @media (max-width:767px) {
+            max-width: 100%!important;
+        }
+        
+        .modal-body {
+            height: 100%;
+            
+            @include responsive(sm) {
+                height: 100%;
+            }
+        }
+    }
+    
+    &-large {
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        min-width: 90%!important;
+        max-width: 750px!important;
+        background-color: $white;
+        background-clip: padding-box;
+        @include border-radius(.3rem);
+        border: 1px solid rgba($black, 0.2);
+        
+        @include responsive(md) {
+            min-width: 750px!important;
+            max-width: 750px!important;
+        }
+        
+        @media (max-width:767px) {
+            max-width: 100%!important;
+        }
+        
+        .modal-header {
+            @include padding(15);
+            
+            h3 {
+                @include font-size(20);
+                font-weight: $weightBold;
+            }
+            
+            @include responsive(sm) {
+                @include padding(15 25);
+                
+                h3 {
+                    @include font-size(26);
+                }
+            }
+        }
+        
+        .modal-body {
+            height: 100%;
+            @include padding(15);
+            
+            @include responsive(sm) {
+                height: 100%;
+                @include padding(25);
+            }
+        }
+    }
+    
+    &-medium {
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        min-width: 90%!important;
+        max-width: 550px!important;
+        background-color: $white;
+        background-clip: padding-box;
+        @include border-radius(.3rem);
+        border: 1px solid rgba($black, 0.2);
+        
+        @include responsive(md) {
+            min-width: 550px!important;
+            max-width: 550px!important;
+        }
+        
+        @media (max-width:767px) {
+            max-width: 100%!important;
+        }
+        
+        .modal-header {
+            @include padding(15);
+            
+            h3 {
+                @include font-size(20);
+                font-weight: $weightBold;
+            }
+            
+            @include responsive(sm) {
+                @include padding(15 25);
+                
+                h3 {
+                    @include font-size(26);
+                }
+            }
+        }
+        
+        .modal-body {
+            height: 100%;
+            @include padding(15);
+            
+            @include responsive(sm) {
+                height: 100%;
+                @include padding(25);
+            }
+            
+            &--buttons {
+                @include flexbox;
+                @include align-items(center);
+                @include justify-content(space-between);
+                
+                .button {
+                    @include margin(0 5);
+                    @include border-radius(4px);
+                    
+                    &:first-child {
+                        @include margin-left(0);
+                    }
+                    &:last-child {
+                        @include margin-right(0);
+                    }
+                }
+            }
+        }
+    }
+    
+    &-small {
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        min-width: 90%!important;
+        max-width: 350px!important;
+        background-color: $white;
+        background-clip: padding-box;
+        @include border-radius(.3rem);
+        border: 1px solid rgba($black, 0.2);
+        
+        @include responsive(md) {
+            min-width: 350px!important;
+            max-width: 350px!important;
+        }
+        
+        @media (max-width:767px) {
+            max-width: 100%!important;
+        }
+        
+        .modal-body {
+            height: 100%;
+            
+            @include responsive(sm) {
+                height: 100%;
+            }
+        }
+    }
+}
+
+.modal-large {
+    .modal-content {
+        border: 0;
+        text-align: left;
+        @include padding(0);
+        max-width: 380px!important; 
+        min-width: 90%!important;
+        @include box-shadow(none);
+        @include border-radius(0);
+
+        @include responsive(md) {
+            text-align:left;
+            min-width: 90%!important;
+            max-width: 570px!important;
+        }
+        
+        @media (max-width:767px) {
+            max-width: 100%!important;
+        }
+    }
+}
+
+.modal-exlarge, .modal-large {
+    .modal-dialog {
+        .modal-content {
+            top: 15px;
+            @include border-radius(6px);
+        }
+    }
+}
+
+
+.modal-body {
+    .portlet--body--inner {
+        @include padding-bottom(0);
+    }
+    .cart-table-section {
+        @include margin-bottom(0);
+        
+        @media (max-width:767px) {
+            overflow: hidden;
+            overflow-x: auto;
+        }
+    }
+    .shop_table tbody td {
+        .prdt--name {
+            max-width: 170px;
+        }
+    }
+}
+
+
+@media (max-width:767px) {
+    .modal-body {
+        .shop_table thead th {
+            @include font-size(13);
+        }
+        .shop_table tbody td {
+            @include font-size(13.5);
+            
+            .prdt--image {
+                max-width: 62px;
+                @include flex(0 0 62px);
+            }
+            .prdt--name {
+                max-width: 110px;
+                @include flex(0 0 110px);
+                @include padding-right(10);
+            }
+            
+            .button {
+                white-space: nowrap;
+                @include font-size(13.5);
+                line-height: 20px;
+                @include padding(8 10);
+                
+                &:after {
+                    @include font-size(15);
+                }
+            }
+        }
+    }
+}
+
+
+
+/* End Layout ▸ Modal */

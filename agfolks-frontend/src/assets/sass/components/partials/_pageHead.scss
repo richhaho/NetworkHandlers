@@ -1,0 +1,199 @@
+/* Begin page head style */
+.page-head {
+    $pageHeadSelf:&;
+    
+    @include flexbox();
+    position:relative;
+    @include font-size(13);
+    line-height:18px;
+    @include margin-bottom(20);
+    @include padding-bottom(12);
+    @include align-items(flex-start);
+    @include justify-content(center);
+    border-bottom:1px solid $border;
+    @include flex-direction(column, vertical);
+    
+    &.noborder {
+        border-bottom:0px none;
+        @include padding-bottom(0);
+    }
+
+    @include responsive(xs) {
+        @include margin-bottom(25);
+        @include align-items(flex-start);
+        @include flex-direction(column, vertical);
+        
+        @include respond-to(sm) {
+            @include align-items(flex-start);
+            @include flex-direction(column, vertical);
+            
+            @include respond-to(md) {
+                @include align-items(center);
+                @include flex-direction(row, horizontal);
+            }
+        }
+    }
+    
+    &--link {
+        color: $green;
+        font-style: normal;
+        @include font-size(13);
+        line-height: 18px;
+        @include margin-left(5);
+        text-transform: uppercase;
+        font-weight: $weightSemibold;
+        @include transition(all 0.3s ease);
+
+        &:hover,
+        &:focus {
+            color:$green;
+        }
+    }
+    
+    .u-heading--exlarge {
+        color:$greyish;
+        @include font-size(32);
+        line-height:1;
+        font-weight:$weightBold;
+        
+        @include responsive(xs) {
+            @include font-size(40);
+        }
+    }
+
+    .u-heading--large {
+        color:$blue;
+        @include font-size(26);
+        line-height:1;
+        font-weight:$weightBold;
+        
+        @include responsive(xs) {
+            @include font-size(34);
+        }
+    }
+    
+    .u-heading--medium {
+        color:$greyish;
+        @include font-size(26);
+        line-height:1;
+        text-transform: uppercase;
+        font-weight:$weightUltabold;
+        
+        @include responsive(xs) {
+            @include font-size(32);
+        }
+    }
+    
+    .u-heading--small {
+        color: $black_sh1;
+        @include font-size(26);
+        line-height: 1;
+        text-transform: uppercase;
+        font-weight: $weightBold;
+        
+        @include responsive(sm) {
+            @include font-size(26);
+        }
+    }
+    
+    &--actions {
+        @include flexbox();
+        @include padding(0);
+        @include font-size(15);
+        @include margin-top(10);
+        margin-left:0px!important;
+        
+        @include responsive(xs) {
+            @include margin(0);
+        }
+    }
+}
+
+
+.sectionTitle-wrapper {
+    text-align:left;
+    @include margin-bottom(20);
+    @include padding-bottom(0);
+    border-bottom:2px solid rgba($border,0.5);
+    
+    &.noBorder {
+        border-bottom:0px none;
+    }
+    
+    @include responsive(xs) {
+        @include margin-bottom(40);
+    }
+    
+    .heading--title {
+        color:$black_sh1;
+        position:relative;
+        text-align:center;
+        @include font-size(26);
+        line-height:1;
+        letter-spacing:0.035em;
+        text-transform:uppercase;
+        @include margin-bottom(10);
+        font-weight:$weightUltabold;
+        
+        @include responsive(xs) {
+            @include font-size(34);
+        }
+        
+        &--medium {
+            color:$black_sh1;
+            @include font-size(22);
+            letter-spacing:0.035em;
+            text-transform:uppercase;
+            font-weight:$weightUltabold;
+            margin-bottom:-2px;
+            display:inline-block;
+            @include padding-bottom(10);
+            border-bottom:2px solid $green;
+            
+            @include responsive(xs) {
+                @include font-size(26);
+            }
+        }
+        
+        &--semiMedium {
+            color:$black_sh1;
+            @include font-size(22);
+            letter-spacing:0.035em;
+            font-weight:$weightUltabold;
+            
+            @include responsive(xs) {
+                @include font-size(26);
+            }
+        }
+        
+        &--small {
+            color:$white;
+            @include padding(10 15);
+            @include font-size(18);
+            letter-spacing:0.035em;
+            font-weight:$weightUltabold;
+            margin-bottom:-2px;
+            display:inline-block;
+            background-color:$green;
+            border-bottom:2px solid darken($green,10%);
+            
+            @include responsive(xs) {
+                @include font-size(20);
+            }
+        }
+    }
+    
+    .heading--description {
+        color:$greyish;
+        @include font-size(16);
+        line-height:1;
+        font-weight:$weightRegular;
+        
+        @include responsive(xs) {
+            @include font-size(18);
+        }
+    }
+}
+
+
+/* End page head style */

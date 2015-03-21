@@ -1,0 +1,64 @@
+/* Begin links view style */
+
+a, button, input[type="submit"] {
+    outline:inherit!important;
+}
+
+.c-loadmore {
+    color:$info;
+    @include font-size(18);
+    font-weight:$weightBold;
+    @include transition(all 0.3s ease);
+    
+    .icon {
+        color:$greyish;
+        @include margin-right(4);
+    }
+    
+    &:hover {
+        color:$blue_sh1;
+        
+        .icon {
+            color:$blue_sh1;
+        }
+    }
+}
+
+
+.u-tags {
+    color: $greyish;
+    @extend .u-upper;
+    @include padding(5 8);
+    @include font-size(12);
+    line-height: 1.25;
+    letter-spacing: 0.5px;
+    @include margin-right(5);
+    @include margin-bottom(5);
+    @include border-radius(2px);
+    background-color:rgba($info,0.2);
+}
+
+.c-sectionedit {
+    a {
+        display: block;
+        @include flexbox();
+        @include align-items(center);
+        @include justify-content(center);
+        @include font-size(15);
+        color: $greyish;
+        line-height: 1.4;
+        @include transition(all 0.3s ease);
+        span {
+            display: inline-block;
+            @include padding-right(8);
+        }
+
+        &:hover {
+        color:$blue_sh1; 
+        }
+
+    }
+} 
+
+
+/* Begin links view style */

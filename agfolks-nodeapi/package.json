@@ -1,0 +1,43 @@
+{
+  "name": "agfolks-api",
+  "version": "1.0.0",
+  "description": "Agfolks API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bijarniya@bitbucket.org/ekamnh/agfolks-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/ekamnh/agfolks-api#readme",
+  "dependencies": {
+    "async": "^3.0.0",
+    "avatax": "^19.5.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "date-and-time": "^0.7.0",
+    "decode-html": "^2.0.0",
+    "email-validator": "^2.0.4",
+    "express": "^4.17.0",
+    "http": "0.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "list-to-tree-lite": "^0.1.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0",
+    "mysql": "^2.17.1",
+    "node-gyp": "^5.0.3",
+    "nodemailer": "^6.2.1",
+    "nodemon": "^1.19.1",
+    "order-id": "^1.1.0",
+    "request": "^2.88.0",
+    "stripe": "^7.2.0",
+    "uuid": "^3.3.2",
+    "xml2json": "^0.11.2",
+    "xmlbuilder": "^13.0.2"
+  },
+  "devDependencies": {}
+}

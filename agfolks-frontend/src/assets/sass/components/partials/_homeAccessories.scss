@@ -1,0 +1,47 @@
+ /* Categories Page
+------------------------------------*/
+.section-Accessories {
+    @include margin-top(10);
+    @include padding(25 0 15);
+    /*border-top:1px solid $success;
+    border-bottom:1px solid $success;*/
+    
+    @include responsive(xs) {
+        @include padding(30 0 15);
+    }
+    
+    .item {
+        color:$white;
+        text-align:center;
+        @include margin(0);
+        @include padding(0);
+        
+        img {
+            cursor:pointer;
+            @include opacity(.5);
+            @include padding(10 20);
+            @include filter(grayscale(100%));
+            -webkit-transition:opacity .3s ease,-webkit-filter .3s ease;
+            transition:opacity .3s ease,-webkit-filter .3s ease;
+            transition:filter .3s ease,opacity .3s ease;
+            transition:filter .3s ease,opacity .3s ease,-webkit-filter .3s ease;
+            -webkit-transition:-webkit-filter .3s ease,opacity .3s ease;
+        }
+        
+        &:hover {
+            img {
+                @include opacity(1);
+                @include filter(grayscale(0));
+            }
+        }
+    }
+    
+    .AgfolksAccessories {
+        position:relative;
+    }
+}
+
+
+
+/* Categories */
+

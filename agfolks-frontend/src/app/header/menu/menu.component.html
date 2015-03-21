@@ -1,0 +1,205 @@
+<nav class="navigation navigation-md d-none d-lg-block">
+    <div class="container">
+        <div class="navigation__inner">
+            <div class="vertical-navigation">
+                <span class="menu-opener color-scheme-light has-bg js-menu-opener">
+                    <span class="menu-open-label">
+                        <span class="burger-icon"></span>
+                        {{'BROWSE_CATEGORIES'| translate}}
+                    </span>
+                    <span class="arrow-opener"></span>
+                </span>
+                <!-- Print Category section here-->
+                <div class="categories-menu-dropdown" *ngIf="categoryList && categoryList.length">
+                    <div class="menu-categories-container">
+                        <ul class="menu">
+                            <!--Print menu -->
+                            <li class="menu-items" [ngClass]="{'menu-item-has-children':(category && category.childrenMenu && category.childrenMenu.length>0)}" *ngFor="let category of categoryList let i =index">
+                                <a href="javascript:;"  (click)="changeRouter('store/'+category.Category_Slug);">
+                                    <div class="category-icon">
+                                        <img src="{{PORTAL_URL}}files/store/categories/{{CID}}/{{category.Category_Icon}}" alt="{{category.Category_Name}}" class="missio_svg">
+                                    </div>
+                                    <span [innerHTML]="category.Category_Name"></span>
+                                </a>
+                                <!--Print sub menu -->
+                                <div class="sub-menu-dropdown" *ngIf="category && category.childrenMenu && category.childrenMenu.length">
+                                    <div class="container">
+                                        <div class="main-content">
+                                            <div class="row">
+                                                <div class="custom-col custom-col-sm" *ngFor="let subCategory of category.childrenMenu let j =index">
+                                                    <ul class="megaMenu megaMenu-sm">
+                                                        <li class="megaMenu--list">
+                                                            <a href="javascript:;" (click)="changeRouter('store/'+subCategory.Category_Slug);" [innerHTML]="subCategory.Category_Name"></a>
+                                                            <!--Print sub menu -->
+                                                            <ol class="megaMenu--sublist has-megalist" *ngIf="subCategory && subCategory.childrenMenu && subCategory.childrenMenu.length">
+                                                                <li [ngClass]="{'has-children':(nestedSubCategory && nestedSubCategory.childrenMenu && nestedSubCategory.childrenMenu.length>0)}" *ngFor="let nestedSubCategory of subCategory.childrenMenu let k =index">
+                                                                    <a  class="has-child" href="javascript:;"  (click)="changeRouter('store/'+nestedSubCategory.Category_Slug);" [innerHTML]="nestedSubCategory.Category_Name"></a>
+                                                                </li>
+                                                            </ol>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Print menu section here-->
+            <ul class="navigation--list" *ngIf="menuList && menuList.length">
+                <li [ngClass]="{'menu-item-has-children': (item && item.childrenMenu && item.childrenMenu.length>0)}" *ngFor="let item of menuList let i = index">
+                    <a href="javascript:" [ngClass]="{'has-child': (item && item.childrenMenu && item.childrenMenu.length>0)}"  (click)="changeRouter(item.url)">{{item.title}}</a>
+                    <ul class="sub-menu" *ngIf="item && item.childrenMenu && item.childrenMenu.length">
+                        <li *ngFor="let subMenu of item.childrenMenu let j = index">
+                            <a href="javascript:" (click)="changeRouter(subMenu.url)">{{subMenu.title}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="clearfix"></div>
+
+
+<!-- Begin Sticky Nav -->
+<div id="page-menu" #pageMenu class="page-menu page-menu-sm" [ngClass]="{'sticky-page-menu': stickyNavMenu}">
+    <div id="page-menu-wrap" class="page-menu-wrap page-menu-wrap-sm">
+        <button class="sticky-hamMenu sticky-hamMenu-lg js-mobile-nav" [ngClass]="{'active': rMenu}"
+            (click)="mobileRMenu();" type="button">
+            <span class="transition-med"></span>
+        </button>
+
+        <div class="page-menu--logo page-menu--logo-md">
+            <a [routerLink]="['']"><img src="./assets/images/af-logo.svg" class="image-fluid" alt="AgFolks" /></a>
+        </div>
+
+        <nav class="navigation navigation-md d-none d-lg-block">
+            <ul class="navigation--list" *ngIf="menuList && menuList.length">
+                <li *ngFor="let item of menuList let i = index"><a href="javascript:"
+                        (click)="changeRouter(item.url)">{{item.title}}</a>
+                    <ul class="sub-menu" *ngIf="item && item.childrenMenu && item.childrenMenu.length">
+                        <li *ngFor="let subMenu of item.childrenMenu let j = index">
+                            <a href="javascript:" (click)="changeRouter(subMenu.url)">{{subMenu.title}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="ml-auto">
+            <div class="header__right header__right-sm">
+                <div class="header__right--links" *ngIf="userData && userData.email">
+                    <!--<ul class="header__right--links__lists">
+                        <li class="item-level-0 my-account-with-text menu-item-register"><a href="register.html">Login / Register</a></li>
+                    </ul>-->
+
+                    <div class="user-profile-menu js-profileContainer" [ngClass]="{open: classPFlag}">
+                        <div class="user-profile-menu-item">
+                            <button type="button" class="user-profile-button js-profile" (click)="togglePMenu()"
+                                role="presentation">{{(userData)? userData?.first_name+' '+ userData?.last_name: ''}}
+                                <span class="fas fa-angle-down" role="presentation"></span></button>
+                        </div>
+                        <div class="dropdown-menu pull-right">
+                            <ul>
+                                    <li><a href="javascript:;" (click)="changeRouter('account/profile')">{{'MY_ACCOUNT' | translate }}</a></li>
+                                    <li><a href="javascript:;" (click)="changeRouter('account/wish-list')">{{'WISH_LIST' | translate }}</a></li>
+                                    <!--<li><a href="javascript:;" (click)="changeRouter('account/order-history')">{{'ORDER_HISTORY' | translate }} </a></li>-->
+                                    <li><a href="javascript:;" (click)="changeRouter('account/change-password')">{{'CHANGE_PASSWORD' | translate }}</a></li>
+                                    <li><a href="javascript:;" (click)="signOut();"> {{'SIGN_OUT' | translate }}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="header__right--widget d-none d-lg-block">
+                    <a href="javascript:;"><span class="wishlist"><span class="count">0</span></span></a>
+                </div>
+                <div class="header__right--cart cart-widget-opener js-cartOpener">
+                    <a href="javascript:;"><span class="count">0</span><span class="amount">$0.00</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //End Sticky Nav -->
+
+
+<!-- Begin Responsive Mobile Menu -->
+<aside class="responsive-standalone" [ngClass]="{'navigation-active': rMenu}">
+    <div class="widget--search">
+        <form role="search" method="get" class="searchform" action="/search">
+            <div>
+                <input type="text" class="s" placeholder="Search for products" value="" name="q" autocomplete="off">
+                <input type="hidden" name="post_type" value="product">
+                <button type="submit" class="searchsubmit">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="mobile-nav-tabs">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="{active: menuTab=='Menu'}" data-toggle="tab" (click)="menuTab='Menu'"
+                    href="javascript:" role="tab">Menu</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="{active: menuTab=='Categories'}" data-toggle="tab"
+                    (click)="menuTab='Categories'" href="javascript:" role="tab">Categories</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="widget__menuArea">
+        <div class="widget__menuArea__content">
+            <div class="widget__menuArea__content--body widget-scroll has-scrollbar">
+                <div class="widget-scroll-content listVerticalScrollBar">
+                    <div class="mobile-pages-menu tab-content tab-content-xs" id="myTabContentNew">
+                        <div class="tab-pane show" [ngClass]="{'active show': menuTab=='Menu'}">
+                            <!--Print main menu -->
+                            <ul class="responsive-navigation__list" *ngIf="menuList && menuList.length">
+                                <li class="responsive-navigation__item" *ngFor="let rItem of menuList let i = index">
+                                    <a href="javascript:" (click)="changeRouter(rItem.url);mobileRMenu();">{{rItem.title}}</a>
+                                    <span *ngIf="rItem && rItem.childrenMenu && rItem.childrenMenu.length"  (click)="childMenu(rItem.childrenMenu, menuList);" class="next-item"><i class="fa fa-angle-right"></i></span>
+                                    <!--Print sub menu -->
+                                    <ul class="sub-menu" [ngClass]="{'navigation-active': childMList && childMList.length>0}" *ngIf="childMList && childMList.length">
+                                        <li class="back"><a href="javascript:;" (click)="childMenuUp(childMList);"><i class="fa fa-chevron-left"></i>Back</a></li>
+                                        <li *ngFor="let rSubMenu of childMList let j = index">
+                                            <a href="javascript:" (click)="changeRouter(rSubMenu.url); mobileRMenu();">{{rSubMenu.title}}</a>
+                                           <span *ngIf="rSubMenu && rSubMenu.childrenMenu && rSubMenu.childrenMenu.length" (click)="childMenu(rSubMenu.childrenMenu, childMList);" class="next-item"><i class="fa fa-angle-right"></i></span>
+
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-pane " [ngClass]="{'active show': menuTab=='Categories'}">
+                            <ul class="responsive-navigation__list" *ngIf="categoryList && categoryList.length">
+                                <li class="responsive-navigation__item" *ngFor="let mCategory of categoryList let i =index">
+                                    <a href="javascript:" (click)="changeRouter('store/'+mCategory.Category_Slug); mobileRMenu();"  [innerHTML]="mCategory.Category_Name"></a>
+                                    <span *ngIf="mCategory && mCategory.childrenMenu && mCategory.childrenMenu.length" (click)="childCategory(mCategory.childrenMenu, categoryList);" class="next-item"><i class="fa fa-angle-right"></i></span>
+                                    <!--Print sub category -->
+                                    <ul class="sub-menu" [ngClass]="{'navigation-active': childCList && childCList.length>0}" *ngIf="childCList && childCList.length">
+                                        <li class="back"><a href="javascript:;" (click)="childCategoryUp(childCList);"><i class="fa fa-chevron-left" ></i>Back</a></li>
+                                        <li *ngFor="let childCat of childCList let k = index">
+                                            <a href="javascript:" (click)="changeRouter('store/'+ childCat.Category_Slug); mobileRMenu();">{{childCat.Category_Name}}</a>
+                                            <span *ngIf="childCat && childCat.childrenMenu && childCat.childrenMenu.length" (click)="childCategory(childCat.childrenMenu, childCList);" class="next-item"><i class="fa fa-angle-right"></i></span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="responsive-standalone--Close"><span class="icon_close"></span></div>
+</aside>
+<div class="responsive-standalone--Overlay" (click)="mobileRMenu()" [style.display]="rMenu ? 'block' :'none'"></div>
+<!-- //End Responsive Mobile Menu -->

@@ -1,0 +1,432 @@
+ /* My Account Page
+------------------------------------*/
+   
+.checkout {
+    
+    &--Page {
+        @include padding-bottom(40);
+        @include responsive(sm) {
+            @include padding-bottom(60);
+        }
+        
+        .form-vertical {
+            @include padding-right(0);
+            
+            @include responsive(sm) {
+                @include padding-right(20);
+            }
+            
+            &.no-pr {
+                @include padding-right(0);
+            }
+        }
+        
+        hr {
+            @include margin-top(30);
+            @include margin-bottom(30);
+            
+            @media (max-width: 767px) {
+                @include margin-top(30);
+                @include margin-bottom(30);
+            }
+        }
+        
+        .sep {
+            margin: 0px 8px;
+        }
+    }
+    
+    &--info {
+        
+    }
+        
+    @include responsive(xs) {
+        @include padding-right(20);
+    }
+    
+    &__coupon, &__account {
+        text-align: center;
+        @include margin-bottom(30);
+        @include padding(30 25 15);
+        border: 2px dashed $border;
+        background-color: $white_sh3;
+    }
+    &__account {
+        text-align: left;
+        @include margin-top(16);
+        @include margin-bottom(0);
+    }
+    
+    &__shipping_address {
+        @include margin-top(30);
+        
+        .form-group {
+
+             label {
+                 width: 100%;
+            }
+        }
+    }
+    
+    &--order {
+        &__review {
+            position: relative;
+            @include padding(20 10);
+            @include margin-bottom(40);
+            background-color: $white_sh3;
+            
+            @include responsive(sm) {
+                @include padding(20);
+            }
+            
+            &:before, &:after {
+                left: 0;
+                content: " ";
+                position: absolute;
+                @include size(100%,10px);
+                background-color: transparent;
+                background-image: radial-gradient(farthest-side,rgba(0,0,0,0) 6px,$white_sh3 0);
+                background-size: 15px 15px;
+            }
+            &:before {
+                top: -10px;
+                background-position: -3px -5px,0 0;
+            }
+            &:after {
+                bottom: -10px;
+                background-position: -3px 2px,0 0;
+            }
+            
+            &--inner {
+                overflow-x: auto;
+                @include padding(5 15 25);
+                background-color: $white;
+                @include box-shadow(1px 1px 2px rgba($black,.05));
+                
+                .cart__totals {
+                    border: 0px none;
+                    color: $black_sh1;
+                    @include padding(0);
+                    @include font-size(15);
+                    @include margin-bottom(0);
+                    font-weight: $weightRegular;
+                }
+                
+                .text {
+                    font-size: 16px;
+                    margin-bottom: 0px;
+                }
+            }
+            
+            &--table {
+                th, td {
+                    /*width: 50%;
+                    max-width: 50%;*/
+                }
+                td.product-name {
+                    width: calc(100% - 120px);
+                    max-width: calc(100% - 120px);
+                    text-align: left;
+                    @include font-size(15);
+                    font-weight: $weightRegular;
+                }
+                
+                td.product-total {
+                    width: 120px;
+                    max-width: 120px;
+                    text-align: right;
+                    
+                    .amount {
+                        color: $black_sh3;
+                        font-weight: $weightRegular;
+                    }
+                }
+                tfoot {
+                    .order-total {
+                        border-bottom: 1px solid $border;
+                    }
+                }
+                .fs20 {
+                    color: $black;
+                    @extend .u-upper;
+                    @include font-size(18);
+                    font-weight: $weightBold;
+                }
+            }
+            
+            .cart__totals--proceed-to-checkout {
+                @include margin-top(15);
+                @include padding(15 10 0);
+                border-top: 1px solid $border;
+                
+                &.no-btp {
+                    border-top: 0px none;
+                    @include padding-top(5);
+                    @include margin-top(10);
+                }
+            }
+            
+            .checkbox {
+                height: auto;
+                label {
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+
+.privacy-policy-text {
+    color: $black_sh2;
+    @include font-size(14);
+    
+    .privacy-policy-link {
+        color: $green;
+        font-weight: $weightBold;
+    }
+    
+    .finance--availability {
+        width: 100%;
+        @extend .u-upper;
+        color: $black_sh1;
+        text-align: center;
+        @include font-size(16);
+        font-weight: $weightBold;
+        
+        a {
+            color: $black_sh1;
+            
+            &:hover, &:focus, &:active {
+                color: $green;
+            }
+        }
+    }
+}
+
+.btn-tips {
+    height: 42px;
+    color: $green;
+    @include flexbox;
+    position:relative;
+    font-weight: $weightBold;
+    @include align-items(center);
+    
+    @include responsive(xs) {
+        max-width:200px;   
+    }
+}
+.tip {
+    height: 0px;
+    bottom: 40px;
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    background: $white;
+    border: 1px solid $border;
+    @include opacity(0);
+    @include border-radius(4px);
+    @include transition(all 0.3s ease-in);
+    
+    &:after, &:before {
+        width: 0;
+        height: 0;
+        top: 100%;
+        left: 16%;
+        content: " ";
+        position: absolute;
+        pointer-events: none;
+        border: solid transparent;
+    }
+    &:after {
+        border-color: rgba($border, 0);
+        border-top-color: $white;
+        border-width: 10px;
+        @include margin-left(-10);
+    }
+    &:before {
+        border-color: rgba($border, 0);
+        border-top-color: $border;
+        border-width: 12px;
+        @include margin-left(-12);
+    }
+}
+a.btn-tips:hover .tip {
+    height: auto;
+    display: block;
+    visibility: visible;
+    @include opacity(1);
+}
+.tip > div {
+    @include padding(5 10 10);
+    
+    h3 {
+        color: $black_sh1;
+        @include font-size(15);
+        line-height: 1.5;
+        @include margin-bottom(5);
+        font-weight: $weightBold;
+    }
+    p {
+        width: 56%;
+        color: $black_sh1;
+        margin-bottom:0px;
+        line-height:normal;
+        @include font-size(10);
+        font-weight: $weightRegular;
+    }
+    .ccv {
+        top: 30px;
+        width: 40%;
+        right: 5px;
+        padding: 2px;
+        position: absolute;
+        
+        @include responsive(xs) {
+            top: 20px;
+        }
+    }
+}
+
+#card-info {
+    @include margin-top(10);
+}
+/**
+* The CSS shown here will not be introduced in the Quickstart guide, but shows
+* how you can use CSS to style your Element's container.
+*/
+
+.StripeElement {
+    height: 46px;
+    box-sizing: border-box;
+    @include padding(13 10);
+    background-color: $white;
+    border: 2px solid $border;
+    @include border-radius(1px);
+    @include transition(all 150ms ease);
+    font-family: $primaryFont!important;
+    @include box-shadow(0 1px 3px 0 rgba($black,0));
+    
+    .ElementsApp input {
+        font-family: $primaryFont!important;
+    }
+    
+    &--focus {
+        border: 2px solid $green;
+        @include box-shadow(0 1px 3px 0 rgba($black,0));
+    }
+    
+    &--invalid {
+        border: 2px solid $red!important;
+    }
+    
+    &--webkit-autofill {
+        background-color: lighten($hoverColor, 15%)!important;
+    }
+}
+
+
+
+.ship--details {
+    width: 100%;
+    @include padding-right(0);
+    
+    @include responsive(sm) {
+        @include padding-right(30);
+    }
+    
+    p {
+        display: block;
+        color: $black_sh1;
+        @include font-size(16);
+        line-height: 1.5;
+        @include padding-left(30);
+        @include margin-bottom(5);
+        
+        &:first-child, .no-padd {
+            font-weight: $weightBold;
+            @include padding-left(0);
+        }
+    }
+    .link-green {
+        font-weight: $weightSemibold;
+        
+        &:hover, &:focus, &:active {
+            border-bottom: 1px solid $green;
+        }
+    }
+}
+.checklists--details {
+    width: 100%;
+    @include padding(15);
+    border: 1px solid $border;
+    
+    @include responsive(sm) {
+        @include padding(20);
+    }
+    
+    &.noStyle {
+        @include padding(0);
+        border: 0px none;
+    }
+    
+    p {
+        display: block;
+        color: $black_sh1;
+        @include font-size(16);
+        line-height: 1.5;
+        @include padding-left(0);
+        @include margin-bottom(3);
+    }
+    
+    .additional--notes {
+        width: 100%;
+        @include margin-top(20);
+    }
+    
+    .form-control {
+        resize: none;
+        @include padding(10);
+        @include margin-top(10);
+        border: 0px none!important;
+        @include border-radius(5);
+        background-color: lighten($green, 50%);
+    }
+    
+    .form-control::-webkit-input-placeholder {
+         color:rgba($black_sh1, 0.85);
+     }
+     .form-control::-moz-placeholder {
+         color:rgba($black_sh1, 0.85);
+     }
+     .form-control::-ms-input-placeholder {
+         color:rgba($black_sh1, 0.85);
+     }
+     .form-control::-o-placeholder {
+         color:rgba($black_sh1, 0.85);
+     }
+}
+
+.discounted--shipping {
+    float: right;
+    max-width: 300px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $border;
+}
+
+
+.info-tool {
+    color: $white;
+    position: relative;
+    @include size(16px);
+    display: inline-block;
+    vertical-align: middle;
+    @include font-size(10);
+    @include margin-top(1);
+    @include margin-left(6);
+    @include border-radius(3px);
+    border: 1px solid #70899f;
+    @include linear-gradient(to bottom,  #9fb4c7 0%,#c9deef 4%,#b8d2e1 8%,#99b9ce 16%,#7fa3c5 24%,#7ea1c7 28%,#799bbe 36%,#6f8ead 60%,#6a8ca8 64%,#65809b 88%,#5e7c96 100%);
+
+}
+
+

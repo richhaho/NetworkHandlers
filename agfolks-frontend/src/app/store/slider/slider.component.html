@@ -1,0 +1,31 @@
+<div class="slideshow-background slideshow-section" *ngIf="slidesStore && slidesStore.length && slidesStore.length > 1" >
+    <owl-carousel-o [options]="mainSliderOptions" >
+        <ng-container *ngFor="let slide of slidesStore let i = index">
+            <ng-template carouselSlide [id]="slide.id">
+                <img src="{{PORTAL_URL}}newcms/files/slider/{{CID}}/{{slide.slider_image}}" class="bg-transparent">
+                <div class="content_slideshow content_slideshow-xs">
+                    <div class="container" style="position:relative;">
+                        <div class="col-sm-10 col-lg-11 col-md-11 col-centered">
+                            <h4 class="title title-xs">
+                                <span [innerHtml]="slide.slider_title | safeHtml"></span>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-container>
+    </owl-carousel-o>
+</div>
+<div class="clearfix"></div>
+
+
+<!-- Inner Page Slider(s) -->
+<div class="hero__inner large large-xs overlay u-image--cover" *ngIf="slidesStore && slidesStore.length && slidesStore.length == 1" [ngStyle]="{background: 'url('+PORTAL_URL+'newcms/files/slider/'+CID+'/'+slidesStore[0].slider_image+')'}">   
+    <div class="container">
+        <header class="hero__inner--content hero__inner--content-xs">
+            <h1 class="subhead subhead-xs text-white" [innerHtml]="slidesStore[0].slider_title | safeHtml"></h1>
+            <div class="text text-xs text-white" [innerHtml]="slidesStore[0].slider_desc | safeHtml"></div>
+        </header>
+    </div>
+</div>
+<div class="clearfix"></div>

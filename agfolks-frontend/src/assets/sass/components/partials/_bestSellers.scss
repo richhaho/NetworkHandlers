@@ -1,0 +1,64 @@
+ /* Categories Page
+------------------------------------*/
+.bestSellers {
+    @include padding(60 0);
+    
+    @include responsive(xs) {
+        @include padding(100 0);
+    }
+}
+
+.Newsletter {
+    @include padding(30 0);
+    border-top:1px solid rgba($border,0.5);
+    border-bottom:1px solid rgba($border,0.5);
+    background-image:url('../images/background/newsletter-BG.jpg')!important;
+    background-position:center center!important;
+    background-repeat:no-repeat!important;
+    background-size:cover;
+    
+    @include responsive(xs) {
+        @include padding(40 0);
+    }
+    
+    .input-group {
+        height:46px;
+        
+        .button {
+            height:46px;
+        }
+        
+        .form-control {
+            border-width:2px;
+            border-right:0px none;
+            @include border-radius(0);
+            
+            &:focus {
+                border-color:$success;
+            }
+        }
+    }
+}
+
+.bg-overlay {
+    position:relative;
+}
+.bg-overlay .container {
+    z-index:1;
+    position:relative;
+}
+.bg-overlay {
+    &:before {
+        top:0;
+        left:0;
+        z-index:0;
+        content:'';
+        position:absolute;
+        @include size(100%);
+        background-color:rgba($black, 0.1);
+    }
+}
+
+
+/* Categories */
+

@@ -1,0 +1,162 @@
+<!--Inclued cart banner-->
+<app-cart-banner></app-cart-banner>
+
+<div class="auth--body auth--body-md Order--History checkout--Page checkout--Page-sm">
+    <div class="auth--body__inner auth--body__inner-md">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-sm-12">
+                            <h2 class="subTitle subTitle-sm with--border">{{'CART_ITEMS' | translate}}</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="form-vertical form-vertical-sm">
+                        <div class="cart-table-section cart-table-section-xs" *ngIf="cartProductList &&  cartProductList.length">
+                            <table class="shop_table shop_table_responsive cart" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th class="product-thumbnail" colspan="2">{{'PRODUCT' | translate}}</th>
+                                        <th class="product-name">&nbsp;</th>
+                                        <th class="product-price">{{'PRICE' | translate}}</th>
+                                        <th class="product-quantity">{{'QTY' | translate}}</th>
+                                        <th class="product-discount">{{'DISCOUNT' | translate}}</th>
+                                        <th class="product-subtotal">{{'TOTAL' | translate}}</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr class="cart_item" *ngFor="let cartItem of cartProductList; let i=index ">
+                                        <td class="product-remove">
+                                            <div class="wrap-wishlist-button">
+                                                <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="Add to Wish List"><span>{{'ADD_TO_WISH_LIST' | translate}}</span></a>
+                                            </div>
+                                            <div class="wrap-remove-button">
+                                                <a href="javascript:void(0);" class="remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove" (click)="removeCartItem(cartItem.ID);">×</a>
+                                            </div>
+                                        </td>
+
+                                        <td class="product-thumbnail">
+                                            <a href="javascript:void(0)" (click)="changeRouter('product/'+cartItem.Product_Slug);">
+                                                <img *ngIf="cartItem && cartItem.Image" src="{{PORTAL_URL}}files/store/products/{{CID}}/{{cartItem.Product_ID}}/{{cartItem.Image}}" alt="" width="130" height="491">
+                                                <img *ngIf='!cartItem.Image' src="./assets/images/no-image.png" alt="" width="130" height="491"></a>
+                                        </td>
+
+                                        <td class="product-name">
+                                            <a href="javascript:void(0)" (click)="changeRouter('product/'+cartItem.Product_Slug);" class="text-black" [innerHtml]="((cartItem && cartItem.Product_Name)? cartItem.Product_Name : '') | safeHtml"></a>
+                                        </td>
+
+                                        <td class="product-price">
+                                            <span class="amount">${{(cartItem && cartItem.Product_Price )? cartItem.Product_Price :''}}</span>
+                                        </td>
+
+                                        <td class="product-quantity">
+                                            <div class="quantity">
+                                                <input type="button" value="-" class="minus" onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty > 1 ) result.value--;return false;">
+                                                <input type="text" id="qty" name="quantity" value="{{cartItem.Product_Count}}" min="1" class="input-text qty text" size="4">
+                                                <input type="button" value="+" class="plus" onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;">
+                                            </div>
+                                        </td>
+
+                                        <td class="product-price">
+                                            <span class="amount">{{(cartItem.DiscountType=='percent')? cartItem.Discount+'%' : (cartItem.DiscountType=='amount')? cartItem.Discount : ''}}</span>
+                                        </td>
+
+                                        <td class="product-subtotal">
+                                            <span class="amount" *ngIf="cartItem && (cartItem.DiscountType=='amount' || cartItem.DiscountType=='percent')">${{(cartItem && cartItem.Discount_Price )? (cartItem.Discount_Price * cartItem.Product_Count) : ''}}</span>
+                                            <span class="amount" *ngIf="!(cartItem && (cartItem.DiscountType=='amount' || cartItem.DiscountType=='percent'))">${{(cartItem && cartItem.Product_Price )?(cartItem.Product_Price * cartItem.Product_Count):''}}</span>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="cart-actions cart-actions-sm u-justify-end">
+                                <a href="javascript:void(0)" (click)="changeRouter('store');" class="button button--black button-md button--continue" name="continue_shopping">{{'CONTINUE_SHOPPING' | translate}}</a>
+
+                                <button type="submit" class="button button--green button-md button--update u-ml--10" name="update_cart" disabled="">{{'UPDATE_CART' | translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-5 col-md-12 col-sm-12 col-xs-12">
+
+                    <div class="checkout--order__review checkout--order__review-sm">
+                        <h3 class="subTitle subTitle-sm">{{'CART_TOTALS' | translate}}</h3>
+
+                        <div class="checkout--order__review--inner u-mb--15">
+                            <div class="cart__totals">
+                                <div class="cart__totals--inner">
+                                    <table class="shop_table shop_table_responsive checkout--order__review--table u-mb--5" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-name">{{'YOUR_QTY' | translate}}</th>
+                                                <th class="product-total">{{'TOTAL' | translate}}</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr class="cart_item" *ngFor="let cartItem of cartProductList; let i=index ">
+                                                <td class="product-name">
+                                                    <span [innerHtml]="((cartItem && cartItem.Product_Name)? cartItem.Product_Name : '') | safeHtml"> </span>
+                                                    <strong class="product-quantity"> x{{cartItem.Product_Count}}</strong>
+                                                </td>
+                                                <td class="product-total">
+                                                    <span class="amount" *ngIf="cartItem && (cartItem.DiscountType=='amount' || cartItem.DiscountType=='percent')">${{(cartItem && cartItem.Discount_Price )? (cartItem.Discount_Price * cartItem.Product_Count) : ''}}</span>
+                                                    <span class="amount" *ngIf="!(cartItem && (cartItem.DiscountType=='amount' || cartItem.DiscountType=='percent'))">${{(cartItem && cartItem.Product_Price )? (cartItem.Product_Price * cartItem.Product_Count) :''}}</span>
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr class="cart_item">
+                                                <td class="product-name u-upper">
+                                                    <strong>{{'SUBTOTAL' | translate}}</strong>
+                                                </td>
+                                                <td class="product-total">
+                                                    <strong>${{(subTotal && subTotal>0)? subTotal : '0.00'}}</strong>
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td colspan="2">
+                                                    <div class="text-left">
+                                                        <h4 class="fs20 u-upper">Have a coupon?</h4>
+                                                        <p class="text-grey">If you have a coupon code, please apply it below.</p>
+                                                        <div class="coupon u-mb--15">
+                                                            <div class="input-group">
+                                                                <span class="tags"></span>
+                                                                <input type="text" class="form-control" placeholder="Search all orders">
+                                                                <div class="input-group-append">
+                                                                    <button class="btn input-btn" type="button" id="updateCart">Apply coupon</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+                                        <tfoot>
+                                            <tr class="order-total no-border">
+                                                <th><span class="u-upper">{{'TOTAL' | translate}}</span></th>
+                                                <td><span class="text-green">${{(subTotal && subTotal>0)? subTotal : '0.00'}}</span></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+
+                                    <div class="cart__totals--proceed-to-checkout no-btp">
+                                        <div class="privacy-policy-text">
+                                            <p class="finance--availability"><a href="#">{{'FINANCING_AVAILABLE' | translate}}</a></p>
+                                        </div>
+                                        <a href="javascript:void(0)" (click)="changeRouter('checkout')" class="button button--green button-md button-block button--makepay">{{'STORE_CHECKOUT' | translate}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

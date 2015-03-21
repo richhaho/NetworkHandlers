@@ -1,0 +1,172 @@
+ /* My Account Page
+------------------------------------*/
+    
+.form-vertical {
+    h2 {
+        color:$black;
+        @include font-size(20);
+        line-height:1.5;
+        text-transform:uppercase;
+        @include margin-bottom(20);
+        font-weight:$weightBold;
+    }
+    
+    @include responsive(sm) {
+        h2 {
+            @include font-size(26);
+        }
+    }
+}
+
+/* Card Buttons */
+.card_buttons {
+    $dashButtonsSelf: &;
+    
+    @include flexbox;
+    margin:0px -15px;
+    @include flex-wrap(wrap);
+    
+    &__items {
+        $dashButtonsItemsSelf: &;
+        
+        max-width:100%;
+        position:relative;
+        @include flex(0 0 100%);
+        @include padding(0 15);
+        @include margin-bottom(20);
+        @include transition(all 0.2s ease-in-out);
+        
+        @include responsive(sm) {
+            max-width:50%;
+            @include flex(0 0 50%);
+            @include margin-bottom(30);
+            
+            @include respond-to(md) {
+                max-width:33.3333%;
+                @include flex(0 0 33.3333%);
+            }
+        }
+        
+        &--inner {
+            height:100%;
+            min-height:130px;
+            background:$white;
+            @include padding(25 20);
+            border:1px solid $border;
+            @include border-radius(5px);
+            @include transition(all 0.2s ease-in-out);
+            
+            @include flexbox;
+            /*@include align-items(center);
+            @include justify-content(center);
+            @include flex-direction(row, horizontal);*/
+            
+            &.has-shadow {
+                @include box-shadow(0px 3px 15px rgba($black,0.1));
+            }
+        }
+        
+        &.has-hover-effect {
+            &:hover {
+                @include transform(translateY(-5px));
+
+                #{$dashButtonsItemsSelf}--inner {
+                    border:1px solid $success;
+                    
+                    &.has-shadow {
+                        @include box-shadow(0px 3px 15px rgba($success,0.25));
+                    }
+                }
+            }
+        }
+        
+        #{$dashButtonsSelf}--link {
+            top: 0;
+            left: 15px;
+            right: 15px;
+            bottom: 0;
+            z-index: 5;
+            position: absolute;
+            @include border-radius(5px);
+        }
+    }
+    
+    #{$dashButtonsSelf} {
+        &--left {
+            width: 60px;
+            max-width: 60px;
+            text-align: center;
+        }
+        
+        &--title {
+            color:$black_sh1;
+            @include font-size(16);
+            font-weight:$weightBold;
+            @include margin-bottom(6);
+            
+            @include responsive(sm) {
+                @include font-size(20);
+            }
+        }
+        &--description {
+            max-width:100%;
+            color:$black_sh3;
+            @include font-size(14);
+            @include margin-bottom(0);
+            
+            @include responsive(sm) {
+                max-width:90%;
+                @include font-size(16);
+            }
+        }
+        
+        &--body {
+            text-align: left;
+            @include margin-left(10);
+            width: calc(100% - 70px);
+            max-width: calc(100% - 70px);
+        }
+        &--body__full {
+            text-align: left;
+            @include margin-left(0);
+            width: calc(100% - 0px);
+            max-width: calc(100% - 0px);
+        }
+        
+        &--list {
+            list-style: none;
+            @include padding-left(15);
+            
+            &__items {
+                list-style: none;
+                @include margin-top(10);
+                
+                > a {
+                    color: $blue_sh1;
+                    position: relative;
+                    font-weight: $weightRegular;
+                    @include transition(all 0.2s ease-in-out);
+                
+                    &:before {
+                        top:5px;
+                        left:-15px;
+                        color:$blue_sh1;
+                        content:'\f109';
+                        position:absolute;
+                        margin-right:12px;
+                        font-family:$woodmart;
+                        @include font-size(10);
+                    }
+                    
+                    &:hover, &:focus, &:active {
+                        color: $success;
+                        &:before {
+                            color: $success;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

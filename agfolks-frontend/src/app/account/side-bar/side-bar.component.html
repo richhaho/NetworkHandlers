@@ -1,0 +1,57 @@
+<div class="profile--box profile--box-sm">
+    <div class="profile--box--user">
+        <!--<button type="button" class="profile--editbtn">{{'EDIT' | translate}}</button>-->
+        
+        <div class="profile--box--user__avatar">
+            <img src="./assets/images/icons/vision/Integrity-Dealing.svg" class="profile-image" alt="profile-image">
+        </div>
+        
+        <div class="profile--box--user__details">
+            <h3 class="username">
+                <span>Hello,</span>
+                {{(userData && userData.first_name)? userData?.first_name : ''}}
+                {{(userData && userData.last_name)? userData?.last_name : ''}}
+            </h3>
+        </div>
+    </div>
+
+    <ul class="profile--actions">
+        <!--<li class="profile--actions__items">
+            <a href="javascript:void(0);" (click)="changeRouter('account')"><span class="fe-airplay ag--icons"></span>{{'DASHBOARD' | translate}}</a>
+        </li>-->
+        <li class="profile--actions__items is-selected">
+            <a href="javascript:void(0);" (click)="changeRouter('account/profile')"><span class="fe-user ag--icons"></span>{{'ACCOUNT_DETAILS' | translate}}</a>
+        </li>
+        <li class="profile--actions__items">
+            <a href="javascript:void(0);" (click)="changeRouter('account/shipping-addresses')"><span class="fe-file-text ag--icons"></span>{{'SHIPPING_ADDRESSES' | translate}}</a>
+        </li>
+        <!--<li class="profile--actions__items">
+            <a href="javascript:void(0);" (click)="changeRouter('account')"><span class="fe-credit-card ag--icons"></span>{{'PAYMENT_OPTIONS' | translate}}</a>
+        </li>
+        <li class="profile--actions__items">
+            <a href="javascript:void(0);" (click)="changeRouter('account/profile')"><span class="fe-user ag--icons"></span>{{'PROFILE' | translate}}</a>
+        </li>-->
+        <li class="profile--actions__items">
+            <a href="javascript:void(0);" (click)="changeRouter('account/wish-list')"><span class="fe-layers ag--icons"></span>{{'WISH_LIST' | translate}}</a>
+        </li>
+        <li class="profile--actions__items">
+            <a href="javascript:void(0);" (click)="changeRouter('account/order-history')"><span class="fe-package ag--icons"></span>{{'ORDERS' | translate }} </a>
+        </li>
+        <li class="profile--actions__items">
+            <a href="javascript:void(0);" (click)="changeRouter('account/track-my-order')"><span class="fe-watch ag--icons"></span>{{'TRACK_MY_ORDER' | translate }}</a>
+        </li>
+        <!--<li class="profile--actions__items">
+            <a href="javascript:;"><span class="fe-pocket ag--icons"></span>{{'ORDER_STATUS' | translate}}</a>
+        </li>
+        <li class="profile--actions__items">
+            <a href="javascript:void(0);" (click)="changeRouter('account')"><span class="fe-settings ag--icons"></span>{{'AGFOLKS_PREFERENCES' | translate }}</a>
+        </li>-->
+        <li class="profile--actions__items">
+            <a href="javascript:void(0);" (click)="changeRouter('account/change-password')"><span class="fe-lock ag--icons"></span>{{'CHANGE_PASSWORD' | translate }}</a>
+        </li>
+        <li class="profile--actions__items">
+            <a href="javascript:void(0);" (click)="signOut();"><span class="fe-log-out ag--icons"></span>{{'LOGOUT' | translate}}</a>
+        </li>
+    </ul>
+</div>
+<!-- end card-box -->

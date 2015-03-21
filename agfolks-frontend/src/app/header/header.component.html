@@ -1,0 +1,134 @@
+<div class="preHeader preHeader-xs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12 hide-mobile">
+                <div class="topbar-content">
+                    <div class="topbar-column">
+                        <div class="topbar-text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="top-bar-right">
+                    <div class="topbar-content">
+                        <div class="topbar-column">
+                            <div class="topbar-text">
+                                <ul class="preHeader--social preHeader--social-xs">
+                                    <li class="preHeader--social--items"><a href="javascript:void(0);" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li class="preHeader--social--items"><a href="javascript:void(0);" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                    <li class="preHeader--social--items"><a href="javascript:void(0);" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li class="preHeader--social--items"><a href="javascript:void(0);" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
+                                    <li class="preHeader--social--items"><a href="javascript:void(0);" target="_blank"><i class="fa fa-rss"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="topbar-menu" *ngIf="userData && userData.email">
+                                <!--<ul class="topbar-menu__list">
+                                    <li class="topbar-menu-item"><a href="javascript:void(0);" class="nav-link">My Account</a></li>
+                                </ul>-->
+                                <div class="user-profile-menu js-profileContainer" [ngClass]="{open: classPFlag}">
+                                    <div class="user-profile-menu-item">
+                                        <button type="button" class="user-profile-button js-profile" (click)="togglePMenu()"
+                                            role="presentation" >{{(userData)? userData?.first_name+' '+ userData?.last_name: ''}} <span class="fas fa-angle-down" role="presentation"></span></button>
+                                    </div>
+                                    <div class="dropdown-menu pull-right">
+                                        <ul>
+                                            <li><a href="javascript:;" (click)="changeRouter('account/profile')">{{'MY_ACCOUNT' | translate }}</a></li>
+                                            <li><a href="javascript:;" (click)="changeRouter('account/wish-list')">{{'WISH_LIST' | translate }}</a></li>
+                                            <!--<li><a href="javascript:;" (click)="changeRouter('account/order-history')">{{'ORDER_HISTORY' | translate }} </a></li>-->
+                                            <li><a  href="javascript:;" (click)="changeRouter('account/change-password')">{{'CHANGE_PASSWORD' | translate }}</a></li>
+                                            <li><a href="javascript:;" (click)="signOut();"> {{'SIGN_OUT' | translate }}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<header class="header header-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="header__main header__main-sm">
+                    <!-- Mobile Menu Toggler -->
+                    <button class="mobile-nav-icon js-mobile-nav" (click)="child.mobileRMenu();" type="button"><span class="transition-med"></span></button>
+                    
+                    <div class="header__main--logo header__main--logo-md">
+                        <a [routerLink]="['']"><img src="./assets/images/af-logo.svg" class="image-fluid" alt="AgFolks" /></a>
+                    </div>
+                    <div class="header__search d-none d-md-block">
+                        <app-search></app-search>
+                    </div>
+                    <div class="header__right header__right-sm ml-auto">
+                        <div class="header__right--links" *ngIf="!UserToken">
+                            <ul class="header__right--links__lists">
+                                <li class="item-level-0 my-account-with-text "> <a href="javascript:" (click)="changeRouter('login')" >{{'LOGIN' | translate}}</a> </li>
+                                <li class="item-level-0 my-account-with-text "> <a href="javascript:" (click)="changeRouter('sign-up')" >{{'SIGNUP' | translate}}</a> </li>
+                            </ul>
+                        </div>
+                        <div class="header__right--widget d-none d-lg-block">
+                            <a href="javascript:void(0);"><span class="wishlist"><span class="count">0</span></span></a>
+                        </div>
+                        <div class="header__right--cart js-cartOpener" (click)="cartSiderBar();">
+                            <a href="javascript:void(0);"><span class="count">{{(productCount && productCount>0)? productCount : 0}}</span><span class="amount">${{(subTotal && subTotal>0)? subTotal : '0.00'}}</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Include menu component here -->
+<app-menu></app-menu>
+
+
+<!-- Begin Sidebar Cart -->
+<aside class="SidebarCart navigation-active" [ngClass]="{'navigation-active': cartSbar}" *ngIf="cartProductList &&  cartProductList.length">
+    <div class="widget--heading">
+        <h3 class="widget--title">{{'SHOPPING_CART' | translate}}</h3>
+    </div>
+    <div class="widget__shopping_cart">
+        <div class="widget__shopping_cart__content">
+            <div class="widget__shopping_cart__content--body widget-scroll has-scrollbar">
+                <div class="widget-scroll-content listVerticalScrollBar">
+                    <ul class="cart_list">
+                        <li class="cart_list__items" *ngFor="let cartItem of cartProductList; let i=index ">
+                            <a href="javascript:void(0);" class="remove remove_from_cart_button" (click)="removeCartItem(cartItem.ID);" title="Remove">×</a><a href="javascript:void(0);"
+                                class="cart-item-image">
+                                <img *ngIf="cartItem && cartItem.Image" src="{{PORTAL_URL}}files/store/products/{{cartItem.CID}}/{{cartItem.Product_ID}}/{{cartItem.Image}}" width="100" height="130">
+                                <img *ngIf="!cartItem.Image"  src="./assets/images/no-image.png" width="100" height="130">
+
+                            </a>
+                            <div class="cart-info">
+                                <h3 class="product-title" [innerHtml]="((cartItem && cartItem.Product_Name)? cartItem.Product_Name : '') | safeHtml"></h3>
+                                <span class="product-quantity">{{cartItem.Product_Count}} × <span class="amount">
+                                    <span class="money" *ngIf="cartItem && (cartItem.DiscountType=='amount' || cartItem.DiscountType=='percent')">${{(cartItem && cartItem.Discount_Price )? cartItem.Discount_Price : ''}}</span>
+                                    <span class="money" *ngIf="!(cartItem && (cartItem.DiscountType=='amount' || cartItem.DiscountType=='percent'))">${{(cartItem && cartItem.Product_Price )?cartItem.Product_Price :''}}</span>
+                                </span></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget__shopping_cart__content--footer">
+                <div class="cart__total">
+                    <span>{{'SUBTOTAL' | translate}}:</span>
+                    <strong class="amount">${{(subTotal && subTotal>0)? subTotal : '0.00'}}</strong>
+                </div>
+                <div class="cart__buttons">
+                    <a href="javascript:void(0);" (click)="changeRouter('cart')" class="button button--blue button-md button--cart">{{'VIEW_CART' | translate}}</a>
+                    <a href="javascript:void(0);" (click)="changeRouter('checkout')" class="button button--green button-md button--checkout">{{'CHECKOUT' | translate}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="SidebarCart--Close open" *ngIf="cartProductList && cartProductList.length" (click)="cartSiderBar()" [ngClass]="{'open':cartSbar}"><span class="icon_close"></span></div>
+</aside>
+<div class="SidebarCart--Overlay" *ngIf="cartProductList && cartProductList.length" (click)="cartSiderBar()" [style.display]="cartSbar ? 'block' :'none'"></div>
+<!-- //End Sidebar Cart -->
